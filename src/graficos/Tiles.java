@@ -9,7 +9,6 @@ import javax.imageio.ImageIO;
 public  class Tiles {
 
 	private final int ANCHO_MAPA = 2048;
-	private final int ALTO_MAPA = 2048;
 	private final int ANCHO_TILE = 64;
 	
 	
@@ -18,7 +17,10 @@ public  class Tiles {
 	
 	private int[] planoInter;
 	private int[] planoBruto;
-	private int[][] tileData;
+	private int[][][] tileData;
+	private int[][] tileDataPeligro;
+	private int[][] tileDataDificultad;
+	private int[][] tileDataPenetracion;
 	
 	public Tiles(){
 		
@@ -34,8 +36,10 @@ public  class Tiles {
 		
 		planoInter = new int[tilesPorlado*tilesPorlado];
 		planoBruto = new int[tilesPorlado*tilesPorlado];
-		tileData = new int[tilesPorlado][tilesPorlado];
-		
+		tileData = new int[tilesPorlado][tilesPorlado][4];
+		tileDataPeligro = new int[tilesPorlado][tilesPorlado];
+		tileDataDificultad = new int[tilesPorlado][tilesPorlado];
+		tileDataPenetracion = new int[tilesPorlado][tilesPorlado];
 		
 	}
 	
@@ -50,12 +54,8 @@ public  class Tiles {
 		int filas = 0;
 		
 		for(int z = 0; z < tilesTotal-1; z++ ){
-			
-			
-			
 					
 			if(zz == tilesPorlado-1){
-			System.out.println("*************************** Salto de linea --> "+filas);
 			x += ANCHO_TILE;
 			y = 0;
 			xx+=ANCHO_TILE;
@@ -68,13 +68,70 @@ public  class Tiles {
 				yy+=ANCHO_TILE;
 				zz++;
 			}
-			System.out.println("["+zz+"]["+filas+"]"+zz+" == "+tilesPorlado+" | x: "+x+" y: "+y+" xx: "+xx+" yy: "+yy);
+			tileData[filas][zz][0]=x;
+			tileData[filas][zz][1]=y;
+			tileData[filas][zz][2]=xx;
+			tileData[filas][zz][3]=yy;
 			
 			
 		}
+		for(int g=0;g<tileData.length;g++){
+			for(int gg=0;gg<tileData[g].length;gg++){
+				System.out.println("n elementos :[ "+g+" "+gg+"] "+tileData[g][gg][0]);
+				System.out.println("n elementos : "+tileData[g][gg][1]);
+				System.out.println("n elementos : "+tileData[g][gg][2]);
+				System.out.println("n elementos : "+tileData[g][gg][3]);
+			}
+			
+		}
+		
+	}
+	
+	public int[][] montarBimapas(int[][] arrayPasado){
+	
+		int zz = 0;
+		int filas = 0;
+		int arrastre=0;
+		for(int z = 0; z < planoInter.length-1; z++ ){
+					
+			if(zz == tilesPorlado){
+		
+				zz=0;
+				filas++;
+				
+				} 
+			arrayPasado[filas][zz] = planoInter[arrastre];
+			arrastre++;
+			zz++;
+			
+		}
+		arrayPasado[filas][zz] = planoInter[arrastre];
+		return arrayPasado;
+		
+	}
+	
+	
+	public void montarNivel(){
+		
+		cargarMapa("recursos/plano_1_peligro.png");
+		generarMapa();
+		montarBimapas(tileDataPeligro);
+		
+		cargarMapa("recursos/plano_1_dificultad.png");
+		generarMapa();
+		montarBimapas(tileDataDificultad);
+		
+		cargarMapa("recursos/plano_1_penetracion.png");
+		generarMapa();
+		montarBimapas(tileDataPenetracion);
+		
+		
+
+		
 		
 		
 	}
+	
 	
 	private void cargarMapa(String ruta) {
 		
@@ -87,7 +144,7 @@ public  class Tiles {
 			imagen.getRGB(0, 0, ancho, alto, planoBruto, 0, ancho);
 			
 			} catch (IOException e) {
-				System.out.println("Imagen no encontrada ");
+				System.out.println(" Imagen no encontrada ");
 				e.printStackTrace();
 			}
 	}
