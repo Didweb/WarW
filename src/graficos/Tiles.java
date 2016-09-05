@@ -12,17 +12,66 @@ public  class Tiles {
 	private final int ALTO_MAPA = 2048;
 	private final int ANCHO_TILE = 64;
 	
+	
+	private int tilesPorlado = 0;
+	private int tilesTotal;
+	
 	private int[] planoInter;
 	private int[] planoBruto;
 	private int[][] tileData;
 	
-	private void iniciarMapeo(){
+	public Tiles(){
 		
-		int tilesPorlado = (ANCHO_MAPA*ALTO_MAPA)/(ANCHO_TILE*ANCHO_TILE);
+		tilesPorlado = ANCHO_MAPA/ANCHO_TILE;
+		tilesTotal = tilesPorlado*tilesPorlado;
+		
+		
+	}
+	
+	public void iniciarMapeo(){
+		
+		
 		
 		planoInter = new int[tilesPorlado*tilesPorlado];
 		planoBruto = new int[tilesPorlado*tilesPorlado];
 		tileData = new int[tilesPorlado][tilesPorlado];
+		
+		
+	}
+	
+	public void iniciarCoor(){
+		
+		int x = 0;
+		int y = 0;
+		int xx = ANCHO_TILE;
+		int yy = ANCHO_TILE;
+		int xxLastre = ANCHO_TILE;
+		int zz = 0;
+		int filas = 0;
+		
+		for(int z = 0; z < tilesTotal-1; z++ ){
+			
+			
+			
+					
+			if(zz == tilesPorlado-1){
+			System.out.println("*************************** Salto de linea --> "+filas);
+			x += ANCHO_TILE;
+			y = 0;
+			xx+=ANCHO_TILE;
+			yy=ANCHO_TILE;
+			zz=0;
+			filas++;
+				
+			} else {
+				y+=ANCHO_TILE;
+				yy+=ANCHO_TILE;
+				zz++;
+			}
+			System.out.println("["+zz+"]["+filas+"]"+zz+" == "+tilesPorlado+" | x: "+x+" y: "+y+" xx: "+xx+" yy: "+yy);
+			
+			
+		}
 		
 		
 	}
