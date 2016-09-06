@@ -21,6 +21,8 @@ public  class Tiles {
 	private int[][] tileDataPeligro;
 	private int[][] tileDataDificultad;
 	private int[][] tileDataPenetracion;
+	private int celdaPosicionX;
+	private int celdaPosicionY;
 	
 	public Tiles(){
 		
@@ -29,6 +31,32 @@ public  class Tiles {
 		
 		
 	}
+	
+	public void buscaCelda(){
+		int dudax = 2000;
+		int duday = 1350;
+		
+		for (int v=0; v< tileData.length;v++){
+			
+			for (int vv=0; vv<tileData[v].length;vv++){
+				
+				
+				
+				//System.out.println("Valor "+v+" "+tileData[v][vv][0]+">"+duda0+" "+v+""+tileData[v][vv][1]+" < "+duda1+" ");
+				if (tileData[v][vv][0]<=dudax && tileData[v][vv][2]>=dudax &&  tileData[v][vv][1]<=duday && tileData[v][vv][3]>=duday){
+					
+					//System.out.println("Valor "+dudax+" y "+duday+" esta en "+v+" "+vv);
+					celdaPosicionX = v;
+					celdaPosicionY = vv;
+				}
+			}
+			
+		}
+		
+		
+		System.out.println("Posicion de celda: "+celdaPosicionX+" "+celdaPosicionY);
+	}
+	
 	
 	public void iniciarMapeo(){
 		
@@ -49,7 +77,6 @@ public  class Tiles {
 		int y = 0;
 		int xx = ANCHO_TILE;
 		int yy = ANCHO_TILE;
-		int xxLastre = ANCHO_TILE;
 		int zz = 0;
 		int filas = 0;
 		
@@ -75,15 +102,15 @@ public  class Tiles {
 			
 			
 		}
-		for(int g=0;g<tileData.length;g++){
-			for(int gg=0;gg<tileData[g].length;gg++){
-				System.out.println("n elementos :[ "+g+" "+gg+"] "+tileData[g][gg][0]);
-				System.out.println("n elementos : "+tileData[g][gg][1]);
-				System.out.println("n elementos : "+tileData[g][gg][2]);
-				System.out.println("n elementos : "+tileData[g][gg][3]);
-			}
-			
-		}
+//		for(int g=0;g<tileData.length;g++){
+//			for(int gg=0;gg<tileData[g].length;gg++){
+//			System.out.println("n"+tileData.length+" elementos :[ "+g+" "+gg+"] "+tileData[g][gg][0]);
+//				System.out.println("n elementos 1: "+tileData[g][gg][1]);
+//				System.out.println("n elementos 2: "+tileData[g][gg][2]);
+//				System.out.println("n elementos 3: "+tileData[g][gg][3]);
+//			}
+//			
+//		}
 		
 	}
 	

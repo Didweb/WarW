@@ -43,6 +43,7 @@ public class Juego  implements Runnable{
 		tiles.iniciarMapeo();
 		tiles.iniciarCoor();
 		tiles.montarNivel();
+		tiles.buscaCelda();
 		
 		
 		thread = new Thread(this, "Graficos");
