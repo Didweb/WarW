@@ -1,16 +1,32 @@
 package motor;
 
+import java.io.IOException;
+
+import javax.swing.JFrame;
+
 import control.Controles;
-import graficos.Tiles;
+import graficos.Pantalla;
+import graficos.TileData;
+import graficos.TileImg;
 
-public class Juego  implements Runnable{
+public class Juego  extends JFrame implements Runnable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private final int ANCHO_VENTANA = 1024; //512;
+	private final int ALTO_VENTANA = 1024; //512;
+	
 	private static boolean juegoActivo = false;
 
 	private static Controles controles;
-	private static Tiles tiles;
+	private static TileData tiles;
+	private static TileImg tilesImg;
 	
 	private static Thread thread;
+	private static Pantalla pantalla;
 	
 	private static String  CONTADOR_APS = "";
 	private static String  CONTADOR_FPS = "";
@@ -19,12 +35,24 @@ public class Juego  implements Runnable{
 	private static int fps = 0;
 	
 	
-	private Juego(){
+	private Juego() {
 		controles = new Controles();
+		pantalla = new Pantalla();
+		
+		
+		setTitle("WWII Juego 0.1");
+		setSize(ANCHO_VENTANA,ALTO_VENTANA);
+		setFocusable(true);
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		add(pantalla);
+		setVisible(true);
+		
 		
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args)  {
 		
 		
 		Juego juego = new Juego();
@@ -39,11 +67,14 @@ public class Juego  implements Runnable{
 	private synchronized void iniciar(){
 		juegoActivo = true;
 		
-		tiles = new Tiles();
+		tiles = new TileData();
 		tiles.iniciarMapeo();
 		tiles.iniciarCoor();
 		tiles.montarNivel();
-		tiles.buscaCelda();
+		//tiles.buscaCelda(2000,1390);
+		
+		
+		
 		
 		
 		thread = new Thread(this, "Graficos");

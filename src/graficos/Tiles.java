@@ -12,15 +12,15 @@ public  class Tiles {
 	private final int ANCHO_TILE = 64;
 	
 	
-	private int tilesPorlado = 0;
+	protected int tilesPorlado = 0;
 	private int tilesTotal;
 	
-	private int[] planoInter;
-	private int[] planoBruto;
-	private int[][][] tileData;
-	private int[][] tileDataPeligro;
-	private int[][] tileDataDificultad;
-	private int[][] tileDataPenetracion;
+	protected int[] planoInter;
+	protected int[] planoBruto;
+	protected int[][][] tileData;
+	protected int[][] tileDataPeligro;
+	protected int[][] tileDataDificultad;
+	protected int[][] tileDataPenetracion;
 	private int celdaPosicionX;
 	private int celdaPosicionY;
 	
@@ -32,9 +32,9 @@ public  class Tiles {
 		
 	}
 	
-	public void buscaCelda(){
-		int dudax = 2000;
-		int duday = 1350;
+	public void buscaCelda(int buscaX, int buscaY){
+		int dudax = buscaX;
+		int duday = buscaY;
 		
 		for (int v=0; v< tileData.length;v++){
 			
@@ -58,18 +58,7 @@ public  class Tiles {
 	}
 	
 	
-	public void iniciarMapeo(){
-		
-		
-		
-		planoInter = new int[tilesPorlado*tilesPorlado];
-		planoBruto = new int[tilesPorlado*tilesPorlado];
-		tileData = new int[tilesPorlado][tilesPorlado][4];
-		tileDataPeligro = new int[tilesPorlado][tilesPorlado];
-		tileDataDificultad = new int[tilesPorlado][tilesPorlado];
-		tileDataPenetracion = new int[tilesPorlado][tilesPorlado];
-		
-	}
+
 	
 	public void iniciarCoor(){
 		
@@ -138,29 +127,10 @@ public  class Tiles {
 	}
 	
 	
-	public void montarNivel(){
-		
-		cargarMapa("recursos/plano_1_peligro.png");
-		generarMapa();
-		montarBimapas(tileDataPeligro);
-		
-		cargarMapa("recursos/plano_1_dificultad.png");
-		generarMapa();
-		montarBimapas(tileDataDificultad);
-		
-		cargarMapa("recursos/plano_1_penetracion.png");
-		generarMapa();
-		montarBimapas(tileDataPenetracion);
-		
-		
 
-		
-		
-		
-	}
 	
 	
-	private void cargarMapa(String ruta) {
+	protected void cargarMapa(String ruta) {
 		
 		try {
 			BufferedImage imagen = ImageIO.read(new FileInputStream(ruta));
@@ -177,7 +147,7 @@ public  class Tiles {
 	}
 	
 	
-	private void generarMapa(){
+	protected void generarMapa(){
 		for (int i = 0; i < planoInter.length; i++){
 			
 			switch(planoBruto[i]){
@@ -208,6 +178,64 @@ public  class Tiles {
 			}
 			
 			}
+	}
+	
+	
+	protected void generarMapaImg(){
+		for (int i = 0; i < planoInter.length; i++){
+			
+			switch(planoBruto[i]){
+			
+			// verde
+			case 0xff088c0b:
+				planoInter[i] = 0;
+				continue;
+			
+			// Camnio verti
+			case 0xffac6614:
+				planoInter[i] = 1;
+				continue;
+			
+			// camnio horiz
+			case 0xffe8aa60:
+				planoInter[i] = 2;
+				continue;	
+			
+			// Camnio esquina
+			case 0xff613d13:
+				planoInter[i] = 3;
+				continue;
+				
+			// Rio horizontal
+			case 0xff03adb3:
+				planoInter[i] = 4;
+				continue;
+					
+			// Puente rio horizontal
+			case 0xff126c6f:
+				planoInter[i] = 5;
+				continue;
+			
+			default:
+				planoInter[i] = 0;
+			}
+			
+			}
+	}
+	
+	
+	public int getANCHO_TILE() {
+		return ANCHO_TILE;
+	}
+
+	public void dameData(int[][] arrayContenido){
+		
+		for(int g=0;g<arrayContenido.length;g++){
+		for(int gg=0;gg<arrayContenido[g].length;gg++){
+		System.out.println(arrayContenido.length + " | elementos :[ "+g+" "+gg+"] "+arrayContenido[g][gg]);
+		}
+		
+	}
 	}
 	
 }
