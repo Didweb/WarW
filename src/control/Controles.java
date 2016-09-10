@@ -5,92 +5,62 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
-public final class Controles implements KeyListener, MouseMotionListener{
+public final class Controles implements KeyListener{
 
 	private final static int numeroTeclas = 120;
 	private final boolean[] teclas = new boolean[numeroTeclas];
 	
 	public boolean salir;
+	public boolean arriba;
+	public boolean abajo;
+	public boolean izquierda;
+	public boolean derecha;
+	public boolean centrar;
+	
+	private boolean centrado = false;
+	
+	private int velocidad=1;
 	
 	
 	
 	// Parametros de objetos 
-	private int x;
-	private int y;
-	private int ancho;
-	private int alto;
-	
-	// parametros del raton
-	private boolean arrastrando = false;
-	private int anteriorRatonX;
-	private int anteriorRatonY;
-	private int actualRatonX;
-	private int actualRatonY;
+	private int x=0;
+	private int y=0;
 	
 
 
-
-	public int getActualRatonX() {
-		return actualRatonX;
-	}
-
-	public int getActualRatonY() {
-		return actualRatonY;
-	}
-
-	public void actualizar(int x, int y, int ancho, int alto){
+	public void actualizar(){
 
 		
 		salir = teclas[KeyEvent.VK_ESCAPE];
-		
-		this.x = x;
-		this.y = y;
-		this.ancho = ancho;
-		this.alto = alto;
+		arriba = teclas[KeyEvent.VK_UP];
+		abajo = teclas[KeyEvent.VK_DOWN];
+		izquierda = teclas[KeyEvent.VK_LEFT];
+		derecha = teclas[KeyEvent.VK_RIGHT];
+		centrar = teclas[KeyEvent.VK_C];
+
 		
 		
 		
 	}
 
 	
-	private boolean estDentro(MouseEvent e){
-		
-
-		
-		if ( (e.getX() > x)  && (e.getX() < (x + ancho)) && 
-			 (e.getY() > y)  && (e.getY() < (y + alto))){ 
-			System.out.println("ESTOY");
-				 return true;
-			 } else {
-				 return false;
-			 }	 
-			 
-	}
-	
-	
-	
-	
-	public int getRX() {
+	public int getXpos() {
 		return x;
 	}
 
-	public int getRY() {
+	public int getYpos() {
 		return y;
 	}
 
-	public int getXRaton() {
-		return anteriorRatonX;
+	public int getVelocidad() {
+		return velocidad;
 	}
-
-	public int getYRaton() {
-		return anteriorRatonY;
+	
+	public boolean getCentrando() {
+		return centrado;
 	}
-
-
-
-	public boolean isArrastrando() {
-		return arrastrando;
-	}
+	
 	
 	@Override
 	public void keyTyped(KeyEvent e) {	
@@ -100,42 +70,44 @@ public final class Controles implements KeyListener, MouseMotionListener{
 	public void keyPressed(KeyEvent e) {
 		teclas[e.getKeyCode()] = true;
 		
+		if(centrar){
+			centrado = true;
+			x = 512;
+			y = 512;
+		}
+		
+		if(arriba){
+			x+=getVelocidad();
+
+		}
+		
+		if(abajo){
+			x-=getVelocidad();
+
+		}
+		
+		if(derecha){
+			y+=getVelocidad();
+
+		}
+		
+		if(izquierda){
+			y-=getVelocidad();
+
+		}
+		
 		
 	}
+
+
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		teclas[e.getKeyCode()] = false;
+		System.out.println("R"+e.getKeyCode());
 	}
 
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		if(!arrastrando){
-			if(estDentro(e)){
-				anteriorRatonX = e.getX();
-				anteriorRatonY = e.getY();
-				
-				arrastrando = true;
-			}
-		} else {
-			x = (x + e.getX()) - anteriorRatonX;
-			y = (y + e.getY()) - anteriorRatonY;
-			
-			anteriorRatonX = e.getX();
-			anteriorRatonY = e.getY();
-		}
-		
-	}
-
-
-
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		actualRatonX = e.getX();
-		actualRatonY = e.getY();
-		arrastrando = false;
-		
-	}
+	
 
 	
 

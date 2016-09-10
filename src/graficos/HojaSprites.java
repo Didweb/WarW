@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class HojaSprites  extends JPanel{
-	private Image[] imagenes;
+	private Image[][] imagenes;
 	private BufferedImage imagen, recorte;
 	
 
@@ -24,19 +24,27 @@ public class HojaSprites  extends JPanel{
 	private TileImg nivel;
 	private int recX = 0;
 	private int recY = 0;
-	
+	private int[][] listaData;
 	
 	 
 	public HojaSprites(){
 		nivel = new TileImg();
 		nivel.MapaImg();
 		
+		listaData = nivel.getTileDataNivel();
+		
+		imagenes =  new Image[listaData.length][listaData.length];
+		
+		
 	}
 	
-	public void pantallaNivel() {
-		
 
-		
+	public Image[][] getImagenes() {
+		return imagenes;
+	}
+	
+	
+	public void pantallaNivel() {
 		
 		 File f = new File("recursos/HojaSprites_nivel1.gif");
          try {
@@ -47,14 +55,10 @@ public class HojaSprites  extends JPanel{
 		}
          
 		
-        int largo=0;
         int ale;
-		int[][] listaData = nivel.getTileDataNivel();
 		
-		imagenes =  new Image[listaData.length*listaData.length];
 		for(int x=0; x<listaData.length; x++){
-			
-			for(int y=0; y<listaData[x].length; y++){
+			for(int y=0; y<listaData.length; y++){
 				
 				//System.out.println("Valor "+x+" "+y+" = "+listaData[x][y]);
 				ale = ThreadLocalRandom.current().nextInt(0, 3 + 1);
@@ -62,13 +66,13 @@ public class HojaSprites  extends JPanel{
 				
 				desgranarHoja(listaData[x][y],ale);
 				
-				//System.out.println("recX y recY :  "+recX+" - "+recY);
+				//System.out.println("recX - recY :  "+recX+" - "+recY);
 				//System.out.println("W y H : "+imagen.getWidth()+" "+imagen.getHeight()+" x+ W: "+(64+recX)+" y+ H: "+(64+recY));
 				
 				 recorte = (imagen.getSubimage(recX, recY, 64, 64));
 		            
-				imagenes[largo] = recorte; 
-				largo++;
+				imagenes[x][y] = recorte; 
+				
 				
 			}
 			
@@ -76,18 +80,9 @@ public class HojaSprites  extends JPanel{
 		
 		
 		
-	}
-	
-
-
-	public Image[] getImagenes() {
-		return imagenes;
+		
 	}
 
-
-		
-		
-	
 	
 	private  void desgranarHoja( int valor,int ale){
 		
@@ -95,7 +90,7 @@ public class HojaSprites  extends JPanel{
 		switch(valor){
 		
 		case 0:
-			recX=0;
+			recX=64*ale;
 			recY=0;
 			break;
 			
@@ -128,6 +123,9 @@ public class HojaSprites  extends JPanel{
 			recX=256;
 			recY=0;
 			break;	
+			default:
+				recX=0;
+				recY=0;
 			
 		}
 		

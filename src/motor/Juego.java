@@ -34,17 +34,26 @@ public class Juego  extends JFrame implements Runnable{
 	private static int aps=0;
 	private static int fps = 0;
 	
+	private static int x = 0 ;
+	private static int y = 0;
+	
 	
 	private Juego() {
 		controles = new Controles();
+		addKeyListener(controles);
+		
 		pantalla = new Pantalla(ANCHO_VENTANA,ALTO_VENTANA);
 		
+
 		
-		setTitle("WWII Juego 0.1");
+		
 		setSize(ANCHO_VENTANA,ALTO_VENTANA);
 		setFocusable(true);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
+		setFocusable(true);
 		
 		add(pantalla);
 		setVisible(true);
@@ -85,6 +94,15 @@ public class Juego  extends JFrame implements Runnable{
 	
 	private void actualizar(){		
 		
+		controles.actualizar();
+		
+		
+		
+		
+	
+	
+		pantalla.actualizar(controles.getXpos(), controles.getYpos(),controles.getCentrando());
+		
 		if(controles.salir){
 			System.exit(0);
 		}
@@ -93,7 +111,7 @@ public class Juego  extends JFrame implements Runnable{
 	
 	private void mostrar(){
 		
-		
+		repaint();
 		fps ++;
 	}
 	
@@ -129,6 +147,7 @@ public class Juego  extends JFrame implements Runnable{
 			mostrar();
 			
 			if (System.nanoTime()-referenciaContador > NS_POR_SEGUNDO){
+				setTitle("WWII Juego 0.1"+" | APS: "+CONTADOR_APS+" | "+CONTADOR_FPS);
 				CONTADOR_APS = "APS: " + aps;
 				CONTADOR_FPS = "FPS: " + fps;
 				aps = 0;
