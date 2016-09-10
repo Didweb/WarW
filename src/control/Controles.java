@@ -17,7 +17,7 @@ public final class Controles implements KeyListener{
 	public boolean derecha;
 	public boolean centrar;
 	
-	private boolean centrado = false;
+	public boolean centrado = false;
 	
 	private int velocidad=1;
 	
@@ -70,31 +70,31 @@ public final class Controles implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		teclas[e.getKeyCode()] = true;
 		
-		if(centrar){
-			centrado = true;
-			x = 512;
-			y = 512;
-		}
-		
-		if(arriba){
-			x+=getVelocidad();
-
-		}
-		
-		if(abajo){
-			x-=getVelocidad();
-
-		}
-		
-		if(derecha){
-			y+=getVelocidad();
-
-		}
-		
-		if(izquierda){
-			y-=getVelocidad();
-
-		}
+//		if(centrar){
+//			centrado = true;
+//			x = 512;
+//			y = 512;
+//		}
+//		
+//		if(arriba){
+//			x+=getVelocidad();
+//
+//		}
+//		
+//		if(abajo){
+//			x-=getVelocidad();
+//
+//		}
+//		
+//		if(derecha){
+//			y+=getVelocidad();
+//
+//		}
+//		
+//		if(izquierda){
+//			y-=getVelocidad();
+//
+//		}
 		
 		
 	}
@@ -104,7 +104,6 @@ public final class Controles implements KeyListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 		teclas[e.getKeyCode()] = false;
-		System.out.println("R"+e.getKeyCode());
 	}
 
 	

@@ -63,10 +63,7 @@ public class Pantalla extends JPanel {
 		} else {
 			scrollX += x;
 			scrollY += y;
-			
-			
-			
-			
+					
 		}
 		
 	}
@@ -92,14 +89,14 @@ public class Pantalla extends JPanel {
 				
 				g.drawImage(hojaNivel.getImagenes()[y][x], relativaX, relativaY, this);
 					
-					g.setFont(new Font("Arial", Font.PLAIN, 9));
-					g.setColor(Color.BLACK);
-					g.drawString(" T: "+anchoVTils,relativaX,(relativaY)+10);
-					g.drawString(" P: "+anchoVPix,relativaX,(relativaY)+25);
-					g.drawString(" xT: "+(64*x),relativaX,(relativaY)+40);
-					g.drawString(" yT: "+(64*y)+"",relativaX,(relativaY)+50);
-					g.drawString(" Sx: "+scrollX+" Sy:"+scrollY,relativaX,(relativaY)+60);
-					g.drawRect(relativaX, relativaY, 64, 64);
+					//g.setFont(new Font("Arial", Font.PLAIN, 9));
+					//g.setColor(Color.BLACK);
+					//g.drawString(" T: "+anchoVTils,relativaX,(relativaY)+10);
+					//g.drawString(" P: "+anchoVPix,relativaX,(relativaY)+25);
+					//g.drawString(" xT: "+(64*x),relativaX,(relativaY)+40);
+					//g.drawString(" yT: "+(64*y)+"",relativaX,(relativaY)+50);
+					//g.drawString(" Sx: "+scrollX+" Sy:"+scrollY,relativaX,(relativaY)+60);
+					//g.drawRect(relativaX, relativaY, 64, 64);
 					
 					
 					

@@ -97,15 +97,41 @@ public class Juego  extends JFrame implements Runnable{
 		controles.actualizar();
 		
 		
-		
-		
 	
 	
-		pantalla.actualizar(controles.getXpos(), controles.getYpos(),controles.getCentrando());
+		
+		
+		if(controles.centrar){
+			controles.centrado = true;
+			x = 512;
+			y = 512;
+		}
+		
+		if(controles.arriba){
+			x+=controles.getVelocidad();
+
+		}
+		
+		if(controles.abajo){
+			x-=controles.getVelocidad();
+
+		}
+		
+		if(controles.derecha){
+			y+=controles.getVelocidad();
+
+		}
+		
+		if(controles.izquierda){
+			y-=controles.getVelocidad();
+
+		}
 		
 		if(controles.salir){
 			System.exit(0);
 		}
+		pantalla.actualizar(y, x,controles.getCentrando());
+		//pantalla.actualizar(controles.getYpos(), controles.getXpos(),controles.getCentrando());
 		aps ++;
 	}
 	
