@@ -215,7 +215,11 @@ public  class Tiles {
 			case 0xff126c6f:
 				planoInter[i] = 5;
 				continue;
-			
+				
+			// Roca
+				case 0xff000000:
+					planoInter[i] = 6;
+					continue;			
 			default:
 				planoInter[i] = 0;
 			}

@@ -37,7 +37,7 @@ public class Juego  extends JFrame implements Runnable{
 	
 	private Juego() {
 		controles = new Controles();
-		pantalla = new Pantalla();
+		pantalla = new Pantalla(ANCHO_VENTANA,ALTO_VENTANA);
 		
 		
 		setTitle("WWII Juego 0.1");

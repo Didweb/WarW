@@ -38,11 +38,11 @@ public class HojaSprites  extends JPanel{
 
 		
 		
-		 File f = new File("recursos/HojaSprites_nivel1.png");
+		 File f = new File("recursos/HojaSprites_nivel1.gif");
          try {
 			imagen = ImageIO.read(f);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
          
@@ -91,17 +91,11 @@ public class HojaSprites  extends JPanel{
 	
 	private  void desgranarHoja( int valor,int ale){
 		
-
-
-		
 		
 		switch(valor){
 		
 		case 0:
-			
-			
-			
-			recX=64*ale;
+			recX=0;
 			recY=0;
 			break;
 			
@@ -119,6 +113,21 @@ public class HojaSprites  extends JPanel{
 			recX=128;
 			recY=64;
 			break;
+			
+		case 4:
+			recX=0;
+			recY=64;
+			break;	
+			
+		case 5:
+			recX=64;
+			recY=64;
+			break;	
+			
+		case 6:
+			recX=256;
+			recY=0;
+			break;	
 			
 		}
 		

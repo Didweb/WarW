@@ -15,7 +15,7 @@ public class TileImg extends Tiles{
 		planoBruto = new int[tilesPorlado*tilesPorlado];
 		TileDataNivel = new int[tilesPorlado][tilesPorlado];
 		System.out.println("Long array: "+TileDataNivel.length);
-		cargarMapa("recursos/mini_nivel1.png");
+		cargarMapa("recursos/mini_nivel1.gif");
 		generarMapaImg();
 		montarBimapas(TileDataNivel);
 		//dameData(TileDataNivel);
