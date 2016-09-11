@@ -91,15 +91,7 @@ public  class Tiles {
 			
 			
 		}
-//		for(int g=0;g<tileData.length;g++){
-//			for(int gg=0;gg<tileData[g].length;gg++){
-//			System.out.println("n"+tileData.length+" elementos :[ "+g+" "+gg+"] "+tileData[g][gg][0]);
-//				System.out.println("n elementos 1: "+tileData[g][gg][1]);
-//				System.out.println("n elementos 2: "+tileData[g][gg][2]);
-//				System.out.println("n elementos 3: "+tileData[g][gg][3]);
-//			}
-//			
-//		}
+
 		
 	}
 	

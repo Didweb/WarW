@@ -16,8 +16,8 @@ public class Juego  extends JFrame implements Runnable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private final int ANCHO_VENTANA = 1024; //512;
-	private final int ALTO_VENTANA = 1024; //512;
+	private final int ANCHO_VENTANA = 1024;
+	private final int ALTO_VENTANA = 1024;
 	
 	private static boolean juegoActivo = false;
 
@@ -95,25 +95,20 @@ public class Juego  extends JFrame implements Runnable{
 	private void actualizar(){		
 		
 		controles.actualizar();
-		
-		
-	
-	
-		
+
 		
 		if(controles.centrar){
-			controles.centrado = true;
 			x = 512;
 			y = 512;
 		}
 		
 		if(controles.arriba){
-			x+=controles.getVelocidad();
+			x-=controles.getVelocidad();
 
 		}
 		
 		if(controles.abajo){
-			x-=controles.getVelocidad();
+			x+=controles.getVelocidad();
 
 		}
 		
@@ -130,8 +125,7 @@ public class Juego  extends JFrame implements Runnable{
 		if(controles.salir){
 			System.exit(0);
 		}
-		pantalla.actualizar(y, x,controles.getCentrando());
-		//pantalla.actualizar(controles.getYpos(), controles.getXpos(),controles.getCentrando());
+		pantalla.actualizar(y, x);
 		aps ++;
 	}
 	

@@ -13,6 +13,8 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import control.Controles;
+
 public class Pantalla extends JPanel {
 
 	/**
@@ -22,6 +24,7 @@ public class Pantalla extends JPanel {
 
 	private Image imagen;
 	private HojaSprites hojaNivel;
+	
 	
 	private int scrollX;
 	private int scrollY;
@@ -55,16 +58,11 @@ public class Pantalla extends JPanel {
 		
 	}
 	
-	public void actualizar(int x, int y,boolean centrado){
+	public void actualizar(int x, int y){
 		
-		if (centrado){
-			scrollX = x;
-			scrollY = y;
-		} else {
-			scrollX += x;
-			scrollY += y;
-					
-		}
+		scrollX = x;
+		scrollY = y;
+		
 		
 	}
 	
@@ -84,8 +82,6 @@ public class Pantalla extends JPanel {
 				relativaY = (64*y)-scrollY;
 				
 				
-				
-				System.out.println("relaX: "+relativaX+" relaY: "+relativaY+" --->>>>>>>>>>>>>>>> "+hojaNivel.getImagenes().length);
 				
 				g.drawImage(hojaNivel.getImagenes()[y][x], relativaX, relativaY, this);
 					
