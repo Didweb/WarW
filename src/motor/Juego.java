@@ -2,6 +2,8 @@ package motor;
 
 
 
+import java.awt.Color;
+
 import javax.swing.JFrame;
 
 import control.Controles;
@@ -54,6 +56,7 @@ public class Juego  extends JFrame implements Runnable{
 		setFocusable(true);
 		
 		add(pantalla);
+		
 		setVisible(true);
 		
 		

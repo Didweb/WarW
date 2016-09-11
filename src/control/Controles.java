@@ -20,8 +20,6 @@ public final class Controles implements KeyListener{
 	private int velocidad=8;
 	
 	
-	
-	// Parametros de objetos 
 	private int x=0;
 	private int y=0;
 	
@@ -37,9 +35,6 @@ public final class Controles implements KeyListener{
 		derecha = teclas[KeyEvent.VK_RIGHT];
 		centrar = teclas[KeyEvent.VK_C];
 
-		
-		
-		
 	}
 
 	
@@ -65,19 +60,14 @@ public final class Controles implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		teclas[e.getKeyCode()] = true;
-		
-		
-		
+	
 	}
-
-
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		teclas[e.getKeyCode()] = false;
 		
 	}
-
 
 	public boolean isCentrado() {
 		return centrado;
