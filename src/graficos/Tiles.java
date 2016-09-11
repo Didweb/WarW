@@ -181,40 +181,51 @@ public  class Tiles {
 			
 			switch(planoBruto[i]){
 			
-			// verde
+			// cesped
 			case 0xff088c0b:
 				planoInter[i] = 0;
 				continue;
 			
-			// Camnio derecha
+			// camino_de
 			case 0xffac6614:
 				planoInter[i] = 1;
 				continue;
 			
-			// camnio izquierda
+			// camino_iz
 			case 0xffe8aa60:
 				planoInter[i] = 2;
 				continue;	
 			
-			// Camnio esquina der
+			// curva_de
 			case 0xff613d13:
 				planoInter[i] = 3;
 				continue;
 				
-			// Esquina izq
-			case 0xff331d04:
+			// curva_iz
+			case 0xff331e05:
 				planoInter[i] = 4;
 				continue;
 					
-			// Puente rio izqui
+			// puente_de
 			case 0xff126c6f:
 				planoInter[i] = 5;
 				continue;
 				
-			// puente derecha
-				case 0xff03adb3:
-					planoInter[i] = 6;
-					continue;			
+			// puente_iz
+			case 0xff044749:
+				planoInter[i] = 6;
+				continue;	
+				
+			// rio_de
+			case 0xff076063:
+				planoInter[i] = 7;
+				continue;	
+					
+			// rio_iz
+			case 0xff03adb3:
+				planoInter[i] = 8;
+				continue;	
+			
 			default:
 				planoInter[i] = 0;
 			}

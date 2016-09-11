@@ -64,6 +64,8 @@ public class Pantalla extends JPanel {
 				relativaX = (x-y)*(anchoTile/2)-scrollX;
 				relativaY = (x+y)*(altoTile/2)-scrollY;			
 				
+				
+				
 				g.drawImage(hojaNivel.getImagenes()[y][x], relativaX, relativaY, this);
 					
 					//g.setFont(new Font("Arial", Font.PLAIN, 9));

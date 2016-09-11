@@ -37,8 +37,8 @@ public class Juego  extends JFrame implements Runnable{
 	private static int aps=0;
 	private static int fps = 0;
 	
-	private static int x = ANCHO_VENTANA/2 ;
-	private static int y = ALTO_VENTANA/2;
+	private static int x = ANCHO_VENTANA/8 ;
+	private static int y = (ALTO_VENTANA/2)*-1;
 	
 	
 	private Juego() {
@@ -101,28 +101,28 @@ public class Juego  extends JFrame implements Runnable{
 
 		
 		if(controles.centrar){
-			x = 512;
-			y = 512;
+			x = ANCHO_VENTANA/8;
+			y = (ALTO_VENTANA/2)*-1;
 		}
 		
 		
-		if(controles.arriba && x>((ALTO_VENTANA*-1)/6)){
+		if(controles.arriba && x>((ALTO_VENTANA*-1)/2)){
 			x-=controles.getVelocidad();
 		    
 
 		}
-		
-		if(controles.abajo && x<(ALTO_VENTANA/6)+ALTO_VENTANA){
+		System.out.println("x: "+x+"< "+((ALTO_VENTANA/2)));
+		if(controles.abajo && x<(ALTO_VENTANA/2)){
 			x+=controles.getVelocidad();
 
 		}
 		
-		if(controles.derecha && y<(ANCHO_VENTANA/6)+ANCHO_VENTANA){
+		if(controles.derecha && y<(ANCHO_VENTANA)+ANCHO_VENTANA){
 			y+=controles.getVelocidad();
 
 		}
 		
-		if(controles.izquierda && y>((ANCHO_VENTANA*-1)/6)){
+		if(controles.izquierda && y>((ANCHO_VENTANA*-1))){
 			y-=controles.getVelocidad();
 
 		}

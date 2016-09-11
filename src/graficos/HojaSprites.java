@@ -59,7 +59,7 @@ public class HojaSprites  extends JPanel{
          
 		
         int ale;
-		
+	
 		for(int x=0; x<listaData.length; x++){
 			for(int y=0; y<listaData.length; y++){
 				
@@ -67,12 +67,12 @@ public class HojaSprites  extends JPanel{
 				ale = ThreadLocalRandom.current().nextInt(0, 3 + 1);
 				//System.out.println("x y y :  "+x+" - "+y+" "+listaData[x][y]+" => ale: "+ale);
 				
-				desgranarHoja(listaData[x][y],ale);
-				
+				//desgranarHoja(listaData[x][y],ale);
+				recX = listaData[x][y]*nivel.getANCHO_TILE();
 				//System.out.println("recX - recY :  "+recX+" - "+recY);
 				//System.out.println("W y H : "+imagen.getWidth()+" "+imagen.getHeight()+" x+ W: "+(64+recX)+" y+ H: "+(64+recY));
 				
-				 recorte = (imagen.getSubimage(recX, recY, 64, 64));
+				 recorte = (imagen.getSubimage(recX, recY, nivel.getANCHO_TILE(), nivel.getALTO_TILE()));
 		            
 				imagenes[x][y] = recorte; 
 				
@@ -87,28 +87,33 @@ public class HojaSprites  extends JPanel{
 	}
 
 	
+	public int[][] getListaData() {
+	    return listaData;
+	}
+
+
 	private  void desgranarHoja( int valor,int ale){
 		
 		
 		switch(valor){
 		
 		case 0:
-			recX=108;
+			recX=0;
 			recY=0;
 			break;
 			
 		case 1:
-			recX=216;
+			recX=64;
 			recY=0;
 			break;
 			
 		case 2:
-			recX=324;
+			recX=132;
 			recY=0;
 			break;
 			
 		case 3:
-			recX=432;
+			recX=198;
 			recY=0;
 			break;
 			
@@ -123,7 +128,7 @@ public class HojaSprites  extends JPanel{
 			break;	
 			
 		case 6:
-			recX=756;
+			recX=864;
 			recY=0;
 			break;	
 		case 7:
@@ -134,9 +139,10 @@ public class HojaSprites  extends JPanel{
 			recX=972;
 			recY=0;
 			break;
-			default:
-				recX=0;
-				recY=0;
+			
+		default:
+			recX=0;
+			recY=0;
 			
 		}
 		
