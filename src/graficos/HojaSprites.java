@@ -49,7 +49,7 @@ public class HojaSprites  extends JPanel{
 	
 	public void pantallaNivel() {
 		
-		 File f = new File("recursos/HojaSprites_nivel1.gif");
+		 File f = new File("recursos/HojaSpriteIso_Mapa1.gif");
          try {
 			imagen = ImageIO.read(f);
 		} catch (IOException e) {
@@ -93,39 +93,47 @@ public class HojaSprites  extends JPanel{
 		switch(valor){
 		
 		case 0:
-			recX=64*ale;
+			recX=108;
 			recY=0;
 			break;
 			
 		case 1:
-			recX=192;
-			recY=64;
+			recX=216;
+			recY=0;
 			break;
 			
 		case 2:
-			recX=256;
-			recY=64;
+			recX=324;
+			recY=0;
 			break;
 			
 		case 3:
-			recX=128;
-			recY=64;
+			recX=432;
+			recY=0;
 			break;
 			
 		case 4:
-			recX=0;
-			recY=64;
+			recX=540;
+			recY=0;
 			break;	
 			
 		case 5:
-			recX=64;
-			recY=64;
+			recX=648;
+			recY=0;
 			break;	
 			
 		case 6:
-			recX=256;
+			recX=756;
 			recY=0;
 			break;	
+		case 7:
+			recX=864;
+			recY=0;
+			break;
+		case 8:
+			recX=972;
+			recY=0;
+			break;
 			default:
 				recX=0;
 				recY=0;

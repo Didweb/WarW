@@ -23,15 +23,21 @@ public class Pantalla extends JPanel {
 	private int relativaX;
 	private int relativaY;
 	
+	private int anchoTile;
+	private int altoTile;
+	
 
 	
-	public Pantalla(int ANCHO_VENTANA,int ALTO_VENTANA) {
+	public Pantalla(int ANCHO_VENTANA,int ALTO_VENTANA, int anchoTile, int altoTile) {
 		
 		hojaNivel = new HojaSprites();
 		hojaNivel.pantallaNivel();
 		
 		scrollX = ANCHO_VENTANA/2;
 		scrollY = ALTO_VENTANA/2;
+		
+		this.anchoTile = anchoTile;
+		this.altoTile = altoTile;
 	
 	}
 	
@@ -52,10 +58,11 @@ public class Pantalla extends JPanel {
 			
 			for(int y=0;y<hojaNivel.getImagenes().length;y++){
 				
-				relativaX = (64*x)-scrollX;
-				relativaY = (64*y)-scrollY;
+//				relativaX = (anchoTile*x)-scrollX;
+//				relativaY = (altoTile*y)-scrollY;
 				
-				
+				relativaX = (x-y)*(anchoTile/2)-scrollX;
+				relativaY = (x+y)*(altoTile/2)-scrollY;			
 				
 				g.drawImage(hojaNivel.getImagenes()[y][x], relativaX, relativaY, this);
 					

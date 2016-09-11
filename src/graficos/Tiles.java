@@ -10,9 +10,11 @@ public  class Tiles {
 
 	private final int ANCHO_MAPA = 2048;
 	private final int ANCHO_TILE = 64;
+	private final int ALTO_TILE = 32;
 	
 	
 	protected int tilesPorlado = 0;
+	protected int tilesPoralto = 0;
 	private int tilesTotal;
 	
 	protected int[] planoInter;
@@ -27,6 +29,7 @@ public  class Tiles {
 	public Tiles(){
 		
 		tilesPorlado = ANCHO_MAPA/ANCHO_TILE;
+		tilesPoralto = ANCHO_MAPA/ALTO_TILE;
 		tilesTotal = tilesPorlado*tilesPorlado;
 		
 		
@@ -65,7 +68,7 @@ public  class Tiles {
 		int x = 0;
 		int y = 0;
 		int xx = ANCHO_TILE;
-		int yy = ANCHO_TILE;
+		int yy = ALTO_TILE;
 		int zz = 0;
 		int filas = 0;
 		
@@ -75,13 +78,13 @@ public  class Tiles {
 			x += ANCHO_TILE;
 			y = 0;
 			xx+=ANCHO_TILE;
-			yy=ANCHO_TILE;
+			yy=ALTO_TILE;
 			zz=0;
 			filas++;
 				
 			} else {
 				y+=ANCHO_TILE;
-				yy+=ANCHO_TILE;
+				yy+=ALTO_TILE;
 				zz++;
 			}
 			tileData[filas][zz][0]=x;
@@ -183,33 +186,33 @@ public  class Tiles {
 				planoInter[i] = 0;
 				continue;
 			
-			// Camnio verti
+			// Camnio derecha
 			case 0xffac6614:
 				planoInter[i] = 1;
 				continue;
 			
-			// camnio horiz
+			// camnio izquierda
 			case 0xffe8aa60:
 				planoInter[i] = 2;
 				continue;	
 			
-			// Camnio esquina
+			// Camnio esquina der
 			case 0xff613d13:
 				planoInter[i] = 3;
 				continue;
 				
-			// Rio horizontal
-			case 0xff03adb3:
+			// Esquina izq
+			case 0xff331d04:
 				planoInter[i] = 4;
 				continue;
 					
-			// Puente rio horizontal
+			// Puente rio izqui
 			case 0xff126c6f:
 				planoInter[i] = 5;
 				continue;
 				
-			// Roca
-				case 0xff000000:
+			// puente derecha
+				case 0xff03adb3:
 					planoInter[i] = 6;
 					continue;			
 			default:
@@ -223,7 +226,10 @@ public  class Tiles {
 	public int getANCHO_TILE() {
 		return ANCHO_TILE;
 	}
-
+	
+	public int getALTO_TILE() {
+		return ALTO_TILE;
+	}
 	public void dameData(int[][] arrayContenido){
 		
 		for(int g=0;g<arrayContenido.length;g++){

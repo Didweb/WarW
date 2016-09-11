@@ -20,6 +20,9 @@ public class Juego  extends JFrame implements Runnable{
 	private final static int ANCHO_VENTANA = 1024;
 	private final static int ALTO_VENTANA = 1024;
 	
+	private final static int ANCHO_TILE = 66;
+	private final static int ALTO_TILE= 32;
+	
 	private static boolean juegoActivo = false;
 
 	private static Controles controles;
@@ -42,7 +45,7 @@ public class Juego  extends JFrame implements Runnable{
 		controles = new Controles();
 		addKeyListener(controles);
 		
-		pantalla = new Pantalla(ANCHO_VENTANA,ALTO_VENTANA);
+		pantalla = new Pantalla(ANCHO_VENTANA,ALTO_VENTANA,ANCHO_TILE,ALTO_TILE);
 		
 
 		
