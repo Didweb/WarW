@@ -51,7 +51,7 @@ public class Juego  extends JFrame implements Runnable{
 		
 		
 		setSize(ANCHO_VENTANA,ALTO_VENTANA);
-		setFocusable(true);
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -111,7 +111,7 @@ public class Juego  extends JFrame implements Runnable{
 		    
 
 		}
-		System.out.println("x: "+x+"< "+((ALTO_VENTANA/2)));
+		
 		if(controles.abajo && x<(ALTO_VENTANA/2)){
 			x+=controles.getVelocidad();
 
@@ -137,6 +137,7 @@ public class Juego  extends JFrame implements Runnable{
 	private void mostrar(){
 		
 		repaint();
+		
 		fps ++;
 	}
 	

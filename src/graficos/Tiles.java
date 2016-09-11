@@ -221,7 +221,7 @@ public  class Tiles {
 				planoInter[i] = 7;
 				continue;	
 					
-			// rio_iz
+			// rio_iz case 0xff03adb3:
 			case 0xff03adb3:
 				planoInter[i] = 8;
 				continue;	

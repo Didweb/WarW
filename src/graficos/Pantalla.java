@@ -1,7 +1,10 @@
 package graficos;
 
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+
 import javax.swing.JPanel;
 
 
@@ -46,11 +49,14 @@ public class Pantalla extends JPanel {
 		scrollY = y;
 	}
 	
-
+	public void update(Graphics g){
+	    paintComponent(g);
+	    
+	}
 
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-
+		  
 		
 		for(int x=0;x<hojaNivel.getImagenes().length;x++){
 			
@@ -75,7 +81,7 @@ public class Pantalla extends JPanel {
 					//g.drawString(" xT: "+(64*x),relativaX,(relativaY)+40);
 					//g.drawString(" yT: "+(64*y)+"",relativaX,(relativaY)+50);
 					//g.drawString(" Sx: "+scrollX+" Sy:"+scrollY,relativaX,(relativaY)+60);
-					//g.drawRect(relativaX, relativaY, 64, 64);
+					g.drawRect(relativaX, relativaY, 64, 32);
 					
 					
 					
