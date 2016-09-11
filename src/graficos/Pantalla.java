@@ -1,19 +1,10 @@
 package graficos;
 
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import control.Controles;
+
 
 public class Pantalla extends JPanel {
 
@@ -22,48 +13,31 @@ public class Pantalla extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Image imagen;
+	
 	private HojaSprites hojaNivel;
 	
 	
 	private int scrollX;
 	private int scrollY;
-	private int anchoVTils;
-	private int altoVTils;
-	private int anchoVPix;
-	private int altoVPix;
 	
 	private int relativaX;
 	private int relativaY;
 	
-	private int MaxY;
-	private int MaxX;
+
 	
 	public Pantalla(int ANCHO_VENTANA,int ALTO_VENTANA) {
 		
 		hojaNivel = new HojaSprites();
 		hojaNivel.pantallaNivel();
 		
-		anchoVTils = ANCHO_VENTANA;
-		altoVTils  = ALTO_VENTANA;
-		anchoVPix = ANCHO_VENTANA*64;
-		altoVPix  = ALTO_VENTANA*64;
 		scrollX = ANCHO_VENTANA/2;
 		scrollY = ALTO_VENTANA/2;
-		int relativaX = 0;
-		int relativaY = 0;
-		
-		
-		
-		
+	
 	}
 	
 	public void actualizar(int x, int y){
-		
 		scrollX = x;
 		scrollY = y;
-		
-		
 	}
 	
 

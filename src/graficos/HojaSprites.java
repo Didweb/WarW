@@ -1,25 +1,28 @@
 package graficos;
 
 
-import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
-import java.util.Random;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class HojaSprites  extends JPanel{
+
+
+	/**
+	 * 
+	 */
+    	private static final long serialVersionUID = 2591034934263085790L;
 	private Image[][] imagenes;
 	private BufferedImage imagen, recorte;
 	
 
-	private Graphics g;
+	
 	
 	private TileImg nivel;
 	private int recX = 0;

@@ -1,29 +1,27 @@
 package motor;
 
-import java.io.IOException;
+
 
 import javax.swing.JFrame;
 
 import control.Controles;
 import graficos.Pantalla;
 import graficos.TileData;
-import graficos.TileImg;
 
 public class Juego  extends JFrame implements Runnable{
 
 	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	private final int ANCHO_VENTANA = 1024;
-	private final int ALTO_VENTANA = 1024;
+	* 
+     	*/
+    	private static final long serialVersionUID = 2997131868080903015L;
+    	
+	private final static int ANCHO_VENTANA = 1024;
+	private final static int ALTO_VENTANA = 1024;
 	
 	private static boolean juegoActivo = false;
 
 	private static Controles controles;
 	private static TileData tiles;
-	private static TileImg tilesImg;
 	
 	private static Thread thread;
 	private static Pantalla pantalla;
@@ -34,8 +32,8 @@ public class Juego  extends JFrame implements Runnable{
 	private static int aps=0;
 	private static int fps = 0;
 	
-	private static int x = 0 ;
-	private static int y = 0;
+	private static int x = ANCHO_VENTANA/2 ;
+	private static int y = ALTO_VENTANA/2;
 	
 	
 	private Juego() {
@@ -62,7 +60,6 @@ public class Juego  extends JFrame implements Runnable{
 	}
 	
 	public static void main(String[] args)  {
-		
 		
 		Juego juego = new Juego();
 		juego.iniciar();
@@ -102,22 +99,24 @@ public class Juego  extends JFrame implements Runnable{
 			y = 512;
 		}
 		
-		if(controles.arriba){
+		
+		if(controles.arriba && x>((ALTO_VENTANA*-1)/6)){
 			x-=controles.getVelocidad();
+		    
 
 		}
 		
-		if(controles.abajo){
+		if(controles.abajo && x<(ALTO_VENTANA/6)+ALTO_VENTANA){
 			x+=controles.getVelocidad();
 
 		}
 		
-		if(controles.derecha){
+		if(controles.derecha && y<(ANCHO_VENTANA/6)+ANCHO_VENTANA){
 			y+=controles.getVelocidad();
 
 		}
 		
-		if(controles.izquierda){
+		if(controles.izquierda && y>((ANCHO_VENTANA*-1)/6)){
 			y-=controles.getVelocidad();
 
 		}
