@@ -1,8 +1,11 @@
 package graficos;
 
 
+import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JPanel;
+
+import tropas.Tanque;
 
 
 
@@ -26,6 +29,9 @@ public class Pantalla extends JPanel {
 	
 	private int anchoTile;
 	private int altoTile;
+	
+	private Tanque play;
+	private Tanque enemigo;
 
 	
 	public Pantalla(int ANCHO_VENTANA,int ALTO_VENTANA, int anchoTile, int altoTile) {
@@ -46,6 +52,8 @@ public class Pantalla extends JPanel {
 	public void actualizar(int x, int y){
 		scrollX = x;
 		scrollY = y;
+
+		
 	}
 	
 	public void update(Graphics g){
@@ -53,6 +61,15 @@ public class Pantalla extends JPanel {
 	    
 	}
 
+	public void actores(Tanque play, Tanque enemigo){
+	    
+	    this.play = play;
+	    this.enemigo = enemigo;
+	    
+	    
+	    
+	}
+	
 	public void paint(Graphics g){
 		
 		  
@@ -62,9 +79,7 @@ public class Pantalla extends JPanel {
 			
 			
 			for(int y=0;y<hojaNivel.getImagenes().length;y++){
-				
-//				relativaX = (anchoTile*x)-scrollX;
-//				relativaY = (altoTile*y)-scrollY;
+
 				
 				relativaX = (x-y)*(anchoTile/2)-scrollX;
 				relativaY = (x+y)*(altoTile/2)-scrollY;			
@@ -88,8 +103,11 @@ public class Pantalla extends JPanel {
 			}
 			
 		}
+		g.setColor(Color.BLUE);
+		g.fillRect(play.getPosicionX()-scrollX, play.getPosicionY()-scrollY, 60, 60);
 		
-		
+		g.setColor(Color.RED);
+		g.fillRect(enemigo.getPosicionX()-scrollX, enemigo.getPosicionY()-scrollY, 60, 60);
 		
 	}
 }

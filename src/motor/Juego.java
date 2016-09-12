@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import control.Controles;
 import graficos.Pantalla;
 import graficos.TileData;
+import tropas.Tanque;
 
 public class Juego  extends JFrame implements Runnable{
 
@@ -40,6 +41,13 @@ public class Juego  extends JFrame implements Runnable{
 	private static int x = ANCHO_VENTANA/8 ;
 	private static int y = (ALTO_VENTANA/2)*-1;
 	
+	private static int marcadorX=0;
+	private static int marcadorY=0;
+	
+	
+	
+	private static Tanque play;
+	private static Tanque enemigo;
 	
 	private Juego() {
 		controles = new Controles();
@@ -47,9 +55,10 @@ public class Juego  extends JFrame implements Runnable{
 		
 		pantalla = new Pantalla(ANCHO_VENTANA,ALTO_VENTANA,ANCHO_TILE,ALTO_TILE);
 		
-
+		play = new Tanque(500,500,"Sovietico");
+		enemigo = new Tanque(100,100,"Aleman");
 		
-		
+		pantalla.actores(play, enemigo);
 		setSize(ANCHO_VENTANA,ALTO_VENTANA);
 		
 		
@@ -105,28 +114,33 @@ public class Juego  extends JFrame implements Runnable{
 		
 		if(controles.arriba && x>((ALTO_VENTANA*-1)/2)){
 			x-=controles.getVelocidad();
+			marcadorX -= controles.getVelocidad();
 		    
 
 		}
 		
 		if(controles.abajo && x<(ALTO_VENTANA/2)){
 			x+=controles.getVelocidad();
-
+			marcadorX += controles.getVelocidad();
 		}
 		
 		if(controles.derecha && y<(ANCHO_VENTANA)+ANCHO_VENTANA){
 			y+=controles.getVelocidad();
+			marcadorY += controles.getVelocidad();
 
 		}
 		
 		if(controles.izquierda && y>((ANCHO_VENTANA*-1))){
 			y-=controles.getVelocidad();
+			marcadorY -= controles.getVelocidad();
 
 		}
 		
 		if(controles.salir){
 			System.exit(0);
 		}
+		
+		
 		pantalla.actualizar(y, x);
 		aps ++;
 	}

@@ -56,8 +56,7 @@ public class HojaSprites  extends JPanel{
          try {
 			imagen = ImageIO.read(f);
 		} catch (IOException e) {
-
-			e.printStackTrace();
+		    e.printStackTrace();
 		}
          
 		
@@ -66,26 +65,14 @@ public class HojaSprites  extends JPanel{
 		for(int x=0; x<listaData.length; x++){
 			for(int y=0; y<listaData.length; y++){
 				
-				//System.out.println("Valor "+x+" "+y+" = "+listaData[x][y]);
-			
-				//System.out.println("x y y :  "+x+" - "+y+" "+listaData[x][y]+" => ale: "+ale);
+			    recX = listaData[x][y]*anchoTil;
 				
-				//desgranarHoja(listaData[x][y],ale);
-				recX = listaData[x][y]*anchoTil;
-				System.out.println("recX - recY :  "+recX+" --> "+listaData[x][y]+" * "+anchoTil);
-				//System.out.println("W y H : "+imagen.getWidth()+" "+imagen.getHeight()+" x+ W: "+(64+recX)+" y+ H: "+(64+recY));
-				
-				 recorte = (imagen.getSubimage(recX, recY, anchoTil, altoTil));
+			    recorte = (imagen.getSubimage(recX, recY, anchoTil, altoTil));
 		            
-				imagenes[x][y] = recorte; 
-				
-				
+			    imagenes[x][y] = recorte; 
 			}
 			
 		}
-		
-		
-		
 		
 	}
 
