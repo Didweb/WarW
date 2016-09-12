@@ -2,7 +2,7 @@ package motor;
 
 
 
-import java.awt.Color;
+
 
 import javax.swing.JFrame;
 
@@ -84,9 +84,6 @@ public class Juego  extends JFrame implements Runnable{
 		tiles.iniciarCoor();
 		tiles.montarNivel();
 		//tiles.buscaCelda(2000,1390);
-		
-		
-		
 		
 		
 		thread = new Thread(this, "Graficos");

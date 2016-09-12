@@ -8,11 +8,11 @@ import javax.imageio.ImageIO;
 
 public  class Tiles {
 
-	private final int ANCHO_MAPA = 2048;
-	private final int ANCHO_TILE = 64;
-	private final int ALTO_TILE = 32;
+	private  int ancho_mapa = 2048;
+	private  int ancho_tile = 0; //64;
+	private  int alto_tile = 0; //32;
 	
-	
+
 	protected int tilesPorlado = 0;
 	protected int tilesPoralto = 0;
 	private int tilesTotal;
@@ -26,15 +26,29 @@ public  class Tiles {
 	private int celdaPosicionX;
 	private int celdaPosicionY;
 	
-	public Tiles(){
+	public void inicaimosTiles(){
 		
-		tilesPorlado = ANCHO_MAPA/ANCHO_TILE;
-		tilesPoralto = ANCHO_MAPA/ALTO_TILE;
+		tilesPorlado = ancho_mapa/ancho_tile;
+		tilesPoralto = ancho_mapa/alto_tile;
 		tilesTotal = tilesPorlado*tilesPorlado;
 		
 		
 	}
 	
+	
+	
+	public void setAncho_tile(int ancho_tile) {
+	    this.ancho_tile = ancho_tile;
+	}
+
+
+
+	public void setAlto_tile(int alto_tile) {
+	    this.alto_tile = alto_tile;
+	}
+
+
+
 	public void buscaCelda(int buscaX, int buscaY){
 		int dudax = buscaX;
 		int duday = buscaY;
@@ -67,24 +81,24 @@ public  class Tiles {
 		
 		int x = 0;
 		int y = 0;
-		int xx = ANCHO_TILE;
-		int yy = ALTO_TILE;
+		int xx = ancho_tile;
+		int yy = alto_tile;
 		int zz = 0;
 		int filas = 0;
 		
 		for(int z = 0; z < tilesTotal-1; z++ ){
 					
 			if(zz == tilesPorlado-1){
-			x += ANCHO_TILE;
+			x += ancho_tile;
 			y = 0;
-			xx+=ANCHO_TILE;
-			yy=ALTO_TILE;
+			xx+=ancho_tile;
+			yy=alto_tile;
 			zz=0;
 			filas++;
 				
 			} else {
-				y+=ANCHO_TILE;
-				yy+=ALTO_TILE;
+				y+=ancho_tile;
+				yy+=alto_tile;
 				zz++;
 			}
 			tileData[filas][zz][0]=x;
@@ -132,7 +146,8 @@ public  class Tiles {
 			
 			int ancho = imagen.getWidth();
 			int alto = imagen.getHeight();
-			
+			System.out.println(ancho +" "+alto+" "+ruta);
+
 			imagen.getRGB(0, 0, ancho, alto, planoBruto, 0, ancho);
 			
 			} catch (IOException e) {
@@ -235,11 +250,11 @@ public  class Tiles {
 	
 	
 	public int getANCHO_TILE() {
-		return ANCHO_TILE;
+		return ancho_tile;
 	}
 	
 	public int getALTO_TILE() {
-		return ALTO_TILE;
+		return alto_tile;
 	}
 	public void dameData(int[][] arrayContenido){
 		

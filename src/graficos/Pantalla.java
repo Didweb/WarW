@@ -1,10 +1,7 @@
 package graficos;
 
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-
 import javax.swing.JPanel;
 
 
@@ -26,21 +23,23 @@ public class Pantalla extends JPanel {
 	private int relativaX;
 	private int relativaY;
 	
+	
 	private int anchoTile;
 	private int altoTile;
-	
 
 	
 	public Pantalla(int ANCHO_VENTANA,int ALTO_VENTANA, int anchoTile, int altoTile) {
 		
-		hojaNivel = new HojaSprites();
+		hojaNivel = new HojaSprites(66,32);
 		hojaNivel.pantallaNivel();
 		
 		scrollX = ANCHO_VENTANA/2;
 		scrollY = ALTO_VENTANA/2;
 		
+		
 		this.anchoTile = anchoTile;
 		this.altoTile = altoTile;
+		
 	
 	}
 	
@@ -50,12 +49,12 @@ public class Pantalla extends JPanel {
 	}
 	
 	public void update(Graphics g){
-	    paintComponent(g);
+	    paint(g);        
 	    
 	}
 
-	public void paintComponent(Graphics g){
-		super.paintComponent(g);
+	public void paint(Graphics g){
+		
 		  
 		
 		for(int x=0;x<hojaNivel.getImagenes().length;x++){
@@ -81,7 +80,7 @@ public class Pantalla extends JPanel {
 					//g.drawString(" xT: "+(64*x),relativaX,(relativaY)+40);
 					//g.drawString(" yT: "+(64*y)+"",relativaX,(relativaY)+50);
 					//g.drawString(" Sx: "+scrollX+" Sy:"+scrollY,relativaX,(relativaY)+60);
-					g.drawRect(relativaX, relativaY, 64, 32);
+					//g.drawRect(relativaX, relativaY, 64, 32);
 					
 					
 					
@@ -89,6 +88,8 @@ public class Pantalla extends JPanel {
 			}
 			
 		}
+		
+		
 		
 	}
 }

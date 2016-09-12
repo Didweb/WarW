@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import java.util.concurrent.ThreadLocalRandom;
+
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -29,15 +29,18 @@ public class HojaSprites  extends JPanel{
 	private int recY = 0;
 	private int[][] listaData;
 	
+	private int anchoTil;
+	private int altoTil;
 	 
-	public HojaSprites(){
+	public HojaSprites(int anchoTil, int altoTil){
 		nivel = new TileImg();
 		nivel.MapaImg();
 		
 		listaData = nivel.getTileDataNivel();
 		
 		imagenes =  new Image[listaData.length][listaData.length];
-		
+		this.anchoTil = anchoTil;
+		this.altoTil = altoTil;
 		
 	}
 	
@@ -58,21 +61,21 @@ public class HojaSprites  extends JPanel{
 		}
          
 		
-        int ale;
+     
 	
 		for(int x=0; x<listaData.length; x++){
 			for(int y=0; y<listaData.length; y++){
 				
 				//System.out.println("Valor "+x+" "+y+" = "+listaData[x][y]);
-				ale = ThreadLocalRandom.current().nextInt(0, 3 + 1);
+			
 				//System.out.println("x y y :  "+x+" - "+y+" "+listaData[x][y]+" => ale: "+ale);
 				
 				//desgranarHoja(listaData[x][y],ale);
-				recX = listaData[x][y]*nivel.getANCHO_TILE();
-				//System.out.println("recX - recY :  "+recX+" - "+recY);
+				recX = listaData[x][y]*anchoTil;
+				System.out.println("recX - recY :  "+recX+" --> "+listaData[x][y]+" * "+anchoTil);
 				//System.out.println("W y H : "+imagen.getWidth()+" "+imagen.getHeight()+" x+ W: "+(64+recX)+" y+ H: "+(64+recY));
 				
-				 recorte = (imagen.getSubimage(recX, recY, nivel.getANCHO_TILE(), nivel.getALTO_TILE()));
+				 recorte = (imagen.getSubimage(recX, recY, anchoTil, altoTil));
 		            
 				imagenes[x][y] = recorte; 
 				

@@ -3,8 +3,19 @@ package graficos;
 public class TileData extends Tiles{
 
 	
+    
+    public TileData(){
+	setAncho_tile(64);
+	setAlto_tile(32);
+	
+	inicaimosTiles();
+    }
+    
 	
 	public void montarNivel(){
+
+		
+		
 		
 		cargarMapa("recursos/plano_1_peligro.png");
 		generarMapa();
@@ -31,7 +42,7 @@ public class TileData extends Tiles{
 	
 	public void iniciarMapeo(){
 		
-		
+
 		
 		planoInter = new int[tilesPorlado*tilesPorlado];
 		planoBruto = new int[tilesPorlado*tilesPorlado];
