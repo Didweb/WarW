@@ -46,7 +46,7 @@ public class Juego  extends JFrame implements Runnable{
 	
 	
 	
-	private static Tanque play;
+	private static Tanque[] play;
 	private static Tanque enemigo;
 	
 	private Juego() {
@@ -55,7 +55,11 @@ public class Juego  extends JFrame implements Runnable{
 		
 		pantalla = new Pantalla(ANCHO_VENTANA,ALTO_VENTANA,ANCHO_TILE,ALTO_TILE);
 		
-		play = new Tanque(500,500,"Sovietico","T-32");
+		play = new Tanque[3];
+		play[0] = new Tanque(500,500,"Sovietico","T-32");
+		play[1] = new Tanque(150,150,"Sovietico","T-32");
+		play[2] = new Tanque(200,200,"Sovietico","T-32");
+		
 		enemigo = new Tanque(100,100,"Aleman","Panzer IV");
 		
 		pantalla.actores(play, enemigo);

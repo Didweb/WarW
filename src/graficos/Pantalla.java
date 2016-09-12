@@ -41,7 +41,7 @@ public class Pantalla extends JPanel {
 	private int altoV;
 	
 	
-	private Tanque play;
+	private Tanque[] play;
 	private Tanque enemigo;
 
 	
@@ -74,7 +74,7 @@ public class Pantalla extends JPanel {
 	    
 	}
 
-	public void actores(Tanque play, Tanque enemigo){
+	public void actores(Tanque[] play, Tanque enemigo){
 	    
 	    this.play = play;
 	    this.enemigo = enemigo;
@@ -119,11 +119,20 @@ public class Pantalla extends JPanel {
 		int altoCuadro = 150;
 		
 		g.setColor(Color.BLUE);
-		g.fillRect(play.getPosicionX()-scrollX, play.getPosicionY()-scrollY, 60, 60);
+		
+		for(Tanque playT: play){
+		    g.fillRect(playT.getPosicionX()-scrollX, playT.getPosicionY()-scrollY, 60, 60);   
+		    
+		    
+		}
+		
+		
+		
 		
 		g.setColor(Color.RED);
 		g.fillRect(enemigo.getPosicionX()-scrollX, enemigo.getPosicionY()-scrollY, 60, 60);
 		
+		// Cuadro panel de control
 		g.setColor(Color.BLACK);
 		g.fillRect(0, altoV-altoCuadro, anchoV, altoCuadro);
 		
@@ -141,50 +150,57 @@ public class Pantalla extends JPanel {
 		
 		
 		
-	
+		g.setFont(new Font("Arial", Font.PLAIN, 11)); 
+		g.setColor(Color.gray);
+		g.drawString(play[0].getBando(), 34, altoV-altoCuadro+15);
 		
-		if(play.isEstaVivo()){
+		int desplaza = 0;
+		
+		for(Tanque playT: play){
+		
+		if(playT.isEstaVivo()){
 		    g.setColor(Color.GREEN);
 		   
 		} else {
 		    g.setColor(Color.RED);
 		}
-		 g.fillOval(145, altoV-altoCuadro+4, 5, 5);
+		 g.fillOval(145+desplaza, altoV-altoCuadro+4, 5, 5);
 		 
-		g.setFont(new Font("Arial", Font.PLAIN, 11)); 
-		g.setColor(Color.gray);
-		g.drawString(play.getBando(), 34, altoV-altoCuadro+15);
 		
+
 		g.setColor(Color.DARK_GRAY);
 		
 		g.setFont(new Font("Arial", Font.PLAIN, 12)); 
-		g.drawString(play.getModelo(), 155, altoV-altoCuadro+15);
+		g.drawString(playT.getModelo(), 155+desplaza, altoV-altoCuadro+15);
 		
 		g.setFont(new Font("Arial", Font.PLAIN, 9));
-		g.drawString("Vida", 103, altoV-altoCuadro+44);
+		g.drawString("Vida", 103+desplaza, altoV-altoCuadro+44);
 		
-		g.drawString("Munición", 103, altoV-altoCuadro+64);
+		g.drawString("Munición", 103+desplaza, altoV-altoCuadro+64);
 		
 		
 		g.setColor(Color.DARK_GRAY);
-		g.fillRect(103, altoV-altoCuadro+48, 100, 3);
+		g.fillRect(103+desplaza, altoV-altoCuadro+48, 100, 3);
 		
 		
-		g.fillRect(103, altoV-altoCuadro+68, 100, 3);
+		g.fillRect(103+desplaza, altoV-altoCuadro+68, 100, 3);
 		
 		g.setColor(Color.GREEN);
-		g.fillRect(103, altoV-altoCuadro+48, play.getVida(), 3);
+		g.fillRect(103+desplaza, altoV-altoCuadro+48, playT.getVida(), 3);
 		
 		
-		g.fillRect(103, altoV-altoCuadro+68, play.getMunicion(), 3);
+		g.fillRect(103+desplaza, altoV-altoCuadro+68, playT.getMunicion(), 3);
 		
 		
 		// logo tanque + cuadro deco datos
 		g.setColor(Color.DARK_GRAY);
-		g.fillRoundRect(100, altoV-altoCuadro+2, 40, 18, 5, 5);
+		g.fillRoundRect(100+desplaza, altoV-altoCuadro+2, 40, 18, 5, 5);
 		
-		g.drawRoundRect(100, altoV-altoCuadro+2, 125, altoCuadro-35, 5, 5);
-		g.drawImage(img2, 102, altoV-altoCuadro+4, this);
+		g.drawRoundRect(100+desplaza, altoV-altoCuadro+2, 125, altoCuadro-35, 5, 5);
+		g.drawImage(img2, 102+desplaza, altoV-altoCuadro+4, this);
+		
+		desplaza+=140;
+		}
 		
 	}
 	
