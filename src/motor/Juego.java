@@ -55,8 +55,8 @@ public class Juego  extends JFrame implements Runnable{
 		
 		pantalla = new Pantalla(ANCHO_VENTANA,ALTO_VENTANA,ANCHO_TILE,ALTO_TILE);
 		
-		play = new Tanque(500,500,"Sovietico");
-		enemigo = new Tanque(100,100,"Aleman");
+		play = new Tanque(500,500,"Sovietico","T-32");
+		enemigo = new Tanque(100,100,"Aleman","Panzer IV");
 		
 		pantalla.actores(play, enemigo);
 		setSize(ANCHO_VENTANA,ALTO_VENTANA);

@@ -2,7 +2,14 @@ package graficos;
 
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import tropas.Tanque;
@@ -30,6 +37,10 @@ public class Pantalla extends JPanel {
 	private int anchoTile;
 	private int altoTile;
 	
+	private int anchoV;
+	private int altoV;
+	
+	
 	private Tanque play;
 	private Tanque enemigo;
 
@@ -42,6 +53,8 @@ public class Pantalla extends JPanel {
 		scrollX = ANCHO_VENTANA/2;
 		scrollY = ALTO_VENTANA/2;
 		
+		anchoV = ANCHO_VENTANA;
+		altoV = ALTO_VENTANA;
 		
 		this.anchoTile = anchoTile;
 		this.altoTile = altoTile;
@@ -103,11 +116,79 @@ public class Pantalla extends JPanel {
 			}
 			
 		}
+		int altoCuadro = 150;
+		
 		g.setColor(Color.BLUE);
 		g.fillRect(play.getPosicionX()-scrollX, play.getPosicionY()-scrollY, 60, 60);
 		
 		g.setColor(Color.RED);
 		g.fillRect(enemigo.getPosicionX()-scrollX, enemigo.getPosicionY()-scrollY, 60, 60);
 		
+		g.setColor(Color.BLACK);
+		g.fillRect(0, altoV-altoCuadro, anchoV, altoCuadro);
+		
+		
+		BufferedImage img = null;
+		BufferedImage img2 = null;
+		try {
+		    img = ImageIO.read(new File("recursos/sovieticos.gif"));
+		    g.drawImage(img, 4, altoV-altoCuadro+4, this);
+		    
+		    img2 = ImageIO.read(new File("recursos/Tank-T-34_mini.gif"));
+		    
+		} catch (IOException e) {
+		}
+		
+		
+		
+	
+		
+		if(play.isEstaVivo()){
+		    g.setColor(Color.GREEN);
+		   
+		} else {
+		    g.setColor(Color.RED);
+		}
+		 g.fillOval(145, altoV-altoCuadro+4, 5, 5);
+		 
+		g.setFont(new Font("Arial", Font.PLAIN, 11)); 
+		g.setColor(Color.gray);
+		g.drawString(play.getBando(), 34, altoV-altoCuadro+15);
+		
+		g.setColor(Color.DARK_GRAY);
+		
+		g.setFont(new Font("Arial", Font.PLAIN, 12)); 
+		g.drawString(play.getModelo(), 155, altoV-altoCuadro+15);
+		
+		g.setFont(new Font("Arial", Font.PLAIN, 9));
+		g.drawString("Vida", 103, altoV-altoCuadro+44);
+		
+		g.drawString("Munición", 103, altoV-altoCuadro+64);
+		
+		
+		g.setColor(Color.DARK_GRAY);
+		g.fillRect(103, altoV-altoCuadro+48, 100, 3);
+		
+		
+		g.fillRect(103, altoV-altoCuadro+68, 100, 3);
+		
+		g.setColor(Color.GREEN);
+		g.fillRect(103, altoV-altoCuadro+48, play.getVida(), 3);
+		
+		
+		g.fillRect(103, altoV-altoCuadro+68, play.getMunicion(), 3);
+		
+		
+		// logo tanque + cuadro deco datos
+		g.setColor(Color.DARK_GRAY);
+		g.fillRoundRect(100, altoV-altoCuadro+2, 40, 18, 5, 5);
+		
+		g.drawRoundRect(100, altoV-altoCuadro+2, 125, altoCuadro-35, 5, 5);
+		g.drawImage(img2, 102, altoV-altoCuadro+4, this);
+		
 	}
+	
+	
+
+	
 }
