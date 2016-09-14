@@ -4,6 +4,8 @@ package graficos;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import control.Controles;
 import tropas.Tanque;
 
 
@@ -43,6 +46,7 @@ public class Pantalla extends JPanel {
 	
 	private Tanque[] play;
 	private Tanque enemigo;
+	private Controles controles;
 
 	
 	public Pantalla(int ANCHO_VENTANA,int ALTO_VENTANA, int anchoTile, int altoTile) {
@@ -74,10 +78,11 @@ public class Pantalla extends JPanel {
 	    
 	}
 
-	public void actores(Tanque[] play, Tanque enemigo){
+	public void actores(Tanque[] play, Tanque enemigo,Controles controles){
 	    
 	    this.play = play;
 	    this.enemigo = enemigo;
+	    this.controles = controles;
 	    
 	    
 	    
@@ -85,7 +90,17 @@ public class Pantalla extends JPanel {
 	
 	public void paint(Graphics g){
 		
-		  
+	    BufferedImage tan_amigo = null;
+	    BufferedImage tan_enemigo = null;
+		try {
+		    tan_amigo = ImageIO.read(new File("recursos/tanque_amigo.gif"));
+		    tan_enemigo = ImageIO.read(new File("recursos/tanque_enemigo.gif"));
+		    
+		    
+		   
+		    
+		} catch (IOException e) {
+		}
 		
 		for(int x=0;x<hojaNivel.getImagenes().length;x++){
 			
@@ -116,21 +131,48 @@ public class Pantalla extends JPanel {
 			}
 			
 		}
+		
+
+		
+		
 		int altoCuadro = 150;
 		
 		g.setColor(Color.BLUE);
-		
 		for(Tanque playT: play){
-		    g.fillRect(playT.getPosicionX()-scrollX, playT.getPosicionY()-scrollY, 60, 60);   
 		    
+		    int movX=playT.getPosicionX();
+		    int movY=playT.getPosicionY();
+		    
+		    
+			
+			//g.fillRect(movX-scrollX, movY-scrollY, 60, 60); 
+			g.drawImage(tan_amigo, movX-scrollX, movY-scrollY, this);
+		   
+		    g.setColor(Color.BLACK);
+		    g.drawString("Mov: "+playT.isEnMovimineto(),(movX + 60)-scrollX, (movY+60)-scrollY);
+		    g.drawString("Sel: "+playT.isSelccionado(),(movX + 60)-scrollX, (movY+50)-scrollY);
+		    g.drawString("Des : "+playT.getDestinoX()+" "+playT.getDestinoY(),(movX + 60)-scrollX, (movY+40)-scrollY);
+		    
+		    
+		      
+		    
+		}
+		g.setColor(Color.BLACK);
+		for(Tanque playT: play){
+		    
+		    controles.getPosRelativaTanque(scrollX,scrollY);
+		    
+		    g.drawString("x: "+(playT.getPosicionX()-scrollX)+" y:"+(playT.getPosicionY()-scrollY), playT.getPosicionX()-scrollX, playT.getPosicionY()-scrollY);
+		    
+		   
 		    
 		}
 		
 		
 		
-		
-		g.setColor(Color.RED);
-		g.fillRect(enemigo.getPosicionX()-scrollX, enemigo.getPosicionY()-scrollY, 60, 60);
+		//g.setColor(Color.RED);
+		//g.fillRect(enemigo.getPosicionX()-scrollX, enemigo.getPosicionY()-scrollY, 60, 60);
+		g.drawImage(tan_enemigo, enemigo.getPosicionX()-scrollX, enemigo.getPosicionY()-scrollY, this);
 		
 		// Cuadro panel de control
 		g.setColor(Color.BLACK);
@@ -171,7 +213,7 @@ public class Pantalla extends JPanel {
 		g.setColor(Color.DARK_GRAY);
 		
 		g.setFont(new Font("Arial", Font.PLAIN, 12)); 
-		g.drawString(playT.getModelo(), 155+desplaza, altoV-altoCuadro+15);
+		g.drawString(playT.getModelo()+" - "+playT.getId(), 155+desplaza, altoV-altoCuadro+15);
 		
 		g.setFont(new Font("Arial", Font.PLAIN, 9));
 		g.drawString("Vida", 103+desplaza, altoV-altoCuadro+44);
@@ -196,12 +238,35 @@ public class Pantalla extends JPanel {
 		g.setColor(Color.DARK_GRAY);
 		g.fillRoundRect(100+desplaza, altoV-altoCuadro+2, 40, 18, 5, 5);
 		
+		if (playT.isSelccionado()) {
+		    g.setColor(Color.GREEN);
+		}
+		    
 		g.drawRoundRect(100+desplaza, altoV-altoCuadro+2, 125, altoCuadro-35, 5, 5);
 		g.drawImage(img2, 102+desplaza, altoV-altoCuadro+4, this);
 		
 		desplaza+=140;
+		
+//		if(playT.getId()==0){g.setColor(Color.RED);} else if(playT.getId()==1){g.setColor(Color.yellow);} else {g.setColor(Color.green);}
+//		
+//		g.fillRect(playT.getAreaSel()[0], playT.getAreaSel()[1], 120, 100);
+//		System.out.println("Id "+playT.getId()+": "+playT.getAreaSel()[0]+" "+ playT.getAreaSel()[1]);
+//		
 		}
 		
+		
+		
+		
+	
+	
+		
+		
+		// Developer
+		
+		g.setColor(Color.DARK_GRAY);
+		g.fillRect(0, 0, anchoV, 40);
+		g.setColor(Color.WHITE);
+		g.drawString("Raton x: "+controles.getRx()+" y:"+controles.getRy(), 20,15);
 	}
 	
 	

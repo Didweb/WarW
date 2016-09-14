@@ -52,17 +52,18 @@ public class Juego  extends JFrame implements Runnable{
 	private Juego() {
 		controles = new Controles();
 		addKeyListener(controles);
-		
+		addMouseListener(controles);
 		pantalla = new Pantalla(ANCHO_VENTANA,ALTO_VENTANA,ANCHO_TILE,ALTO_TILE);
 		
 		play = new Tanque[3];
-		play[0] = new Tanque(500,500,"Sovietico","T-32");
-		play[1] = new Tanque(150,150,"Sovietico","T-32");
-		play[2] = new Tanque(200,200,"Sovietico","T-32");
+		play[0] = new Tanque(100,150,"Sovietico","T-32",ALTO_VENTANA);
+		play[1] = new Tanque(100,250,"Sovietico","T-32",ALTO_VENTANA);
+		play[2] = new Tanque(100,350,"Sovietico","T-32",ALTO_VENTANA);
 		
-		enemigo = new Tanque(100,100,"Aleman","Panzer IV");
+		enemigo = new Tanque(100,400,"Aleman","Panzer IV");
 		
-		pantalla.actores(play, enemigo);
+		pantalla.actores(play, enemigo,controles);
+		controles.initActores(play);
 		setSize(ANCHO_VENTANA,ALTO_VENTANA);
 		
 		
@@ -118,25 +119,25 @@ public class Juego  extends JFrame implements Runnable{
 		
 		if(controles.arriba && x>((ALTO_VENTANA*-1)/2)){
 			x-=controles.getVelocidad();
-			marcadorX -= controles.getVelocidad();
+			//marcadorX -= controles.getVelocidad();
 		    
 
 		}
 		
 		if(controles.abajo && x<(ALTO_VENTANA/2)){
 			x+=controles.getVelocidad();
-			marcadorX += controles.getVelocidad();
+			//marcadorX += controles.getVelocidad();
 		}
 		
 		if(controles.derecha && y<(ANCHO_VENTANA)+ANCHO_VENTANA){
 			y+=controles.getVelocidad();
-			marcadorY += controles.getVelocidad();
+			//marcadorY += controles.getVelocidad();
 
 		}
 		
 		if(controles.izquierda && y>((ANCHO_VENTANA*-1))){
 			y-=controles.getVelocidad();
-			marcadorY -= controles.getVelocidad();
+			//marcadorY -= controles.getVelocidad();
 
 		}
 		
@@ -145,6 +146,10 @@ public class Juego  extends JFrame implements Runnable{
 		}
 		
 		
+		for(Tanque t: play){
+		
+		    t.actMovimiento();
+		    }
 		pantalla.actualizar(y, x);
 		aps ++;
 	}
