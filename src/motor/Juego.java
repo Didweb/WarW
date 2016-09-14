@@ -7,6 +7,7 @@ package motor;
 import javax.swing.JFrame;
 
 import control.Controles;
+import control.Developer;
 import graficos.Pantalla;
 import graficos.TileData;
 import tropas.Tanque;
@@ -28,6 +29,7 @@ public class Juego  extends JFrame implements Runnable{
 
 	private static Controles controles;
 	private static TileData tiles;
+	private static Developer developer;
 	
 	private static Thread thread;
 	private static Pantalla pantalla;
@@ -50,6 +52,7 @@ public class Juego  extends JFrame implements Runnable{
 	private static Tanque enemigo;
 	
 	private Juego() {
+	    	developer = new Developer();
 		controles = new Controles();
 		addKeyListener(controles);
 		addMouseListener(controles);
@@ -62,7 +65,7 @@ public class Juego  extends JFrame implements Runnable{
 		
 		enemigo = new Tanque(100,400,"Aleman","Panzer IV");
 		
-		pantalla.actores(play, enemigo,controles);
+		pantalla.actores(play, enemigo,controles,developer);
 		controles.initActores(play);
 		setSize(ANCHO_VENTANA,ALTO_VENTANA);
 		
@@ -141,15 +144,25 @@ public class Juego  extends JFrame implements Runnable{
 
 		}
 		
-		if(controles.salir){
-			System.exit(0);
-		}
+
 		
 		
 		for(Tanque t: play){
 		
 		    t.actMovimiento();
 		    }
+	
+		
+		if(controles.salir){
+			System.exit(0);
+		}
+		
+		if(controles.dev){
+		    	
+			developer.setDevActivo();
+			
+		}
+		
 		pantalla.actualizar(y, x);
 		aps ++;
 	}

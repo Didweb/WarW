@@ -21,6 +21,7 @@ public final class Controles implements KeyListener,MouseListener{
 	public boolean izquierda;
 	public boolean derecha;
 	public boolean centrar;
+	public boolean dev;
 	
 	public boolean centrado = false;
 	
@@ -48,6 +49,7 @@ public final class Controles implements KeyListener,MouseListener{
 		izquierda = teclas[KeyEvent.VK_LEFT];
 		derecha = teclas[KeyEvent.VK_RIGHT];
 		centrar = teclas[KeyEvent.VK_C];
+		dev = teclas[KeyEvent.VK_D];
 		
 	
 		

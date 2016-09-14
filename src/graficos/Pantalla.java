@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import control.Controles;
+import control.Developer;
 import tropas.Tanque;
 
 
@@ -47,6 +48,7 @@ public class Pantalla extends JPanel {
 	private Tanque[] play;
 	private Tanque enemigo;
 	private Controles controles;
+	private Developer developer;
 
 	
 	public Pantalla(int ANCHO_VENTANA,int ALTO_VENTANA, int anchoTile, int altoTile) {
@@ -78,11 +80,12 @@ public class Pantalla extends JPanel {
 	    
 	}
 
-	public void actores(Tanque[] play, Tanque enemigo,Controles controles){
+	public void actores(Tanque[] play, Tanque enemigo,Controles controles, Developer developer){
 	    
 	    this.play = play;
 	    this.enemigo = enemigo;
 	    this.controles = controles;
+	    this.developer = developer;
 	    
 	    
 	    
@@ -92,7 +95,16 @@ public class Pantalla extends JPanel {
 		
 	    BufferedImage tan_amigo = null;
 	    BufferedImage tan_enemigo = null;
+	    
+	    BufferedImage img_amigos = null;
+	    BufferedImage img_icono_tanque = null;
+		
+		
+	    
+	    
 		try {
+		    img_amigos = ImageIO.read(new File("recursos/sovieticos.gif"));
+		    img_icono_tanque = ImageIO.read(new File("recursos/Tank-T-34_mini.gif"));
 		    tan_amigo = ImageIO.read(new File("recursos/tanque_amigo.gif"));
 		    tan_enemigo = ImageIO.read(new File("recursos/tanque_enemigo.gif"));
 		    
@@ -142,36 +154,40 @@ public class Pantalla extends JPanel {
 		    
 		    int movX=playT.getPosicionX();
 		    int movY=playT.getPosicionY();
+		    controles.getPosRelativaTanque(scrollX,scrollY);
 		    
+		    if (playT.isSelccionado()){
+			g.setColor(Color.GREEN);
+			g.drawOval((movX-10)-scrollX, (movY+25)-scrollY, 80, 40);
+			
+			
+			
+		    }
 		    
+		    if (playT.isEnMovimineto()==true &&  (playT.getDestinoX()!= movX || playT.getDestinoY()!= movY)){
+			g.setColor(Color.RED);
+			g.fillOval((playT.getDestinoX())-scrollX, (playT.getDestinoY())-scrollY, 20, 15);
+		    }
 			
 			//g.fillRect(movX-scrollX, movY-scrollY, 60, 60); 
 			g.drawImage(tan_amigo, movX-scrollX, movY-scrollY, this);
 		   
-		    g.setColor(Color.BLACK);
-		    g.drawString("Mov: "+playT.isEnMovimineto(),(movX + 60)-scrollX, (movY+60)-scrollY);
-		    g.drawString("Sel: "+playT.isSelccionado(),(movX + 60)-scrollX, (movY+50)-scrollY);
-		    g.drawString("Des : "+playT.getDestinoX()+" "+playT.getDestinoY(),(movX + 60)-scrollX, (movY+40)-scrollY);
-		    
+			if(developer.isDevActivo()){
+			    g.setColor(Color.BLACK);
+			    g.drawString("Mov: "+playT.isEnMovimineto(),(movX + 60)-scrollX, (movY+60)-scrollY);
+			    g.drawString("Sel: "+playT.isSelccionado(),(movX + 60)-scrollX, (movY+50)-scrollY);
+			    g.drawString("Des : "+playT.getDestinoX()+" "+playT.getDestinoY(),(movX + 60)-scrollX, (movY+40)-scrollY);
+			    g.drawString("x: "+(playT.getPosicionX())+" y:"+(playT.getPosicionY()), playT.getPosicionX()-scrollX, playT.getPosicionY()-scrollY);
+			}
 		    
 		      
 		    
 		}
-		g.setColor(Color.BLACK);
-		for(Tanque playT: play){
-		    
-		    controles.getPosRelativaTanque(scrollX,scrollY);
-		    
-		    g.drawString("x: "+(playT.getPosicionX()-scrollX)+" y:"+(playT.getPosicionY()-scrollY), playT.getPosicionX()-scrollX, playT.getPosicionY()-scrollY);
-		    
-		   
-		    
-		}
+
 		
 		
 		
-		//g.setColor(Color.RED);
-		//g.fillRect(enemigo.getPosicionX()-scrollX, enemigo.getPosicionY()-scrollY, 60, 60);
+		
 		g.drawImage(tan_enemigo, enemigo.getPosicionX()-scrollX, enemigo.getPosicionY()-scrollY, this);
 		
 		// Cuadro panel de control
@@ -179,16 +195,9 @@ public class Pantalla extends JPanel {
 		g.fillRect(0, altoV-altoCuadro, anchoV, altoCuadro);
 		
 		
-		BufferedImage img = null;
-		BufferedImage img2 = null;
-		try {
-		    img = ImageIO.read(new File("recursos/sovieticos.gif"));
-		    g.drawImage(img, 4, altoV-altoCuadro+4, this);
+		g.drawImage(img_amigos, 4, altoV-altoCuadro+4, this);
 		    
-		    img2 = ImageIO.read(new File("recursos/Tank-T-34_mini.gif"));
-		    
-		} catch (IOException e) {
-		}
+	
 		
 		
 		
@@ -240,10 +249,11 @@ public class Pantalla extends JPanel {
 		
 		if (playT.isSelccionado()) {
 		    g.setColor(Color.GREEN);
+		    
 		}
 		    
 		g.drawRoundRect(100+desplaza, altoV-altoCuadro+2, 125, altoCuadro-35, 5, 5);
-		g.drawImage(img2, 102+desplaza, altoV-altoCuadro+4, this);
+		g.drawImage(img_icono_tanque, 102+desplaza, altoV-altoCuadro+4, this);
 		
 		desplaza+=140;
 		
@@ -252,6 +262,10 @@ public class Pantalla extends JPanel {
 //		g.fillRect(playT.getAreaSel()[0], playT.getAreaSel()[1], 120, 100);
 //		System.out.println("Id "+playT.getId()+": "+playT.getAreaSel()[0]+" "+ playT.getAreaSel()[1]);
 //		
+		
+		
+		
+		
 		}
 		
 		
