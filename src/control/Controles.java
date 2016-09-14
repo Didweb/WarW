@@ -99,6 +99,9 @@ public final class Controles implements KeyListener,MouseListener{
 	    	Rx = e.getX();
 		Ry = e.getY();
 		
+		actualRatonY = e.getY();
+		actualRatonX = e.getX();
+		
 		
 	}
 
@@ -135,7 +138,7 @@ public final class Controles implements KeyListener,MouseListener{
 		    } else {
 			
 			if (t.isSelccionado()== true &&  e.getY() < t.getAreaSel()[1] ){
-			    System.out.println("VEN AQUI : "+e.getX()+" "+e.getY());
+			    //System.out.println("VEN AQUI : "+e.getX()+" "+e.getY());
 			    
 				 //t.setPosicionX(e.getX()+Rx);
 				 //t.setPosicionY(e.getY()+Ry);
@@ -161,7 +164,7 @@ public final class Controles implements KeyListener,MouseListener{
 	@Override
 	public void mousePressed(MouseEvent e) {
 		
-		
+
 		
 		
 	}
@@ -170,7 +173,7 @@ public final class Controles implements KeyListener,MouseListener{
 	@Override
 	public void mouseReleased(MouseEvent e) {
 	  //  System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-	 
+	
 	    
 	}
 
@@ -178,7 +181,7 @@ public final class Controles implements KeyListener,MouseListener{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 	
-	    
+
 	}
 
 

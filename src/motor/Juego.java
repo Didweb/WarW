@@ -10,6 +10,7 @@ import control.Controles;
 import control.Developer;
 import graficos.Pantalla;
 import graficos.TileData;
+import tropas.T34;
 import tropas.Tanque;
 
 public class Juego  extends JFrame implements Runnable{
@@ -54,18 +55,26 @@ public class Juego  extends JFrame implements Runnable{
 	private Juego() {
 	    	developer = new Developer();
 		controles = new Controles();
+		
+		tiles = new TileData();
+		tiles.iniciarMapeo();
+		tiles.iniciarCoor();
+		tiles.montarNivel();
+		//tiles.buscaCelda(2000,1390);
+		
+		
 		addKeyListener(controles);
 		addMouseListener(controles);
 		pantalla = new Pantalla(ANCHO_VENTANA,ALTO_VENTANA,ANCHO_TILE,ALTO_TILE);
 		
 		play = new Tanque[3];
-		play[0] = new Tanque(100,150,"Sovietico","T-32",ALTO_VENTANA);
-		play[1] = new Tanque(100,250,"Sovietico","T-32",ALTO_VENTANA);
-		play[2] = new Tanque(100,350,"Sovietico","T-32",ALTO_VENTANA);
+		play[0] = new T34(100,150,"Sovietico",ALTO_VENTANA);
+		play[1] = new T34(100,250,"Sovietico",ALTO_VENTANA);
+		play[2] = new T34(100,350,"Sovietico",ALTO_VENTANA);
 		
-		enemigo = new Tanque(100,400,"Aleman","Panzer IV");
+		enemigo = new T34(100,400,"Aleman",ALTO_VENTANA);
 		
-		pantalla.actores(play, enemigo,controles,developer);
+		pantalla.actores(play, enemigo,controles,developer,tiles);
 		controles.initActores(play);
 		setSize(ANCHO_VENTANA,ALTO_VENTANA);
 		
@@ -96,11 +105,7 @@ public class Juego  extends JFrame implements Runnable{
 	private synchronized void iniciar(){
 		juegoActivo = true;
 		
-		tiles = new TileData();
-		tiles.iniciarMapeo();
-		tiles.iniciarCoor();
-		tiles.montarNivel();
-		//tiles.buscaCelda(2000,1390);
+
 		
 		
 		thread = new Thread(this, "Graficos");

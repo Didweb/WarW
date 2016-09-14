@@ -3,9 +3,17 @@ package tropas;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
-public class Tanque extends Ejercito implements mover{
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+
+public class Tanque extends Ejercito {
 
     private int posicionX;
     private int posicionY;
@@ -23,7 +31,10 @@ public class Tanque extends Ejercito implements mover{
                 	    "Ataque", 
                 	    "Avance Pasivo", 
                 	    "Avance Activo"};
-    private String modelo;
+    protected String modelo;
+    private Image imgTanque;
+    
+
 
     private static int controlId=0;
     private int id;
@@ -32,13 +43,17 @@ public class Tanque extends Ejercito implements mover{
     private boolean enMovimineto = false;
     
     private int vida = 74;
-    private int blindaje = 100;
-    private int municion = 25;
-    private int velocidadDisparo;
-    private int velocidad;
-    private int punteria;
-    private int movilidad;
-    private int combustible = 100;
+    private int depoCombustible = 100;
+    
+    protected int blindaje;
+
+
+    protected int municion;
+    protected int velocidadDisparo;
+    protected int velocidad;
+    protected int punteria;
+    protected int movilidad;
+    protected int capaCombustible;
     
     private int destinoX;
     private int destinoY;
@@ -51,10 +66,9 @@ public class Tanque extends Ejercito implements mover{
     private int[] areaSel = new int[4];
     
 
-    public Tanque(int posicionX, int posicionY, String bando, String modelo,int altoV){
+    public Tanque(int posicionX, int posicionY, String bando, int altoV){
 	
 	setBando(bando);
-	this.modelo = modelo;
 	this.posicionX =  posicionX;
 	this.posicionY = posicionY;
 	actitud = actictudLista[0];
@@ -82,19 +96,7 @@ public class Tanque extends Ejercito implements mover{
 	
     }
     
-    public Tanque(int posicionX, int posicionY, String bando, String modelo){
-	
-	setBando(bando);
-	this.modelo = modelo;
-	this.posicionX =  posicionX;
-	this.posicionY = posicionY;
-	actitud = actictudLista[0];
-	
-	id = controlId;
-	controlId++;
-	
-	
-    }
+
 
     
     public void actMovimiento(){
@@ -199,9 +201,7 @@ public class Tanque extends Ejercito implements mover{
     }
 
 
-    public int getCombustible() {
-        return combustible;
-    }
+
     public String getModelo() {
         return modelo;
     }
@@ -245,6 +245,30 @@ public class Tanque extends Ejercito implements mover{
         return posicionY;
     }
     
+    public int getCapaCombustible() {
+        return capaCombustible;
+    }
+    public int getDepoCombustible() {
+        return depoCombustible;
+    }
     
+    public Image getImg() {
+        return imgTanque;
+    }
+    
+    public void img(String ruta){
+	BufferedImage bufferImage = null;
+	try {
+	    bufferImage = ImageIO.read(new File("recursos/t34.gif"));
+	} catch (IOException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+	
+	Image imgTanque = (Image)bufferImage;
+	       
+	
+    }
+
     
 }

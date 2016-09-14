@@ -2,7 +2,7 @@ package control;
 
 public class Developer {
 
-    private boolean devActivo=false;
+    private boolean devActivo=true;
 
     public boolean isDevActivo() {
         return devActivo;

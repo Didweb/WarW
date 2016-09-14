@@ -21,6 +21,7 @@ public  class Tiles {
 	protected int[] planoBruto;
 	protected int[][][] tileData;
 	protected int[][] tileDataPeligro;
+
 	protected int[][] tileDataDificultad;
 	protected int[][] tileDataPenetracion;
 	private int celdaPosicionX;
@@ -35,6 +36,12 @@ public  class Tiles {
 		
 	}
 	
+	public int[][] getTileDataPeligro() {
+	    return tileDataPeligro;
+	}
+
+
+
 	
 	
 	public void setAncho_tile(int ancho_tile) {
@@ -49,7 +56,7 @@ public  class Tiles {
 
 
 
-	public void buscaCelda(int buscaX, int buscaY){
+	public int buscaCelda(int buscaX, int buscaY, int[][] listado){
 		int dudax = buscaX;
 		int duday = buscaY;
 		
@@ -70,9 +77,10 @@ public  class Tiles {
 			
 		}
 		
+		return listado[celdaPosicionX][celdaPosicionY];
 		
-		System.out.println("Posicion de celda: "+celdaPosicionX+" "+celdaPosicionY);
 	}
+	
 	
 	
 
