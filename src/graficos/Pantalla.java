@@ -25,10 +25,13 @@ public class Pantalla extends JPanel {
 	/**
 	 * 
 	 */
+    
+    public  String cameo="hola amigos 22222222";
 	private static final long serialVersionUID = 1L;
 
 	
 	private HojaSprites hojaNivel;
+	
 	
 	
 	private int scrollX;
@@ -131,8 +134,8 @@ public class Pantalla extends JPanel {
 				
 				g.drawImage(hojaNivel.getImagenes()[y][x], relativaX, relativaY, this);
 				
-				g.setFont(new Font("Arial", Font.PLAIN, 7));
-				 g.drawString("Tpel: "+tiles.getTileDataPeligro()[y][x],relativaX, relativaY);
+				//g.setFont(new Font("Arial", Font.PLAIN, 7));
+				//g.drawString("Tpel: "+tiles.getTileDataPeligro()[y][x],relativaX, relativaY);
 					//g.setFont(new Font("Arial", Font.PLAIN, 9));
 					//g.setColor(Color.BLACK);
 					//g.drawString(" T: "+anchoVTils,relativaX,(relativaY)+10);
@@ -141,8 +144,10 @@ public class Pantalla extends JPanel {
 					//g.drawString(" yT: "+(64*y)+"",relativaX,(relativaY)+50);
 					//g.drawString(" Sx: "+scrollX+" Sy:"+scrollY,relativaX,(relativaY)+60);
 					//g.drawRect(relativaX, relativaY, 64, 32);
+				
 					
-					
+				
+				
 					
 				
 			}
@@ -161,9 +166,11 @@ public class Pantalla extends JPanel {
 		    int movY=playT.getPosicionY();
 		    controles.getPosRelativaTanque(scrollX,scrollY);
 		    
+		   
+		    
 		    if (playT.isSelccionado()){
 			g.setColor(Color.GREEN);
-			g.drawOval((movX-10)-scrollX, (movY+25)-scrollY, 80, 40);
+			g.drawOval((movX-8)-scrollX, (movY)-scrollY, 80, 40);
 			
 			
 			
@@ -176,7 +183,9 @@ public class Pantalla extends JPanel {
 			
 			//g.fillRect(movX-scrollX, movY-scrollY, 60, 60); 
 			
-		    	g.drawImage(tan_amigo, movX-scrollX, movY-scrollY, this);
+		  
+		  		g.drawImage(tan_amigo, (movX-scrollX), (movY-scrollY)-25, this);
+		  		//---->>>>> g.drawRect(movX-scrollX, movY-scrollY, 64, 32);
 			//g.drawImage(playT.getImg(), movX-scrollX, movY-scrollY, this);
 		   
 			if(developer.isDevActivo()){

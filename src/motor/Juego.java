@@ -6,6 +6,7 @@ package motor;
 
 import javax.swing.JFrame;
 
+
 import control.Controles;
 import control.Developer;
 import graficos.Pantalla;
@@ -13,12 +14,16 @@ import graficos.TileData;
 import tropas.T34;
 import tropas.Tanque;
 
-public class Juego  extends JFrame implements Runnable{
 
+
+public class Juego  extends JFrame implements Runnable{
+    public String comodin = "HOla mako";
 	/**
 	* 
      	*/
     	private static final long serialVersionUID = 2997131868080903015L;
+    	
+    	
     	
 	private final static int ANCHO_VENTANA = 1024;
 	private final static int ALTO_VENTANA = 1024;
@@ -93,6 +98,8 @@ public class Juego  extends JFrame implements Runnable{
 	
 	public static void main(String[] args)  {
 		
+	    
+	    
 		Juego juego = new Juego();
 		juego.iniciar();
 
