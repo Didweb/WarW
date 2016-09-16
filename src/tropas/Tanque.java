@@ -270,5 +270,45 @@ public class Tanque extends Ejercito {
 	
     }
 
+   
+    
+    
+    public void seleccionaTanque(int mouseX, int mouseY){
+	
+	 if  ((mouseX > posicionX)  && (mouseX < (posicionX + 60)) && 
+		 (mouseY > posicionY)  && (mouseY < (posicionY + 60))
+		 
+	    ||
+	    (mouseX > areaSel[0])  && (mouseX < areaSel[2]) && 
+		 (mouseY > areaSel[1])  && (mouseY < areaSel[3])
+		 ) 
+	    
+	    { 
+	
+			if (selccionado){
+			    setSelccionado(true); 
+			} else {
+			    setSelccionado(false);
+			}
+
+    } else {
+	
+	if (selccionado== true &&  mouseY < areaSel[1] ){
+	    
+		 
+	    
+	    
+	    
+		// t.setDestinoX(mouseX+scrollX);
+		 // t.setDestinoY(mouseY+scrollY);
+		 
+		 setEnMovimineto(true);
+		 
+	   
+	   
+	} 
+    }
+    }
+    
     
 }

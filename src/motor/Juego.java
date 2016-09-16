@@ -9,8 +9,10 @@ import javax.swing.JFrame;
 
 import control.Controles;
 import control.Developer;
+import graficos.HojaSprites;
 import graficos.Pantalla;
 import graficos.TileData;
+import graficos.TileImg;
 import tropas.T34;
 import tropas.Tanque;
 
@@ -28,6 +30,9 @@ public class Juego  extends JFrame implements Runnable{
 	private final static int ANCHO_VENTANA = 1024;
 	private final static int ALTO_VENTANA = 1024;
 	
+	private final static int CENTRO_ANCHO_VENTANA = ANCHO_VENTANA/8;
+	private final static int CENTRO_ALTO_VENTANA = (ALTO_VENTANA/2)*-1;
+	
 	private final static int ANCHO_TILE = 66;
 	private final static int ALTO_TILE= 32;
 	
@@ -35,6 +40,7 @@ public class Juego  extends JFrame implements Runnable{
 
 	private static Controles controles;
 	private static TileData tiles;
+	private static HojaSprites hojaNivel;
 	private static Developer developer;
 	
 	private static Thread thread;
@@ -46,8 +52,8 @@ public class Juego  extends JFrame implements Runnable{
 	private static int aps=0;
 	private static int fps = 0;
 	
-	private static int x = ANCHO_VENTANA/8 ;
-	private static int y = (ALTO_VENTANA/2)*-1;
+	private static int x = CENTRO_ANCHO_VENTANA;
+	private static int y = CENTRO_ALTO_VENTANA;
 	
 	private static int marcadorX=0;
 	private static int marcadorY=0;
@@ -55,7 +61,7 @@ public class Juego  extends JFrame implements Runnable{
 	
 	
 	private static Tanque[] play;
-	private static Tanque enemigo;
+	private static Tanque[] enemigo;
 	
 	private Juego() {
 	    	developer = new Developer();
@@ -67,20 +73,25 @@ public class Juego  extends JFrame implements Runnable{
 		tiles.montarNivel();
 		//tiles.buscaCelda(2000,1390);
 		
+		hojaNivel = new HojaSprites(66,32);
+		
+		
 		
 		addKeyListener(controles);
 		addMouseListener(controles);
-		pantalla = new Pantalla(ANCHO_VENTANA,ALTO_VENTANA,ANCHO_TILE,ALTO_TILE);
+		pantalla = new Pantalla(ANCHO_VENTANA,ALTO_VENTANA,ANCHO_TILE,ALTO_TILE,hojaNivel);
 		
 		play = new Tanque[3];
-		play[0] = new T34(100,150,"Sovietico",ALTO_VENTANA);
-		play[1] = new T34(100,250,"Sovietico",ALTO_VENTANA);
-		play[2] = new T34(100,350,"Sovietico",ALTO_VENTANA);
+		play[0] = new T34(0,15,"Sovietico",ALTO_VENTANA);
+		play[1] = new T34(10,10,"Sovietico",ALTO_VENTANA);
+		play[2] = new T34(20,10,"Sovietico",ALTO_VENTANA);
 		
-		enemigo = new T34(100,400,"Aleman",ALTO_VENTANA);
+		enemigo = new Tanque[2];
+		enemigo[0] = new T34(5,30,"Aleman",ALTO_VENTANA);
+		enemigo[1] = new T34(20,30,"Aleman",ALTO_VENTANA);
 		
 		pantalla.actores(play, enemigo,controles,developer,tiles);
-		controles.initActores(play);
+		controles.initActores(play,hojaNivel);
 		setSize(ANCHO_VENTANA,ALTO_VENTANA);
 		
 		
@@ -123,12 +134,12 @@ public class Juego  extends JFrame implements Runnable{
 	
 	private void actualizar(){		
 		
-		controles.actualizar();
-
+		controles.actualizar(pantalla.getScrollX(),pantalla.getScrollY());
+		
 		
 		if(controles.centrar){
-			x = ANCHO_VENTANA/8;
-			y = (ALTO_VENTANA/2)*-1;
+			x = CENTRO_ANCHO_VENTANA;
+			y = CENTRO_ALTO_VENTANA;
 		}
 		
 		

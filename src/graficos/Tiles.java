@@ -76,7 +76,7 @@ public  class Tiles {
 			}
 			
 		}
-		
+		//System.out.println(celdaPosicionX+" "+celdaPosicionY);
 		return listado[celdaPosicionX][celdaPosicionY];
 		
 	}

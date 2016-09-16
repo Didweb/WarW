@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import graficos.HojaSprites;
 import tropas.Tanque;
 
 public final class Controles implements KeyListener,MouseListener{
@@ -30,17 +31,19 @@ public final class Controles implements KeyListener,MouseListener{
 	private int actualRatonX;
 	private int actualRatonY;
 	
-	private int Rx=0;
-	private int Ry=0;
+	private int scrollX=0;
+	private int scrollY=0;
 	
 	private Tanque[] tanquesPlay;
+	private HojaSprites mapa;
 	
-	public void initActores(Tanque[] play){
+	public void initActores(Tanque[] play,HojaSprites mapa){
 	    
 	    tanquesPlay = play;
+	    this.mapa = mapa;
 	}
 
-	public void actualizar(){
+	public void actualizar(int Rx, int Ry){
 
 		
 		salir = teclas[KeyEvent.VK_ESCAPE];
@@ -50,12 +53,36 @@ public final class Controles implements KeyListener,MouseListener{
 		derecha = teclas[KeyEvent.VK_RIGHT];
 		centrar = teclas[KeyEvent.VK_C];
 		dev = teclas[KeyEvent.VK_D];
+		this.scrollX = Rx;
+		this.scrollY = Ry;
 		
 	
 		
 	}
 
-	
+	public void dameCuadro(int valorX, int valorY){
+	    
+	    mapa.getImagenes();
+	    int relativaX;
+	    int relativaY;
+	    
+	    for(int y=0;y<mapa.getImagenes().length;y++){
+		
+		
+		
+		for(int x=0;x<mapa.getImagenes().length;x++){
+		    
+		    relativaX = (x-y)*(60/2)-scrollX;
+		    relativaY = (x+y)*(32/2)-scrollY;
+		    if(relativaX==valorX && relativaY==valorY){
+			System.out.println("cuadro = ["+x+"]["+y+"]");
+		    } else {System.out.println("cuadro = ["+(valorX % scrollX)+"]["+valorY+"]");}
+		    
+		    
+		}
+		}
+	    
+	}
 
 
 	public int getVelocidad() {
@@ -96,8 +123,8 @@ public final class Controles implements KeyListener,MouseListener{
 
 	
 	public void mouseMoved(MouseEvent e) {
-	    	Rx = e.getX();
-		Ry = e.getY();
+	    	scrollX = e.getX();
+		scrollY = e.getY();
 		
 		actualRatonY = e.getY();
 		actualRatonX = e.getX();
@@ -110,15 +137,26 @@ public final class Controles implements KeyListener,MouseListener{
 	public void mouseClicked(MouseEvent e) {
 	   
 	    int xp;
-		int yp;
+	    int yp;
+	    
+	    
 		
 		for (Tanque t: tanquesPlay){
 		    
-		    xp = t.getPosicionX()-Rx;
-		    yp = t.getPosicionY()-Ry;
+		    xp = t.getPosicionX();
+		    yp = t.getPosicionY();
 		    
-		  
+		    int logicaMousX = ((e.getX())-scrollX)*60;
+		    int logicaMousY = ((e.getY())-scrollY)*32;
 		    
+		    int PosEnRejX = e.getX();
+		    int PosEnRejY = e.getY();
+		    
+		    dameCuadro(PosEnRejX, PosEnRejY);
+		    
+		    System.out.println(PosEnRejX+" < Casillas> "+PosEnRejY); 
+		   // System.out.println(PosEnRejX+" <-> "+PosEnRejY+" || Click MOUSE:  "+"("+e.getX()+" / s: "+scrollX+")"+logicaMousX+" ----- "+"("+e.getY()+" / s: "+scrollY+")"+logicaMousY); 
+		  //System.out.println(t.getId()+" --- > "+xp+" ----- "+yp);
 		    if  ((e.getX() > xp)  && (e.getX() < (xp + 60)) && 
 				 (e.getY() > yp)  && (e.getY() < (yp + 60))
 				 
@@ -143,8 +181,11 @@ public final class Controles implements KeyListener,MouseListener{
 				 //t.setPosicionX(e.getX()+Rx);
 				 //t.setPosicionY(e.getY()+Ry);
 				 
-				 t.setDestinoX(e.getX()+Rx);
-				 t.setDestinoY(e.getY()+Ry);
+			    
+			    
+			    
+				 t.setDestinoX(e.getX()+scrollX);
+				 t.setDestinoY(e.getY()+scrollY);
 				 
 				 t.setEnMovimineto(true);
 				 
@@ -194,16 +235,16 @@ public final class Controles implements KeyListener,MouseListener{
 
 	public void getPosRelativaTanque(int Rx,int Ry){
 	    
-	    this.Rx = Rx;
-	    this.Ry = Ry;
+	    this.scrollX = Rx;
+	    this.scrollY = Ry;
 	}
 
 	public int getRx() {
-	    return Rx;
+	    return scrollX;
 	}
 
 	public int getRy() {
-	    return Ry;
+	    return scrollY;
 	}
 
 

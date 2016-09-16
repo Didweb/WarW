@@ -4,6 +4,7 @@ package graficos;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
@@ -26,11 +27,11 @@ public class Pantalla extends JPanel {
 	 * 
 	 */
     
-    public  String cameo="hola amigos 22222222";
+    
 	private static final long serialVersionUID = 1L;
 
 	
-	private HojaSprites hojaNivel;
+	
 	
 	
 	
@@ -49,15 +50,24 @@ public class Pantalla extends JPanel {
 	
 	
 	private Tanque[] play;
-	private Tanque enemigo;
+	private Tanque[] enemigo;
 	private Controles controles;
 	private Developer developer;
 	private TileData tiles;
+	private HojaSprites hojaNivel;
+
+
+
+
+
+
+	private int[][] imgTapete;
 
 	
-	public Pantalla(int ANCHO_VENTANA,int ALTO_VENTANA, int anchoTile, int altoTile) {
+	public Pantalla(int ANCHO_VENTANA,int ALTO_VENTANA, int anchoTile, int altoTile, HojaSprites hojaNivel) {
 		
-		hojaNivel = new HojaSprites(66,32);
+		
+		this.hojaNivel = hojaNivel;
 		hojaNivel.pantallaNivel();
 		
 		
@@ -86,7 +96,7 @@ public class Pantalla extends JPanel {
 	    
 	}
 
-	public void actores(Tanque[] play, Tanque enemigo,Controles controles, Developer developer, TileData tiles){
+	public void actores(Tanque[] play, Tanque[] enemigo,Controles controles, Developer developer, TileData tiles){
 	    
 	    this.play = play;
 	    this.enemigo = enemigo;
@@ -120,30 +130,37 @@ public class Pantalla extends JPanel {
 		} catch (IOException e) {
 		}
 		
-		for(int x=0;x<hojaNivel.getImagenes().length;x++){
+		for(int y=0;y<hojaNivel.getImagenes().length;y++){
 			
 			
 			
-			for(int y=0;y<hojaNivel.getImagenes().length;y++){
+			for(int x=0;x<hojaNivel.getImagenes().length;x++){
 
 				
 				relativaX = (x-y)*(anchoTile/2)-scrollX;
 				relativaY = (x+y)*(altoTile/2)-scrollY;			
 				
-				
+				if (relativaY>-60 && relativaY<altoV&& relativaX>-60 && relativaX<anchoV){
 				
 				g.drawImage(hojaNivel.getImagenes()[y][x], relativaX, relativaY, this);
 				
+				
+				}
+				
+				if(developer.isDevActivo()){
 				//g.setFont(new Font("Arial", Font.PLAIN, 7));
 				//g.drawString("Tpel: "+tiles.getTileDataPeligro()[y][x],relativaX, relativaY);
-					//g.setFont(new Font("Arial", Font.PLAIN, 9));
-					//g.setColor(Color.BLACK);
+					g.setFont(new Font("Arial", Font.PLAIN, 9));
+					g.setColor(Color.BLACK);
 					//g.drawString(" T: "+anchoVTils,relativaX,(relativaY)+10);
 					//g.drawString(" P: "+anchoVPix,relativaX,(relativaY)+25);
 					//g.drawString(" xT: "+(64*x),relativaX,(relativaY)+40);
 					//g.drawString(" yT: "+(64*y)+"",relativaX,(relativaY)+50);
 					//g.drawString(" Sx: "+scrollX+" Sy:"+scrollY,relativaX,(relativaY)+60);
-					//g.drawRect(relativaX, relativaY, 64, 32);
+					g.drawString(" "+x+" / "+y+" "+scrollX+"."+scrollY+"",relativaX+2,relativaY+10);
+					g.drawRect(relativaX, relativaY, 64, 32);
+				}
+					
 				
 					
 				
@@ -154,23 +171,26 @@ public class Pantalla extends JPanel {
 			
 		}
 		
-
 		
 		
 		int altoCuadro = 150;
+		int movX;
+		int movY;
 		g.setFont(new Font("Arial", Font.PLAIN, 12));
 		g.setColor(Color.BLUE);
 		for(Tanque playT: play){
 		    
-		    int movX=playT.getPosicionX();
-		    int movY=playT.getPosicionY();
+		    movX=playT.getPosicionX();
+		    movY=playT.getPosicionY();
 		    controles.getPosRelativaTanque(scrollX,scrollY);
 		    
+		    relativaX = (movX-movY)*(anchoTile/2)-scrollX;
+		    relativaY = (movX+movY)*(altoTile/2)-scrollY;	
 		   
 		    
 		    if (playT.isSelccionado()){
 			g.setColor(Color.GREEN);
-			g.drawOval((movX-8)-scrollX, (movY)-scrollY, 80, 40);
+			g.drawOval(relativaX-8, relativaY, 80, 40);
 			
 			
 			
@@ -178,30 +198,28 @@ public class Pantalla extends JPanel {
 		    
 		    if (playT.isEnMovimineto()==true &&  (playT.getDestinoX()!= movX || playT.getDestinoY()!= movY)){
 			g.setColor(Color.RED);
-			g.fillOval((playT.getDestinoX())-scrollX, (playT.getDestinoY())-scrollY, 20, 15);
+			g.fillOval(relativaX, relativaY, 20, 15);
 		    }
 			
-			//g.fillRect(movX-scrollX, movY-scrollY, 60, 60); 
 			
 		  
-		  		g.drawImage(tan_amigo, (movX-scrollX), (movY-scrollY)-25, this);
-		  		//---->>>>> g.drawRect(movX-scrollX, movY-scrollY, 64, 32);
-			//g.drawImage(playT.getImg(), movX-scrollX, movY-scrollY, this);
+		  	g.drawImage(tan_amigo, relativaX, relativaY-25, this);
 		   
 			if(developer.isDevActivo()){
 			    g.setColor(Color.RED);
 			    
-			    g.drawString("Tdif: "+playT.isSelccionado(),(movX + 60)-scrollX, (movY+10)-scrollY);
-			    g.drawString("Tpen: "+playT.isSelccionado(),(movX + 60)-scrollX, (movY+20)-scrollY);
+			    g.drawString("Tdif: "+playT.isSelccionado(),relativaX+60, relativaY+10);
+			    g.drawString("Tpen: "+playT.isSelccionado(),relativaX+60, relativaY+20);
 			    
-			    int peligro=tiles.buscaCelda((movX + 60),(movY+30),tiles.getTileDataPeligro());
+			    int peligro=tiles.buscaCelda(relativaX+60,relativaY+30,tiles.getTileDataPeligro());
 			   
-			    g.drawString("Tpel: "+peligro,(movX + 60)-scrollX, (movY+30)-scrollY);
+			    g.drawString("Tpel: "+peligro,relativaX+60 , relativaY+30);
+			    g.drawString("Des : "+playT.getDestinoX()+" "+playT.getDestinoY(),relativaX+60, relativaY+40);
+			    g.drawString("Sel: "+playT.isSelccionado(),relativaX+60, relativaY+50);
+			    g.drawString("Mov: "+playT.isEnMovimineto(),relativaX+60,relativaY+60);
 			    
-			    g.drawString("Mov: "+playT.isEnMovimineto(),(movX + 60)-scrollX, (movY+60)-scrollY);
-			    g.drawString("Sel: "+playT.isSelccionado(),(movX + 60)-scrollX, (movY+50)-scrollY);
-			    g.drawString("Des : "+playT.getDestinoX()+" "+playT.getDestinoY(),(movX + 60)-scrollX, (movY+40)-scrollY);
-			    g.drawString("x: "+(playT.getPosicionX())+" y:"+(playT.getPosicionY()), playT.getPosicionX()-scrollX, playT.getPosicionY()-scrollY);
+			    
+			    g.drawString("x: "+(playT.getPosicionX())+" y:"+(playT.getPosicionY()), relativaX, relativaY);
 			
 			    
 			}
@@ -211,10 +229,19 @@ public class Pantalla extends JPanel {
 		}
 
 		
+		for(Tanque enemigoT: enemigo){
+		    
+		   movX=enemigoT.getPosicionX();
+		   movY=enemigoT.getPosicionY();
+		    
+		    relativaX = (movX-movY)*(anchoTile/2)-scrollX;
+		    relativaY = (movX+movY)*(altoTile/2)-scrollY;
+		    
+		    g.drawImage(tan_enemigo, relativaX, relativaY, this);  
+		}
 		
 		
 		
-		g.drawImage(tan_enemigo, enemigo.getPosicionX()-scrollX, enemigo.getPosicionY()-scrollY, this);
 		
 		// Cuadro panel de control
 		g.setColor(Color.BLACK);
@@ -308,8 +335,23 @@ public class Pantalla extends JPanel {
 		g.setColor(Color.DARK_GRAY);
 		g.fillRect(0, 0, anchoV, 40);
 		g.setColor(Color.WHITE);
-		g.drawString("Raton x: "+controles.getActualRatonX()+" y:"+controles.getActualRatonY(), 20,15);
+		g.drawString("Raton x: "+controles.getActualRatonX()+" y:"+controles.getActualRatonY(), 20,5);
+		
+		int desplaya=0;
+		for(Tanque playT: play){
+		    g.drawString("Des : x "+playT.getDestinoX()+"  y "+playT.getDestinoY(),20, 15+desplaya);
+		    desplaya+=10;
 		}
+		
+		}
+	}
+
+	public int getScrollX() {
+	    return scrollX;
+	}
+
+	public int getScrollY() {
+	    return scrollY;
 	}
 	
 	
