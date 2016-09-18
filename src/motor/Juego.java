@@ -19,7 +19,7 @@ import tropas.Tanque;
 
 
 public class Juego  extends JFrame implements Runnable{
-    public String comodin = "HOla mako";
+ 
 	/**
 	* 
      	*/
