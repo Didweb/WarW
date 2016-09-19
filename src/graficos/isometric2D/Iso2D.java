@@ -2,7 +2,7 @@ package graficos.isometric2D;
 
 
 
-class iso2D{
+class Iso2D{
     
     
     private int totalTils;
@@ -17,7 +17,7 @@ class iso2D{
     private int[][] res;
     
 
-    public iso2D(int[] mapa, int anchoTil, int altoTil, int scrollX, int scrollY){
+    public Iso2D(int[] mapa, int anchoTil, int altoTil, int scrollX, int scrollY){
     	
     	this.anchoTil = anchoTil;
     	this.altoTil = altoTil;
