@@ -19,18 +19,18 @@ public class TileData extends Tiles{
 		
 		cargarMapa("recursos/plano_1_peligro.png");
 		generarMapa();
-		montarBimapas(tileDataPeligro);
+		//montarBimapas(tileDataPeligro);
 		//dameData(tileDataPeligro);
 		
 		
 		cargarMapa("recursos/plano_1_dificultad.png");
 		generarMapa();
-		montarBimapas(tileDataDificultad);
+		//montarBimapas(tileDataDificultad);
 		//dameData(tileDataDificultad);
 		
 		cargarMapa("recursos/plano_1_penetracion.png");
 		generarMapa();
-		montarBimapas(tileDataPenetracion);
+		//montarBimapas(tileDataPenetracion);
 		//dameData(tileDataPenetracion);
 		
 		

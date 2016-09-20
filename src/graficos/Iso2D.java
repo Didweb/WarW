@@ -1,4 +1,4 @@
-package graficos.isometric2D;
+package graficos;
 
 
 
@@ -132,7 +132,7 @@ class Iso2D{
             	    	almaY[x] = relativaY;
                 	
             	
-                    	res[nn][0] = alma[x];
+                    res[nn][0] = alma[x];
                 	res[nn][1] = almaX[x];
                 	res[nn][2] = almaY[x];
                 	

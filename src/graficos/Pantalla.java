@@ -69,6 +69,7 @@ public class Pantalla extends JPanel {
 		
 		this.hojaNivel = hojaNivel;
 		hojaNivel.pantallaNivel();
+		imgTapete = hojaNivel.getImgTapete();
 		
 		
 		
@@ -129,80 +130,35 @@ public class Pantalla extends JPanel {
 		    
 		} catch (IOException e) {
 		}
-		int v=0;
-		int o=0;
-		int tt=hojaNivel.getImagenes2().length;
-		int fi=2048/tt;
-		int cuadrante = tt/fi;
-		int c;
-		for(int y=0;y<hojaNivel.getImagenes2().length;y=v){
+	
+		
+		int ncel;
+		int xcel;
+		int ycel;
+		
+		int lax=0;
+		int lay=0;
+		int ordenpIntado=1;
+		for(int xiT=0;xiT<imgTapete.length;xiT++){
 			
-		    relativaX = (v-o)*(anchoTile/2)-scrollX;
-		    relativaY = (v+o)*(altoTile/2)-scrollY;	
+			ncel = imgTapete[xiT][0];
+			xcel = imgTapete[xiT][1];
+			ycel = imgTapete[xiT][2];
+			if(lax==32){
+				lax=0;
+				lay++;
+				}
 			
-		    if (v==0){
-			//g.drawImage(hojaNivel.getImagenes2()[v], relativaX, relativaY, this);
-			g.drawString(" c:"+v,relativaX, relativaY);
-		    } else {
+			//System.out.println(" ncel: "+ncel+" xcel:"+xcel+" ycel:"+ycel);
 			
-//			for(int bf=v+1;bf<o;bf--){
-//			    
-//			    if (bf==0){
-//				g.drawString(" c:"+v,relativaX, relativaY);
-//				//g.drawImage(hojaNivel.getImagenes2()[v], relativaX, relativaY, this);
-//			    } else {
-//				 c = (cuadrante*bf)+1;
-//				// g.drawImage(hojaNivel.getImagenes2()[c], relativaX, relativaY, this);
-//				 g.drawString(" c:"+c,relativaX, relativaY);
-//			    }
-//			   
-//			   
-//			}
+			g.drawString(" "+ordenpIntado, xcel-scrollX-15, ycel-scrollY-15);
 			
-		    }
-		    
-		    
-//			for(int x=0;x<hojaNivel.getImagenes().length;x=xx){
-//
-//				
-//				relativaX = (x-y)*(anchoTile/2)-scrollX;
-//				relativaY = (x+y)*(altoTile/2)-scrollY;			
-//				
-//				
-//				
-//				if (relativaY>-60 && relativaY<altoV&& relativaX>-60 && relativaX<anchoV){
-//				
-//				g.drawImage(hojaNivel.getImagenes()[y][x], relativaX, relativaY, this);
-//				}
-//				v++;
-//				
-//				
-//				
-//				
-//				
-//				if(developer.isDevActivo()){
-//				//g.setFont(new Font("Arial", Font.PLAIN, 7));
-//				//g.drawString("Tpel: "+tiles.getTileDataPeligro()[y][x],relativaX, relativaY);
-//					g.setFont(new Font("Arial", Font.PLAIN, 9));
-//					g.setColor(Color.BLACK);
-//					//g.drawString(" T: "+anchoVTils,relativaX,(relativaY)+10);
-//					//g.drawString(" P: "+anchoVPix,relativaX,(relativaY)+25);
-//					//g.drawString(" xT: "+(64*x),relativaX,(relativaY)+40);
-//					//g.drawString(" yT: "+(64*y)+"",relativaX,(relativaY)+50);
-//					//g.drawString(" Sx: "+scrollX+" Sy:"+scrollY,relativaX,(relativaY)+60);
-//					g.drawString(" "+x+" / "+y+" "+scrollX+"."+scrollY+"",relativaX+2,relativaY+10);
-//					g.drawRect(relativaX, relativaY, 64, 32);
-//				}
-//					
-//				
-//					
-//				
-//				
-//					
-//				
-//			}
-			
+			g.drawImage(hojaNivel.getImagenes()[ncel][lax][lay], xcel-scrollX, ycel-scrollY, this);
+			g.drawRect(xcel-scrollX, ycel-scrollY, 64, 32);
+			lax++;
+			ordenpIntado++;
 		}
+		
 		
 		
 		

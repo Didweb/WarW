@@ -120,8 +120,38 @@ public  class Tiles {
 		
 	}
 	
-	public int[][] montarBimapas(int[][] arrayPasado){
+	public int[][][] montarBimapas(int[][] arrayPasado){
 	
+		
+		int[][][] res = new int[tilesTotal][tilesPorlado][tilesPorlado];
+		
+		int x=0;
+		int y=0;
+		
+		for (int camino=0;camino<arrayPasado.length;camino++) {
+			
+			if(x==tilesPorlado){
+			x=0;
+			y++;
+			}
+			
+			res[camino][x][y] = planoInter[arrayPasado[camino][0]];
+			
+			System.out.println(" res["+camino+"]["+x+"]["+y+"] =  "+res[camino][x][y]);
+			x++;
+			
+		}
+			
+		
+		
+		
+		
+		return res;
+		
+	}
+	
+	public int[][] montarBimapasXXXXXX(int[][] arrayPasado){
+		
 		int zz = 0;
 		int filas = 0;
 		int arrastre=0;
@@ -142,8 +172,6 @@ public  class Tiles {
 		return arrayPasado;
 		
 	}
-	
-	
 
 	
 	
@@ -163,6 +191,9 @@ public  class Tiles {
 				e.printStackTrace();
 			}
 	}
+	
+	
+	
 	
 	
 	protected void generarMapa(){
