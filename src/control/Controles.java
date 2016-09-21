@@ -123,7 +123,7 @@ public final class Controles implements KeyListener,MouseListener{
 
 	
 	public void mouseMoved(MouseEvent e) {
-	    	scrollX = e.getX();
+	    scrollX = e.getX();
 		scrollY = e.getY();
 		
 		actualRatonY = e.getY();
@@ -143,8 +143,8 @@ public final class Controles implements KeyListener,MouseListener{
 		
 		for (Tanque t: tanquesPlay){
 		    
-		    xp = t.getPosicionX();
-		    yp = t.getPosicionY();
+		    xp = t.getPosicionXLogica();
+		    yp = t.getPosicionYLogica();
 		    
 		    int logicaMousX = ((e.getX())-scrollX)*60;
 		    int logicaMousY = ((e.getY())-scrollY)*32;
@@ -184,8 +184,8 @@ public final class Controles implements KeyListener,MouseListener{
 			    
 			    
 			    
-				 t.setDestinoX(e.getX()+scrollX);
-				 t.setDestinoY(e.getY()+scrollY);
+				 t.setDestinoXLogica(e.getX()+scrollX);
+				 t.setDestinoYLogica(e.getY()+scrollY);
 				 
 				 t.setEnMovimineto(true);
 				 

@@ -1,22 +1,20 @@
 package tropas;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+
 import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 public class Tanque extends Ejercito {
 
-    private int posicionX;
-    private int posicionY;
+    private int posicionXLogica;
+    private int posicionYLogica;
+    
+    private int destinoXLogica;
+    private int destinoYLogica;
     
     private boolean estaVivo =  true;
     private boolean selccionado = false;
@@ -54,9 +52,7 @@ public class Tanque extends Ejercito {
     protected int punteria;
     protected int movilidad;
     protected int capaCombustible;
-    
-    private int destinoX;
-    private int destinoY;
+
     
 
 
@@ -66,11 +62,11 @@ public class Tanque extends Ejercito {
     private int[] areaSel = new int[4];
     
 
-    public Tanque(int posicionX, int posicionY, String bando, int altoV){
+    public Tanque(int posicionXLogica, int posicionYLogica, String bando, int altoV){
 	
 	setBando(bando);
-	this.posicionX =  posicionX;
-	this.posicionY = posicionY;
+	this.posicionXLogica = posicionXLogica;
+	this.posicionYLogica= posicionYLogica;
 	actitud = actictudLista[0];
 	
 	id = controlId;
@@ -105,22 +101,22 @@ public class Tanque extends Ejercito {
     
 	if(enMovimineto){
 		
-		if(posicionX != destinoX  ){
+		if(posicionXLogica != destinoXLogica  ){
 		    
-		    if(posicionX < destinoX){
-			posicionX++;
+		    if(posicionXLogica < destinoXLogica){
+			posicionXLogica++;
 			
-		    } else if(posicionX > destinoX){
-			posicionX--;
+		    } else if(posicionXLogica > destinoXLogica){
+			posicionXLogica--;
 			
 		    }
 		   
 		    
-		    if(posicionY < destinoY){
-			posicionY++;
+		    if(posicionYLogica < destinoYLogica){
+			posicionYLogica++;
 			
-		    } else if( posicionY > destinoY){
-			posicionY--;
+		    } else if( posicionYLogica > destinoYLogica){
+			posicionYLogica--;
 			
 		    }
 		    
@@ -131,20 +127,20 @@ public class Tanque extends Ejercito {
     
 
 
-    public int getDestinoX() {
-        return destinoX;
+    public int getDestinoXLogica() {
+        return destinoXLogica;
     }
 
-    public void setDestinoX(int destinoX) {
-        this.destinoX = destinoX;
+    public void setDestinoXLogica(int destinoXLogica) {
+        this.destinoXLogica = destinoXLogica;
     }
 
-    public int getDestinoY() {
-        return destinoY;
+    public int getDestinoYLogica() {
+        return destinoYLogica;
     }
 
-    public void setDestinoY(int destinoY) {
-        this.destinoY = destinoY;
+    public void setDestinoYLogica(int destinoYLogica) {
+        this.destinoYLogica = destinoYLogica;
     }
 
     
@@ -229,20 +225,20 @@ public class Tanque extends Ejercito {
 
 
 
-    public int getPosicionX() {
-        return posicionX;
+    public int getPosicionXLogica() {
+        return posicionXLogica;
     }
 
-    public void setPosicionX(int posicionX) {
-        this.posicionX = posicionX;
+    public void setPosicionXLogica(int posicionXLogica) {
+        this.posicionXLogica = posicionXLogica;
     }
 
-    public void setPosicionY(int posicionY) {
-        this.posicionY = posicionY;
+    public void setPosicionYLogica(int posicionYLogica) {
+        this.posicionYLogica = posicionYLogica;
     }
 
-    public int getPosicionY() {
-        return posicionY;
+    public int getPosicionYLogica() {
+        return posicionYLogica;
     }
     
     public int getCapaCombustible() {
@@ -275,8 +271,8 @@ public class Tanque extends Ejercito {
     
     public void seleccionaTanque(int mouseX, int mouseY){
 	
-	 if  ((mouseX > posicionX)  && (mouseX < (posicionX + 60)) && 
-		 (mouseY > posicionY)  && (mouseY < (posicionY + 60))
+	 if  ((mouseX > posicionXLogica)  && (mouseX < (posicionXLogica + 60)) && 
+		 (mouseY > posicionYLogica)  && (mouseY < (posicionYLogica + 60))
 		 
 	    ||
 	    (mouseX > areaSel[0])  && (mouseX < areaSel[2]) && 

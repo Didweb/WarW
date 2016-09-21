@@ -12,7 +12,6 @@ import control.Developer;
 import graficos.HojaSprites;
 import graficos.Pantalla;
 import graficos.TileData;
-import graficos.TileImg;
 import tropas.T34;
 import tropas.Tanque;
 
@@ -54,9 +53,7 @@ public class Juego  extends JFrame implements Runnable{
 	
 	private static int x = CENTRO_ANCHO_VENTANA;
 	private static int y = CENTRO_ALTO_VENTANA;
-	
-	private static int marcadorX=0;
-	private static int marcadorY=0;
+
 	
 	
 	
@@ -121,11 +118,10 @@ public class Juego  extends JFrame implements Runnable{
 	
 	
 	private synchronized void iniciar(){
+		
 		juegoActivo = true;
 		
 
-		
-		
 		thread = new Thread(this, "Graficos");
 		thread.start();
 	}
@@ -145,25 +141,21 @@ public class Juego  extends JFrame implements Runnable{
 		
 		if(controles.arriba && x>((ALTO_VENTANA*-1)/2)){
 			x-=controles.getVelocidad();
-			//marcadorX -= controles.getVelocidad();
 		    
 
 		}
 		
 		if(controles.abajo && x<(ALTO_VENTANA/2)){
 			x+=controles.getVelocidad();
-			//marcadorX += controles.getVelocidad();
 		}
 		
 		if(controles.derecha && y<(ANCHO_VENTANA)+ANCHO_VENTANA){
 			y+=controles.getVelocidad();
-			//marcadorY += controles.getVelocidad();
 
 		}
 		
 		if(controles.izquierda && y>((ANCHO_VENTANA*-1))){
 			y-=controles.getVelocidad();
-			//marcadorY -= controles.getVelocidad();
 
 		}
 		

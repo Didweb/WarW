@@ -7,8 +7,8 @@ public class T34 extends Tanque {
     
     
     
-    public T34(int posicionX, int posicionY, String bando, int altoVentana){
-	super(posicionX, posicionY, bando, altoVentana);
+    public T34(int posicionXLogica, int posicionYLogica, String bando, int altoVentana){
+	super(posicionXLogica, posicionYLogica, bando, altoVentana);
 	
 	modelo = "T-34";
 	

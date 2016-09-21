@@ -131,6 +131,8 @@ public class Pantalla extends JPanel {
 		int xlogica;
 		int ylogica;
 		
+		int movX;
+		int movY;
 		
 		for(int xiT=0;xiT<imgTapete.length;xiT++){
 			
@@ -146,23 +148,31 @@ public class Pantalla extends JPanel {
 			//g.drawRect(xcel-scrollX, ycel-(scrollY-(altoTile*2)), 64, 32);
 			//g.drawString(xlogica+"|"+ylogica+" ["+xiT+"] ", xcel-scrollX+10, ycel-(scrollY-(altoTile*2))+15);
 			
+			
+
 		
-		
+			
+			
+			
+			
 		}
 		
 		
 		
 		
 		int altoCuadro = 150;
-		int movX;
-		int movY;
+	
 		g.setFont(new Font("Arial", Font.PLAIN, 12));
 		g.setColor(Color.BLUE);
 		for(Tanque playT: play){
 		    
-		    movX=playT.getPosicionX();
-		    movY=playT.getPosicionY();
+		    movX=playT.getPosicionXLogica();
+		    movY=playT.getPosicionYLogica();
+		    
 		    controles.getPosRelativaTanque(scrollX,scrollY);
+		    
+		    
+
 		    
 		    relativaX = (movX-movY)*(anchoTile/2)-scrollX;
 		    relativaY = (movX+movY)*(altoTile/2)-scrollY;	
@@ -176,7 +186,9 @@ public class Pantalla extends JPanel {
 			
 		    }
 		    
-		    if (playT.isEnMovimineto()==true &&  (playT.getDestinoX()!= movX || playT.getDestinoY()!= movY)){
+		    if (playT.isEnMovimineto()==true 
+		    		&&  (playT.getDestinoXLogica()!= movX 
+		    		|| playT.getDestinoYLogica()!= movY)){
 			g.setColor(Color.RED);
 			g.fillOval(relativaX, relativaY, 20, 15);
 		    }
@@ -194,12 +206,12 @@ public class Pantalla extends JPanel {
 			    int peligro=tiles.buscaCelda(relativaX+60,relativaY+30,tiles.getTileDataPeligro());
 			   
 			    g.drawString("Tpel: "+peligro,relativaX+60 , relativaY+30);
-			    g.drawString("Des : "+playT.getDestinoX()+" "+playT.getDestinoY(),relativaX+60, relativaY+40);
+			    g.drawString("Des : "+playT.getDestinoXLogica()+" "+playT.getDestinoYLogica(),relativaX+60, relativaY+40);
 			    g.drawString("Sel: "+playT.isSelccionado(),relativaX+60, relativaY+50);
 			    g.drawString("Mov: "+playT.isEnMovimineto(),relativaX+60,relativaY+60);
 			    
 			    
-			    g.drawString("x: "+(playT.getPosicionX())+" y:"+(playT.getPosicionY()), relativaX, relativaY);
+			    g.drawString("x: "+(playT.getPosicionXLogica())+" y:"+(playT.getPosicionYLogica()), relativaX, relativaY);
 			
 			    
 			}
@@ -211,8 +223,8 @@ public class Pantalla extends JPanel {
 		
 		for(Tanque enemigoT: enemigo){
 		    
-		   movX=enemigoT.getPosicionX();
-		   movY=enemigoT.getPosicionY();
+		   movX=enemigoT.getPosicionXLogica();
+		   movY=enemigoT.getPosicionYLogica();
 		    
 		    relativaX = (movX-movY)*(anchoTile/2)-scrollX;
 		    relativaY = (movX+movY)*(altoTile/2)-scrollY;
@@ -319,7 +331,7 @@ public class Pantalla extends JPanel {
 		
 		int desplaya=0;
 		for(Tanque playT: play){
-		    g.drawString("Des : x "+playT.getDestinoX()+"  y "+playT.getDestinoY(),20, 15+desplaya);
+		    g.drawString("Des : x "+playT.getDestinoXLogica()+"  y "+playT.getDestinoYLogica(),20, 15+desplaya);
 		    desplaya+=10;
 		}
 		

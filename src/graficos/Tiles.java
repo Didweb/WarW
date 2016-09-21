@@ -41,12 +41,9 @@ public  class Tiles {
 		
 		
 	}
+
 	
 	
-	
-
-
-
 
 	public int buscaCelda(int buscaX, int buscaY, int[][] listado){
 		int dudax = buscaX;
@@ -57,18 +54,18 @@ public  class Tiles {
 			for (int vv=0; vv<tileData[v].length;vv++){
 				
 				
-				
-				//System.out.println("Valor "+v+" "+tileData[v][vv][0]+">"+duda0+" "+v+""+tileData[v][vv][1]+" < "+duda1+" ");
-				if (tileData[v][vv][0]<=dudax && tileData[v][vv][2]>=dudax &&  tileData[v][vv][1]<=duday && tileData[v][vv][3]>=duday){
+				if (tileData[v][vv][0]<=dudax 
+						&& tileData[v][vv][2]>=dudax 
+						&&  tileData[v][vv][1]<=duday 
+						&& tileData[v][vv][3]>=duday){
 					
-					//System.out.println("Valor "+dudax+" y "+duday+" esta en "+v+" "+vv);
 					celdaPosicionX = v;
 					celdaPosicionY = vv;
 				}
 			}
 			
 		}
-		//System.out.println(celdaPosicionX+" "+celdaPosicionY);
+		
 		return listado[celdaPosicionX][celdaPosicionY];
 		
 	}
