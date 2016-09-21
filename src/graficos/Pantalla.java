@@ -158,8 +158,8 @@ public class Pantalla extends JPanel {
 			
 			
 			g.drawImage(hojaNivel.getImagenes()[xiT][xlogica][ylogica], xcel-scrollX, ycel-(scrollY-(altoTile*2)), this);
-			g.drawRect(xcel-scrollX, ycel-(scrollY-(altoTile*2)), 64, 32);
-			g.drawString(xlogica+"|"+ylogica+" ["+xiT+"] ", xcel-scrollX+10, ycel-(scrollY-(altoTile*2))+15);
+			//g.drawRect(xcel-scrollX, ycel-(scrollY-(altoTile*2)), 64, 32);
+			//g.drawString(xlogica+"|"+ylogica+" ["+xiT+"] ", xcel-scrollX+10, ycel-(scrollY-(altoTile*2))+15);
 			
 		
 		
