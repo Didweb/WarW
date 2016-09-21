@@ -3,7 +3,6 @@ package graficos;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 
@@ -31,12 +30,9 @@ public  class Tiles {
 	private int[][] coordLogicas;
 	private int[][] coordLogicasIso;
 	
-	public int[][] getCoordLogicas() {
-		return coordLogicas;
-	}
-	public int[][] getCoordLogicasIso() {
-		return coordLogicasIso;
-	}
+	
+	
+
 	public void inicaimosTiles(){
 		
 		tilesPorlado = ancho_mapa/ancho_tile;
@@ -46,23 +42,9 @@ public  class Tiles {
 		
 	}
 	
-	public int[][] getTileDataPeligro() {
-	    return tileDataPeligro;
-	}
-
-
-
 	
 	
-	public void setAncho_tile(int ancho_tile) {
-	    this.ancho_tile = ancho_tile;
-	}
 
-
-
-	public void setAlto_tile(int alto_tile) {
-	    this.alto_tile = alto_tile;
-	}
 
 
 
@@ -90,8 +72,6 @@ public  class Tiles {
 		return listado[celdaPosicionX][celdaPosicionY];
 		
 	}
-	
-	
 	
 
 	
@@ -130,6 +110,8 @@ public  class Tiles {
 		
 	}
 	
+	
+	
 	public int[][][] montarBimapas(int[][] arrayPasado){
 	
 		coordLogicas = new int[tilesTotal][2];
@@ -146,13 +128,7 @@ public  class Tiles {
 			coordLogicas[ntile][0]=x;
 			coordLogicas[ntile][1]=y;
 			x++;		
-			//System.out.println("CoordLogica["+ntile+"][0] "+ coordLogicas[ntile][0]);
-			//System.out.println("CoordLogica["+ntile+"][1] "+ coordLogicas[ntile][1]);
 		}
-		
-		
-		
-		
 		
 		
 		
@@ -163,7 +139,6 @@ public  class Tiles {
 		for (int camino=0;camino<tilesTotal;camino++) {
 			
 			laCasilla = planoInter[arrayPasado[camino][0]];
-			//inde =  Arrays.binarySearch(planoInter,laCasilla);
 			
 			xLogica = coordLogicas[arrayPasado[camino][0]][0];
 			yLogica = coordLogicas[arrayPasado[camino][0]][1];
@@ -172,20 +147,16 @@ public  class Tiles {
 			coordLogicasIso[camino][0]=xLogica;
 			coordLogicasIso[camino][1]=yLogica;
 			
-			//System.out.println(" res["+camino+"]["+xLogica+"]["+yLogica+"] =  "+laCasilla);
-			
 			
 		}
-			
-		
-		
-		
 		
 		return res;
 		
 	}
 	
-	public int[][] montarBimapasXXXXXX(int[][] arrayPasado){
+	
+	
+	public int[][] montarMapsData(int[][] arrayPasado){
 		
 		int zz = 0;
 		int filas = 0;
@@ -229,8 +200,6 @@ public  class Tiles {
 	
 	
 	
-	
-	
 	protected void generarMapa(){
 		for (int i = 0; i < planoInter.length; i++){
 			
@@ -263,6 +232,7 @@ public  class Tiles {
 			
 			}
 	}
+	
 	
 	
 	protected void generarMapaImg(){
@@ -323,13 +293,48 @@ public  class Tiles {
 	}
 	
 	
+	
 	public int getANCHO_TILE() {
 		return ancho_tile;
 	}
 	
+	
+	
 	public int getALTO_TILE() {
 		return alto_tile;
 	}
+	
+	
+
+	public int[][] getCoordLogicas() {
+		return coordLogicas;
+	}
+	
+	
+	
+	public int[][] getCoordLogicasIso() {
+		return coordLogicasIso;
+	}
+	
+	
+	public int[][] getTileDataPeligro() {
+	    return tileDataPeligro;
+	}
+
+	
+	
+	public void setAncho_tile(int ancho_tile) {
+	    this.ancho_tile = ancho_tile;
+	}
+
+
+
+	public void setAlto_tile(int alto_tile) {
+	    this.alto_tile = alto_tile;
+	}
+	
+	
+	
 	public void dameData(int[][] arrayContenido){
 		
 		for(int g=0;g<arrayContenido.length;g++){

@@ -4,15 +4,11 @@ package graficos;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.MouseInfo;
-import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import control.Controles;
@@ -58,7 +54,6 @@ public class Pantalla extends JPanel {
 	
 	
 	
-	private int[][][] TileDataNivel;
 	private int[][] imgTapete;
 	private int [][] coordLogicasIso;
 
@@ -69,7 +64,6 @@ public class Pantalla extends JPanel {
 		this.hojaNivel = hojaNivel;
 		hojaNivel.pantallaNivel();
 		imgTapete = hojaNivel.getImgTapete();
-		TileDataNivel = hojaNivel.getListaData();
 		coordLogicasIso = hojaNivel.getCoordLogicas();
 		
 		scrollX = ANCHO_VENTANA/2;
@@ -131,18 +125,16 @@ public class Pantalla extends JPanel {
 		}
 	
 		
-		int ncel;
+		
 		int xcel;
 		int ycel;
 		int xlogica;
 		int ylogica;
 		
-		int lax=0;
-		int lay=0;
 		
 		for(int xiT=0;xiT<imgTapete.length;xiT++){
 			
-			ncel = imgTapete[xiT][0];
+			
 			xcel = imgTapete[xiT][1];
 			ycel = imgTapete[xiT][2];
 			
@@ -150,15 +142,10 @@ public class Pantalla extends JPanel {
 			ylogica = coordLogicasIso[xiT][1];
 	
 			
-			
-			
 			g.drawImage(hojaNivel.getImagenes()[xiT][xlogica][ylogica], xcel-scrollX, ycel-(scrollY-(altoTile*2)), this);
 			//g.drawRect(xcel-scrollX, ycel-(scrollY-(altoTile*2)), 64, 32);
 			//g.drawString(xlogica+"|"+ylogica+" ["+xiT+"] ", xcel-scrollX+10, ycel-(scrollY-(altoTile*2))+15);
 			
-		
-		
-		
 		
 		
 		}
