@@ -60,7 +60,6 @@ class Iso2D{
             		}
             	
             	relativaX = (f-lp)*(anchoTil/2)+(scrollX-(lp*anchoTil/2));
-            	//relativaY = (f)*(altoTil)+scrollY;
             	relativaY = (f)*(altoTil/2)+scrollY;
             	
             	alma[lp]=(lp*cuadrante);
@@ -127,7 +126,6 @@ class Iso2D{
             	    	}
             	    	
                     	relativaX = (anchoTil*x)+(ultimaX);
-                    	//relativaY = (f)*(altoTil)+scrollY+(diago*altoTil);
                     	relativaY = (f)*(altoTil/2)+scrollY+(diago*altoTil/2);
                     	
             	    	almaX[x] = relativaX;

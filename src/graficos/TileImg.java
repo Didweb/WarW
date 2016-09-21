@@ -34,14 +34,7 @@ public class TileImg extends Tiles{
 		int vueltas=0;
 		guiaIso2D = iso2D.getRes();
 		
-//		for (int oo=0;oo< guiaIso2D.length;oo++){
-//			
-//			System.out.println(" --> "+guiaIso2D[oo][0]);
-//			System.out.println(" --> "+guiaIso2D[oo][1]);
-//			System.out.println(" --> "+guiaIso2D[oo][2]);
-//			System.out.println(vueltas+"---------------------------------");
-//			vueltas++;
-//		}
+
 		
 		
 		TileDataNivel = montarBimapas(guiaIso2D);
@@ -52,20 +45,7 @@ public class TileImg extends Tiles{
 			
 		}
 		
-//		for(int c=0;c< listaCeldas.length;c++){
-//			
-//			for(int x=0;x<listaCeldas[c].length;x++){
-//				
-//				for(int y=0;y<listaCeldas[c][x].length;y++){
-//					
-//					System.out.println(" ListaCelda["+c+"]["+x+"]["+y+"] =  "+listaCeldas[c][x][y]);
-//				}
-//			}
-//			
-//			
-//		}
-		
-		//dameData(TileDataNivel);
+
 	}
 
 	public int[][] getGuiaIso2D() {

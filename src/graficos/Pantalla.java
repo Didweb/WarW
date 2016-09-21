@@ -148,12 +148,7 @@ public class Pantalla extends JPanel {
 			
 			xlogica = coordLogicasIso[xiT][0];
 			ylogica = coordLogicasIso[xiT][1];
-			
-			
-			
-				//System.out.println(" ncel: "+ncel+" xlogica:"+xlogica+" ylogica:"+ylogica);
-			
-			
+	
 			
 			
 			
