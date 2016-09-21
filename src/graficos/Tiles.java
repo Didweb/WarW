@@ -3,6 +3,7 @@ package graficos;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 
@@ -27,6 +28,15 @@ public  class Tiles {
 	private int celdaPosicionX;
 	private int celdaPosicionY;
 	
+	private int[][] coordLogicas;
+	private int[][] coordLogicasIso;
+	
+	public int[][] getCoordLogicas() {
+		return coordLogicas;
+	}
+	public int[][] getCoordLogicasIso() {
+		return coordLogicasIso;
+	}
 	public void inicaimosTiles(){
 		
 		tilesPorlado = ancho_mapa/ancho_tile;
@@ -122,23 +132,48 @@ public  class Tiles {
 	
 	public int[][][] montarBimapas(int[][] arrayPasado){
 	
-		
+		coordLogicas = new int[tilesTotal][2];
+		coordLogicasIso = new int[tilesTotal][2];
 		int[][][] res = new int[tilesTotal][tilesPorlado][tilesPorlado];
-		
-		int x=0;
 		int y=0;
-		
-		for (int camino=0;camino<arrayPasado.length;camino++) {
+		int x=0;
+		for(int ntile=0;ntile<tilesTotal;ntile++){
 			
 			if(x==tilesPorlado){
-			x=0;
-			y++;
-			}
+				x=0;
+				y++;
+				}
+			coordLogicas[ntile][0]=x;
+			coordLogicas[ntile][1]=y;
+			x++;		
+			//System.out.println("CoordLogica["+ntile+"][0] "+ coordLogicas[ntile][0]);
+			//System.out.println("CoordLogica["+ntile+"][1] "+ coordLogicas[ntile][1]);
+		}
+		
+		
+		
+		
+		
+		
+		
+		int laCasilla;
+		int xLogica;
+		int yLogica;
+		
+		for (int camino=0;camino<tilesTotal;camino++) {
 			
-			res[camino][x][y] = planoInter[arrayPasado[camino][0]];
+			laCasilla = planoInter[arrayPasado[camino][0]];
+			//inde =  Arrays.binarySearch(planoInter,laCasilla);
 			
-			System.out.println(" res["+camino+"]["+x+"]["+y+"] =  "+res[camino][x][y]);
-			x++;
+			xLogica = coordLogicas[arrayPasado[camino][0]][0];
+			yLogica = coordLogicas[arrayPasado[camino][0]][1];
+			res[camino][xLogica][yLogica] = laCasilla;
+			
+			coordLogicasIso[camino][0]=xLogica;
+			coordLogicasIso[camino][1]=yLogica;
+			
+			//System.out.println(" res["+camino+"]["+xLogica+"]["+yLogica+"] =  "+laCasilla);
+			
 			
 		}
 			

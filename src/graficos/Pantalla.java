@@ -55,13 +55,12 @@ public class Pantalla extends JPanel {
 	private Developer developer;
 	private TileData tiles;
 	private HojaSprites hojaNivel;
-
-
-
-
-
-
+	
+	
+	
+	private int[][][] TileDataNivel;
 	private int[][] imgTapete;
+	private int [][] coordLogicasIso;
 
 	
 	public Pantalla(int ANCHO_VENTANA,int ALTO_VENTANA, int anchoTile, int altoTile, HojaSprites hojaNivel) {
@@ -70,8 +69,8 @@ public class Pantalla extends JPanel {
 		this.hojaNivel = hojaNivel;
 		hojaNivel.pantallaNivel();
 		imgTapete = hojaNivel.getImgTapete();
-		
-		
+		TileDataNivel = hojaNivel.getListaData();
+		coordLogicasIso = hojaNivel.getCoordLogicas();
 		
 		scrollX = ANCHO_VENTANA/2;
 		scrollY = ALTO_VENTANA/2;
@@ -135,28 +134,38 @@ public class Pantalla extends JPanel {
 		int ncel;
 		int xcel;
 		int ycel;
+		int xlogica;
+		int ylogica;
 		
 		int lax=0;
 		int lay=0;
-		int ordenpIntado=1;
+		
 		for(int xiT=0;xiT<imgTapete.length;xiT++){
 			
 			ncel = imgTapete[xiT][0];
 			xcel = imgTapete[xiT][1];
 			ycel = imgTapete[xiT][2];
-			if(lax==32){
-				lax=0;
-				lay++;
-				}
 			
-			//System.out.println(" ncel: "+ncel+" xcel:"+xcel+" ycel:"+ycel);
+			xlogica = coordLogicasIso[xiT][0];
+			ylogica = coordLogicasIso[xiT][1];
 			
-			g.drawString(" "+ordenpIntado, xcel-scrollX-15, ycel-scrollY-15);
 			
-			g.drawImage(hojaNivel.getImagenes()[ncel][lax][lay], xcel-scrollX, ycel-scrollY, this);
-			g.drawRect(xcel-scrollX, ycel-scrollY, 64, 32);
-			lax++;
-			ordenpIntado++;
+			
+				//System.out.println(" ncel: "+ncel+" xlogica:"+xlogica+" ylogica:"+ylogica);
+			
+			
+			
+			
+			
+			g.drawImage(hojaNivel.getImagenes()[xiT][xlogica][ylogica], xcel-scrollX, ycel-(scrollY-(altoTile*2)), this);
+			g.drawRect(xcel-scrollX, ycel-(scrollY-(altoTile*2)), 64, 32);
+			g.drawString(xlogica+"|"+ylogica+" ["+xiT+"] ", xcel-scrollX+10, ycel-(scrollY-(altoTile*2))+15);
+			
+		
+		
+		
+		
+		
 		}
 		
 		

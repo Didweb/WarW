@@ -35,6 +35,7 @@ public class HojaSprites  extends JPanel{
 	
 	private int anchoTil;
 	private int altoTil;
+	private int[][] coordLogicasIso;
 	 
 	public HojaSprites(int anchoTil, int altoTil){
 		nivel = new TileImg();
@@ -43,6 +44,7 @@ public class HojaSprites  extends JPanel{
 		imgTapete = nivel.getGuiaIso2D();
 		
 		listaData = nivel.getTileDataNivel();
+		coordLogicasIso = nivel.getCoordLogicasIso();
 		
 		imagenes =  new Image[listaData.length][32][32];
 		this.anchoTil = anchoTil;
@@ -50,6 +52,11 @@ public class HojaSprites  extends JPanel{
 		
 	}
 	
+
+	public int[][] getCoordLogicas() {
+		return coordLogicasIso;
+	}
+
 
 	public int[][] getImgTapete() {
 		return imgTapete;
@@ -80,20 +87,33 @@ public class HojaSprites  extends JPanel{
 		 * cada tipo de terreno. El tipo de terreno se extrae del recorte.
 		 */
 
+		for (int pp=0; pp<coordLogicasIso.length;pp++){
+			
+			//System.out.println("coorLo ["+pp+"][0]->"+coordLogicas[pp][0]);
+			//System.out.println("coorLo ["+pp+"][1]->"+coordLogicas[pp][1]);
+		}
 		
-		
-    		int celda =0;
-			for(int y=0;y<31;y++){
+    		int xisoM=0;
+    		int yisoM=0;
+    		
+    	
+    	
+    		
+    		
+			for(int ordenIso=0;ordenIso<listaData.length;ordenIso++){
 				
-				for(int x=0;x<31;x++){
+				xisoM=coordLogicasIso[ordenIso][0];
+	    		yisoM=coordLogicasIso[ordenIso][1];
 					
-					recX = listaData[celda][x][y]*anchoTil;	
-					System.out.println("["+celda+"]["+x+"]["+y+"] ->"+listaData[celda][x][y]+" * recX = "+recX);
-					 recorte = (imagen.getSubimage(recX, recY, anchoTil, altoTil));
+				recX = listaData[ordenIso][xisoM][yisoM]*anchoTil;	
+				
+				System.out.println("["+ordenIso+"]["+xisoM+"]["+yisoM+"] ->"+listaData[ordenIso][xisoM][yisoM]+" * recX = "+recX);
+				
+				recorte = (imagen.getSubimage(recX, recY, anchoTil, altoTil));
 			            
-					 imagenes[celda][x][y] = recorte; 
-					celda++;
-				}
+				imagenes[ordenIso][xisoM][yisoM] = recorte; 
+					
+				
 			    
 				
 			    

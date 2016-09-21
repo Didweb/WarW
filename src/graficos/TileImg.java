@@ -26,17 +26,29 @@ public class TileImg extends Tiles{
 		cargarMapa("recursos/mini_nivel1.gif");
 		generarMapaImg();
 		
+
 		
 		Iso2D iso2D = new Iso2D(planoInter, 64, 32, 1024/8, (1024/2)*-1);
 		iso2D.calcularIso();
 		
+		int vueltas=0;
 		guiaIso2D = iso2D.getRes();
+		
+//		for (int oo=0;oo< guiaIso2D.length;oo++){
+//			
+//			System.out.println(" --> "+guiaIso2D[oo][0]);
+//			System.out.println(" --> "+guiaIso2D[oo][1]);
+//			System.out.println(" --> "+guiaIso2D[oo][2]);
+//			System.out.println(vueltas+"---------------------------------");
+//			vueltas++;
+//		}
+		
 		
 		TileDataNivel = montarBimapas(guiaIso2D);
 		
 		for(int x=0;x< guiaIso2D.length;x++){
 			
-			System.out.println(" guiaIso2D ["+x+"] = "+guiaIso2D[x][0]+" x:"+guiaIso2D[x][1]+" y:"+guiaIso2D[x][2]+" ");
+			//System.out.println(" guiaIso2D ["+x+"] = "+guiaIso2D[x][0]+" x:"+guiaIso2D[x][1]+" y:"+guiaIso2D[x][2]+" ");
 			
 		}
 		
