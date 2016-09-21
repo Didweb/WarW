@@ -28,6 +28,7 @@ public  class Tiles {
 	private int celdaPosicionY;
 	
 	private int[][] coordLogicas;
+	private int[][] coordLogicasPix;
 	private int[][] coordLogicasIso;
 	
 	
@@ -38,10 +39,16 @@ public  class Tiles {
 		tilesPorlado = ancho_mapa/ancho_tile;
 		tilesPoralto = ancho_mapa/alto_tile;
 		tilesTotal = tilesPorlado*tilesPorlado;
+		coordLogicas();
+		
+		
+		
 		
 		
 	}
 
+	
+	
 	
 	
 
@@ -107,13 +114,11 @@ public  class Tiles {
 		
 	}
 	
-	
-	
-	public int[][][] montarBimapas(int[][] arrayPasado){
-	
+	public int[][] coordLogicas(){
+		
 		coordLogicas = new int[tilesTotal][2];
-		coordLogicasIso = new int[tilesTotal][2];
-		int[][][] res = new int[tilesTotal][tilesPorlado][tilesPorlado];
+		coordLogicasPix = new int[tilesPorlado][tilesPorlado];
+		
 		int y=0;
 		int x=0;
 		for(int ntile=0;ntile<tilesTotal;ntile++){
@@ -124,9 +129,24 @@ public  class Tiles {
 				}
 			coordLogicas[ntile][0]=x;
 			coordLogicas[ntile][1]=y;
+			coordLogicasPix[x][y]=ntile;
 			x++;		
 		}
 		
+		
+		return coordLogicas;
+		
+	}
+	
+	
+	
+	
+	public int[][][] montarBimapas(int[][] arrayPasado){
+	
+		
+		coordLogicasIso = new int[tilesTotal][2];
+		int[][][] res = new int[tilesTotal][tilesPorlado][tilesPorlado];
+
 		
 		
 		int laCasilla;

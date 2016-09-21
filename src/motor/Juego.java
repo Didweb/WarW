@@ -54,7 +54,7 @@ public class Juego  extends JFrame implements Runnable{
 	private static int x = CENTRO_ANCHO_VENTANA;
 	private static int y = CENTRO_ALTO_VENTANA;
 
-	
+
 	
 	
 	private static Tanque[] play;
@@ -164,6 +164,8 @@ public class Juego  extends JFrame implements Runnable{
 		
 		for(Tanque t: play){
 		
+			t.actPosicion(pantalla.getScrollX(),pantalla.getScrollY());
+			
 		    t.actMovimiento();
 		    }
 	

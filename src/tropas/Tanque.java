@@ -8,10 +8,18 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+
+
 public class Tanque extends Ejercito {
 
     private int posicionXLogica;
     private int posicionYLogica;
+    
+    private int posicionX;
+    private int posicionY;
+    
+	protected int anchoTile;
+	protected int altoTile;
     
     private int destinoXLogica;
     private int destinoYLogica;
@@ -93,9 +101,26 @@ public class Tanque extends Ejercito {
     }
     
 
+    public void actPosicion(int scrollX, int scrollY){
+    	
+    	
+	    posicionX = (posicionXLogica-posicionYLogica)*(anchoTile/2)-scrollX;
+	    posicionY = (posicionXLogica+posicionYLogica)*(altoTile/2)-scrollY;	
+    	
+    }
 
     
-    public void actMovimiento(){
+    public int getPosicionX() {
+		return posicionX;
+	}
+
+
+	public int getPosicionY() {
+		return posicionY;
+	}
+
+
+	public void actMovimiento(){
 	
 	
     

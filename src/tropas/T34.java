@@ -19,6 +19,8 @@ public class T34 extends Tanque {
 	blindaje = 67;
 	municion = 47;
 	velocidadDisparo = 15;
+	anchoTile = 64;
+	altoTile = 32;
 	
     }
 

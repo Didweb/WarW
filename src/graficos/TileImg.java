@@ -36,9 +36,6 @@ public class TileImg extends Tiles{
 		
 		guiaIso2D = iso2D.getRes();
 		
-
-		
-		
 		TileDataNivel = montarBimapas(guiaIso2D);
 
 		

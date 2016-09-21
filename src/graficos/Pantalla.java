@@ -157,7 +157,7 @@ public class Pantalla extends JPanel {
 			
 		}
 		
-		
+
 		
 		
 		int altoCuadro = 150;
@@ -195,7 +195,7 @@ public class Pantalla extends JPanel {
 			
 			
 		  
-		  	g.drawImage(tan_amigo, relativaX, relativaY-25, this);
+		  	g.drawImage(tan_amigo, playT.getPosicionX(), playT.getPosicionY()-25, this);
 		   
 			if(developer.isDevActivo()){
 			    g.setColor(Color.RED);
