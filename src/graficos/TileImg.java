@@ -18,7 +18,7 @@ public class TileImg extends Tiles{
 	
 	public void MapaImg(int batalla){
 		
-		cargarMapa("recursos/niveles/"+batalla+".gif");
+		cargarMapa("recursos/niveles/"+batalla+"/mapa/"+batalla+".gif");
 		generarMapaImg();
 		
 		TileDataNivel = montarBimapas(guiaIso2D);
