@@ -2,12 +2,14 @@ package tropas;
 
 import java.awt.Image;
 
+import graficos.TileData;
+
 public class T34 extends Tanque {
 
     
     
     
-    public T34(int posicionXLogica, int posicionYLogica, String bando, int altoVentana){
+    public T34(int posicionXLogica, int posicionYLogica, String bando, int altoVentana, TileData tileData){
 	super(posicionXLogica, posicionYLogica, bando, altoVentana);
 	
 	modelo = "T-34";
@@ -21,6 +23,7 @@ public class T34 extends Tanque {
 	velocidadDisparo = 15;
 	anchoTile = 64;
 	altoTile = 32;
+	this.tileData = tileData;
 	
     }
 

@@ -8,6 +8,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import graficos.TileData;
+
 
 
 public class Tanque extends Ejercito {
@@ -21,13 +23,15 @@ public class Tanque extends Ejercito {
 	protected int anchoTile;
 	protected int altoTile;
     
+	protected TileData tileData;
+	
     private int destinoXLogica;
     private int destinoYLogica;
     
     private boolean estaVivo =  true;
     private boolean selccionado = false;
     
-
+    
     private String actitud;
     
     private String[] actictudLista = {"Reposo", 
@@ -104,9 +108,13 @@ public class Tanque extends Ejercito {
     public void actPosicion(int scrollX, int scrollY){
     	
     	
-	    posicionX = (posicionXLogica-posicionYLogica)*(anchoTile/2)-scrollX;
-	    posicionY = (posicionXLogica+posicionYLogica)*(altoTile/2)-scrollY;	
     	
+    	
+	    posicionX = (tileData.getCoordLogicasPix()[posicionXLogica][0]-tileData.getCoordLogicasPix()[posicionXLogica][1])-scrollX;
+	    posicionY = (tileData.getCoordLogicasPix()[posicionXLogica][0]+tileData.getCoordLogicasPix()[posicionXLogica][1])-scrollY;	
+    	
+	    //System.out.println("posicionX: "+posicionX+" . posicionY: "+posicionY);
+	    
     }
 
     

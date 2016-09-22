@@ -81,13 +81,13 @@ public class Juego  extends JFrame implements Runnable{
 		pantalla = new Pantalla(ANCHO_VENTANA,ALTO_VENTANA,ANCHO_TILE,ALTO_TILE,hojaNivel);
 		
 		play = new Tanque[3];
-		play[0] = new T34(0,15,"Sovietico",ALTO_VENTANA);
-		play[1] = new T34(10,10,"Sovietico",ALTO_VENTANA);
-		play[2] = new T34(20,10,"Sovietico",ALTO_VENTANA);
+		play[0] = new T34(0,15,"Sovietico",ALTO_VENTANA,tiles);
+		play[1] = new T34(10,10,"Sovietico",ALTO_VENTANA,tiles);
+		play[2] = new T34(20,10,"Sovietico",ALTO_VENTANA,tiles);
 		
 		enemigo = new Tanque[2];
-		enemigo[0] = new T34(5,30,"Aleman",ALTO_VENTANA);
-		enemigo[1] = new T34(20,30,"Aleman",ALTO_VENTANA);
+		enemigo[0] = new T34(5,30,"Aleman",ALTO_VENTANA,tiles);
+		enemigo[1] = new T34(20,30,"Aleman",ALTO_VENTANA,tiles);
 		
 		pantalla.actores(play, enemigo,controles,developer,tiles);
 		controles.initActores(play,hojaNivel);

@@ -150,6 +150,15 @@ public  class Tiles {
 	
 	
 	
+	public int[][] getCoordLogicasPix() {
+		return coordLogicasPix;
+	}
+
+
+
+
+
+
 	public int[][] coordLogicasPix(){
 		coordLogicasPix = new int[tilesTotal][2];
 	
