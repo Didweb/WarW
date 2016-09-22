@@ -24,6 +24,10 @@ public  class Tiles {
 
 	protected int[][] tileDataDificultad;
 	protected int[][] tileDataPenetracion;
+	
+	protected int[][][] TileDataNivel; 
+	protected int[][] guiaIso2D;
+	
 	private int celdaPosicionX;
 	private int celdaPosicionY;
 	
@@ -41,8 +45,15 @@ public  class Tiles {
 		tilesTotal = tilesPorlado*tilesPorlado;
 		coordLogicas();
 		
+		planoInter = new int[tilesPorlado*tilesPorlado];
+		planoBruto = new int[tilesPorlado*tilesPorlado];
+		TileDataNivel = new int[tilesPorlado*tilesPorlado][tilesPorlado][tilesPorlado];
 		
+		Iso2D iso2D = new Iso2D(planoInter, getANCHO_TILE(), getALTO_TILE(), 1024/8, (1024/2)*-1);
+		iso2D.calcularIso();
 		
+		guiaIso2D = iso2D.getRes();
+		coordLogicasPix();
 		
 		
 	}
@@ -117,7 +128,6 @@ public  class Tiles {
 	public int[][] coordLogicas(){
 		
 		coordLogicas = new int[tilesTotal][2];
-		coordLogicasPix = new int[tilesPorlado][tilesPorlado];
 		
 		int y=0;
 		int x=0;
@@ -129,15 +139,41 @@ public  class Tiles {
 				}
 			coordLogicas[ntile][0]=x;
 			coordLogicas[ntile][1]=y;
-			coordLogicasPix[x][y]=ntile;
-			x++;		
+			//System.out.println("coorL ["+ntile+"][0] = "+x);
+			//System.out.println("coorL ["+ntile+"][1] = "+y);
+			x++;
 		}
-		
 		
 		return coordLogicas;
 		
 	}
 	
+	
+	
+	public int[][] coordLogicasPix(){
+		coordLogicasPix = new int[tilesTotal][2];
+	
+		int laxPix = 0;
+		int layPix = 0;
+		int casilla = 0;
+		
+		for(int ntile=0;ntile<tilesTotal;ntile++){
+			
+			casilla = guiaIso2D[ntile][0];
+			laxPix = guiaIso2D[casilla][1];
+			layPix = guiaIso2D[casilla][2];
+			
+
+			coordLogicasPix[casilla][0]=laxPix;
+			coordLogicasPix[casilla][1]=layPix;
+			
+			//System.out.println("crLogPix ["+casilla+"][0] = "+coordLogicasPix[casilla][0]);
+			//System.out.println("crLogPix ["+casilla+"][1] = "+coordLogicasPix[casilla][1]);
+					
+		}
+		
+		return coordLogicasPix;
+	}
 	
 	
 	
@@ -350,7 +386,13 @@ public  class Tiles {
 	    this.alto_tile = alto_tile;
 	}
 	
+	public int[][] getGuiaIso2D() {
+		return guiaIso2D;
+	}
 	
+	public int[][][] getTileDataNivel() {
+		return TileDataNivel;
+	}
 	
 	public void dameData(int[][] arrayContenido){
 		

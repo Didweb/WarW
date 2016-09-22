@@ -192,11 +192,6 @@ public class Tanque extends Ejercito {
 
 
 
-
-
-
-
-
     public boolean isSelccionado() {
         return selccionado;
     }

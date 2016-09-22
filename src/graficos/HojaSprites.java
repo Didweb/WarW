@@ -33,9 +33,9 @@ public class HojaSprites  extends JPanel{
 	private int altoTil;
 	private int[][] coordLogicasIso;
 	 
-	public HojaSprites(int anchoTil, int altoTil){
+	public HojaSprites(int anchoTil, int altoTil,int batalla){
 		nivel = new TileImg();
-		nivel.MapaImg();
+		nivel.MapaImg(batalla);
 		
 		imgTapete = nivel.getGuiaIso2D();
 		

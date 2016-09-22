@@ -53,6 +53,8 @@ public class Juego  extends JFrame implements Runnable{
 	
 	private static int x = CENTRO_ANCHO_VENTANA;
 	private static int y = CENTRO_ALTO_VENTANA;
+	
+	private static int batalla = 1;
 
 
 	
@@ -70,7 +72,7 @@ public class Juego  extends JFrame implements Runnable{
 		tiles.montarNivel();
 		//tiles.buscaCelda(2000,1390);
 		
-		hojaNivel = new HojaSprites(66,32);
+		hojaNivel = new HojaSprites(66,32,batalla);
 		
 		
 		
