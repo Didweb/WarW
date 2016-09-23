@@ -1,11 +1,15 @@
 package control;
 
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionAdapter;
 
 import graficos.HojaSprites;
+import graficos.Pantalla;
 import tropas.Tanque;
 
 public final class Controles implements KeyListener,MouseListener{
@@ -36,6 +40,8 @@ public final class Controles implements KeyListener,MouseListener{
 	
 	private Tanque[] tanquesPlay;
 	private HojaSprites mapa;
+	private int anteriorRatonX;
+	private int anteriorRatonY;
 	
 	public void initActores(Tanque[] play,HojaSprites mapa){
 	    
@@ -56,10 +62,19 @@ public final class Controles implements KeyListener,MouseListener{
 		this.scrollX = Rx;
 		this.scrollY = Ry;
 		
+		
 	
 		
 	}
 
+	public void posicionRaton(Pantalla pantalla){
+		
+		
+		actualRatonX=anteriorRatonX;
+		actualRatonY=anteriorRatonY;
+		
+	}
+	
 	public void dameCuadro(int valorX, int valorY){
 	
 	    
@@ -72,7 +87,7 @@ public final class Controles implements KeyListener,MouseListener{
 	public int getActualRatonX() {
 	        return actualRatonX;
 	    }
-
+	 
 
 	    public int getActualRatonY() {
 	        return actualRatonY;
@@ -106,13 +121,16 @@ public final class Controles implements KeyListener,MouseListener{
 	public void mouseMoved(MouseEvent e) {
 	
 		
+		
 	}
 
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-	   
-	    
+		
+		anteriorRatonX=e.getX();
+		anteriorRatonY=e.getY();
+
 	}
 
 
@@ -127,31 +145,25 @@ public final class Controles implements KeyListener,MouseListener{
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-	  //  System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-	
+
 	    
 	}
 
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-	
+		
 
 	}
 
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-	    // TODO Auto-generated method stub
 	 
 	    
 	}
 
-	public void getPosRelativaTanque(int Rx,int Ry){
-	    
-	    this.scrollX = Rx;
-	    this.scrollY = Ry;
-	}
+
 
 	public int getRx() {
 	    return scrollX;

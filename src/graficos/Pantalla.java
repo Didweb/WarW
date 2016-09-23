@@ -4,6 +4,8 @@ package graficos;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -127,10 +129,14 @@ public class Pantalla extends JPanel {
 		}
 		
 		
+		menuGame(g);
+		
 		
 		if(developer.isDevActivo()){
 			developerSet(g);
 			}
+		
+		
 		
 		
 		
@@ -145,10 +151,46 @@ public class Pantalla extends JPanel {
 	}
 	
 	
+	public void menuGame(Graphics g){
+		
+		int baseAlto = valueSizes[1]-(valueSizes[1]/6);
+		g.setColor(Color.BLACK);
+		g.fillRect(0, baseAlto, valueSizes[0], valueSizes[1]/6);
+		
+		g.setColor(Color.GRAY);
+		g.drawString(""+play[0].getBando(), 10, baseAlto+15);
+		
+		int ymas=15;
+		
+		for(int x=0; x<play.length-1; x++){
+			
+			if(play[x].isEstaVivo()){
+				
+				if(play[x].isSelccionado()){
+					g.setColor(Color.YELLOW); } 
+				
+				g.setColor(Color.GREEN);
+			} else {
+				g.setColor(Color.RED);}
+				
+				
+				g.drawRect(play[x].getDatsSel()[0], 
+						play[x].getDatsSel()[1]+ymas, 
+						play[x].getDatsSel()[2], 
+						play[x].getDatsSel()[3]);
+				ymas+=40;
+			}
+			
+		
+		
+	}
+	
+	
 	public void developerSet(Graphics g){
 		
 		Font fuenteDev=new Font("Monospaced", Font.PLAIN, 12);
         
+		
 		
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, valueSizes[0], 100);
@@ -177,14 +219,36 @@ public class Pantalla extends JPanel {
 		g.setColor(Color.BLACK);
 		g.drawString(valueSizes[4]+"."+valueSizes[5], valueSizes[4], valueSizes[5]);
 		
-		// controles dinamicos de psoicion
+		// controles dinamicos de posicion
 		g.setColor(Color.GRAY);
 		g.drawString("scrollX", 220, 15);
 		g.drawString("scrollY", 220, 30);
+		g.drawString("Raton", 220, 45);
 		
 		g.setColor(Color.WHITE);
 		g.drawString(""+scrollX, 280, 15);
 		g.drawString(""+scrollY, 280, 30);
+		
+		
+		g.drawString(controles.getActualRatonX()+" . "+controles.getActualRatonY(), 280, 45);
+		
+		// controles tanques
+		int espa = 15;
+		for(int x=0; x<play.length-1; x++){
+			g.setColor(Color.GRAY);
+			g.drawString(" X - Y | xL - yL", 420, 15);
+			if(play[x].isSelccionado()){
+				g.setColor(Color.YELLOW);
+			} else { g.setColor(Color.GRAY); }
+			
+			g.drawString("Mod."+play[x].getId()+" "+play[x].getModelo(), 340, 17+espa);
+			
+			g.setColor(Color.WHITE);
+			g.drawString(" "+play[x].getPosicionX()+" - "+play[x].getPosicionY(), 420, 17+espa);
+			g.drawString("| "+play[x].getPosicionXLogica()+" - "+play[x].getPosicionYLogica(), 470, 17+espa);
+			
+			espa+=17;
+		}
 		
 		
 	}

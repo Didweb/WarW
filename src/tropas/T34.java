@@ -2,14 +2,24 @@ package tropas;
 
 
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import graficos.TileData;
 
 public class T34 extends Tanque {
 
     
     
-    
-    public T34(String bando,  TileData tileData, int[] ancalt){
+   
+
+
+
+
+	public T34(String bando,  TileData tileData, int[] ancalt){
 	super(bando,  ancalt);
 	
 	modelo = "T-34";
@@ -24,10 +34,13 @@ public class T34 extends Tanque {
 	anchoTile = 64;
 	altoTile = 32;
 	this.tileData = tileData;
-	
+	icono("Tank-T-34_mini.gif");
 	
     }
 
+
+
+    
 
 
 }

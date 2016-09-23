@@ -4,6 +4,10 @@ package motor;
 
 
 
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.JFrame;
 
 
@@ -76,7 +80,7 @@ public class Juego  extends JFrame implements Runnable{
 		
 		
 		addKeyListener(controles);
-		addMouseListener(controles);
+		
 		pantalla = new Pantalla(VALORES_SIZES,juegoNivel.getHojaNivel());
 		
 
@@ -85,7 +89,7 @@ public class Juego  extends JFrame implements Runnable{
 		
 		controles.initActores(juegoNivel.getPlayers(), juegoNivel.getHojaNivel());
 		
-
+		addMouseListener(controles);
 		
 		setSize(VALORES_SIZES[0],VALORES_SIZES[1]);
 		
@@ -128,6 +132,12 @@ public class Juego  extends JFrame implements Runnable{
 	private void actualizar(){		
 		
 		controles.actualizar(pantalla.getScrollX(),pantalla.getScrollY());
+		controles.posicionRaton(pantalla);
+		
+		for (int xt=0;xt<juegoNivel.getPlayers().length;xt++){
+			juegoNivel.getPlayers()[xt].selecciona();
+		}
+		
 		
 		
 		if(controles.centrar){
@@ -227,5 +237,7 @@ public class Juego  extends JFrame implements Runnable{
 		}
 		
 	}
+
+
 
 }

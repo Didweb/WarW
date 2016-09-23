@@ -14,8 +14,8 @@ import graficos.TileData;
 
 public class Tanque extends Ejercito {
 
-    private int posicionXLogica;
-    private int posicionYLogica;
+    private int posicionXLogica=0;
+    private int posicionYLogica=0;
     
     private int posicionX;
     private int posicionY;
@@ -23,6 +23,8 @@ public class Tanque extends Ejercito {
 	protected int anchoTile;
 	protected int altoTile;
     
+	BufferedImage imagenIcono;
+	
 	protected TileData tileData;
 	
     private int destinoXLogica;
@@ -31,6 +33,7 @@ public class Tanque extends Ejercito {
     private boolean estaVivo =  true;
     private boolean selccionado = false;
     
+    private int[] datsSel = {15,0,35,14};
     
     private String actitud;
     
@@ -90,12 +93,9 @@ public class Tanque extends Ejercito {
 	scrollX = ancalt[0]/2;
 	scrollY = ancalt[1]/2;
 	
-	int areaSelxCal =  areaAncho*id;
+	datsSel[1] = (ancalt[1]-(ancalt[1]/6))+15;
 	
-	if (areaSelxCal==0) {
-	    areaSelxCal = inicioArea;
-	} else {
-	    areaSelxCal = (areaAncho*id)+areaAncho;}
+
 	
 	
 	
@@ -104,11 +104,24 @@ public class Tanque extends Ejercito {
 	
     }
     
-
+    public void selecciona(){
+    	
+    	if(0 > datsSel[0] && 0 <datsSel[0]+datsSel[2]){
+    		System.out.println("xxxxxxxxxxxxxx");
+    	}
+    }
 
 
     
-    public int getPosicionX() {
+    public int[] getDatsSel() {
+		return datsSel;
+	}
+
+
+
+
+
+	public int getPosicionX() {
 		return posicionX;
 	}
 
@@ -118,35 +131,6 @@ public class Tanque extends Ejercito {
 	}
 
 
-	public void actMovimiento(){
-	
-	
-    
-	if(enMovimineto){
-		
-		if(posicionXLogica != destinoXLogica  ){
-		    
-		    if(posicionXLogica < destinoXLogica){
-			posicionXLogica++;
-			
-		    } else if(posicionXLogica > destinoXLogica){
-			posicionXLogica--;
-			
-		    }
-		   
-		    
-		    if(posicionYLogica < destinoYLogica){
-			posicionYLogica++;
-			
-		    } else if( posicionYLogica > destinoYLogica){
-			posicionYLogica--;
-			
-		    }
-		    
-		}
-		
-	}
-    }
     
 
 
@@ -187,7 +171,16 @@ public class Tanque extends Ejercito {
         return id;
     }
 
-
+    public void icono(String imgIco){
+    	
+   	 File f = new File("recursos/"+imgIco);
+	    try {
+	    	imagenIcono = ImageIO.read(f);
+			} catch (IOException e) {
+			    e.printStackTrace();
+			}
+   	
+   }
 
 
     public boolean isSelccionado() {
@@ -312,5 +305,8 @@ public class Tanque extends Ejercito {
     }
     }
     
-    
+	public BufferedImage getImagenIcono() {
+		
+		return imagenIcono;
+	} 
 }
