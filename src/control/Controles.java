@@ -61,26 +61,7 @@ public final class Controles implements KeyListener,MouseListener{
 	}
 
 	public void dameCuadro(int valorX, int valorY){
-	    
-	    mapa.getImagenes();
-	    int relativaX;
-	    int relativaY;
-	    
-	    for(int y=0;y<mapa.getImagenes().length;y++){
-		
-		
-		
-		for(int x=0;x<mapa.getImagenes().length;x++){
-		    
-		    relativaX = (x-y)*(60/2)-scrollX;
-		    relativaY = (x+y)*(32/2)-scrollY;
-		    if(relativaX==valorX && relativaY==valorY){
-			System.out.println("cuadro = ["+x+"]["+y+"]");
-		    } else {System.out.println("cuadro = ["+(valorX % scrollX)+"]["+valorY+"]");}
-		    
-		    
-		}
-		}
+	
 	    
 	}
 
@@ -123,12 +104,7 @@ public final class Controles implements KeyListener,MouseListener{
 
 	
 	public void mouseMoved(MouseEvent e) {
-	    scrollX = e.getX();
-		scrollY = e.getY();
-		
-		actualRatonY = e.getY();
-		actualRatonX = e.getX();
-		
+	
 		
 	}
 
@@ -136,68 +112,6 @@ public final class Controles implements KeyListener,MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 	   
-	    int xp;
-	    int yp;
-	    
-	    
-		
-		for (Tanque t: tanquesPlay){
-		    
-		    xp = t.getPosicionXLogica();
-		    yp = t.getPosicionYLogica();
-		    
-		    int logicaMousX = ((e.getX())-scrollX)*60;
-		    int logicaMousY = ((e.getY())-scrollY)*32;
-		    
-		    int PosEnRejX = e.getX();
-		    int PosEnRejY = e.getY();
-		    
-		    dameCuadro(PosEnRejX, PosEnRejY);
-		    
-		    System.out.println(PosEnRejX+" < Casillas> "+PosEnRejY); 
-		   // System.out.println(PosEnRejX+" <-> "+PosEnRejY+" || Click MOUSE:  "+"("+e.getX()+" / s: "+scrollX+")"+logicaMousX+" ----- "+"("+e.getY()+" / s: "+scrollY+")"+logicaMousY); 
-		  //System.out.println(t.getId()+" --- > "+xp+" ----- "+yp);
-		    if  ((e.getX() > xp)  && (e.getX() < (xp + 60)) && 
-				 (e.getY() > yp)  && (e.getY() < (yp + 60))
-				 
-			    ||
-			    (e.getX() > t.getAreaSel()[0])  && (e.getX() < t.getAreaSel()[2]) && 
-				 (e.getY() > t.getAreaSel()[1])  && (e.getY() < t.getAreaSel()[3])
-				 ) 
-			    
-			    { 
-			
-					if (!t.isSelccionado()){
-					    t.setSelccionado(true); 
-					} else {
-					    t.setSelccionado(false);
-					}
-	
-		    } else {
-			
-			if (t.isSelccionado()== true &&  e.getY() < t.getAreaSel()[1] ){
-			    //System.out.println("VEN AQUI : "+e.getX()+" "+e.getY());
-			    
-				 //t.setPosicionX(e.getX()+Rx);
-				 //t.setPosicionY(e.getY()+Ry);
-				 
-			    
-			    
-			    
-				 t.setDestinoXLogica(e.getX()+scrollX);
-				 t.setDestinoYLogica(e.getY()+scrollY);
-				 
-				 t.setEnMovimineto(true);
-				 
-			   
-			   
-			} 
-		    }
-		    
-		    
-		    
-		
-		}
 	    
 	}
 

@@ -111,7 +111,7 @@ public class Pantalla extends JPanel {
 		int xlogica;
 		int ylogica;
 
-		System.out.println(imgTapete[0][1]+"|"+imgTapete[0][2]);
+		
 		for(int xiT=0; xiT < imgTapete.length; xiT++){
 			
 			
@@ -155,6 +155,7 @@ public class Pantalla extends JPanel {
 		g.setColor(Color.GRAY);
 		g.setFont(fuenteDev);
 		
+		// Controles basicos
 		g.drawString("ANCHO_VENTANA", 10, 15);
 		g.drawString("ALTO_VENTANA", 10, 30);
 		g.drawString("ANCHO_TILE", 10, 45);
@@ -175,6 +176,17 @@ public class Pantalla extends JPanel {
 		
 		g.setColor(Color.BLACK);
 		g.drawString(valueSizes[4]+"."+valueSizes[5], valueSizes[4], valueSizes[5]);
+		
+		// controles dinamicos de psoicion
+		g.setColor(Color.GRAY);
+		g.drawString("scrollX", 220, 15);
+		g.drawString("scrollY", 220, 30);
+		
+		g.setColor(Color.WHITE);
+		g.drawString(""+scrollX, 280, 15);
+		g.drawString(""+scrollY, 280, 30);
+		
+		
 	}
 	
 }

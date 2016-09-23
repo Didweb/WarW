@@ -142,11 +142,11 @@ public class Juego  extends JFrame implements Runnable{
 
 		}
 		
-		if(controles.abajo && x<(ALTO_VENTANA/2)){
+		if(controles.abajo && x<(ALTO_VENTANA/4)){
 			x+=controles.getVelocidad();
 		}
 		
-		if(controles.derecha && y<(ANCHO_VENTANA)+ANCHO_VENTANA){
+		if(controles.derecha && y<(ANCHO_VENTANA)/2){
 			y+=controles.getVelocidad();
 
 		}
