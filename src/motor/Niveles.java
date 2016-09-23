@@ -39,13 +39,13 @@ public class Niveles {
 		this.batalla = batalla;
 		
 		// Datas del plano
-		planoData = new TileData();
+		planoData = new TileData(valueSizes,2048);
 		planoData.iniciarMapeo();
 		planoData.iniciarCoor();
 		planoData.montarNivel();
 		
 		// hojas graficas tiles 
-		hojaNivel = new HojaSprites(valueSizes[2],valueSizes[3],batalla);
+		hojaNivel = new HojaSprites(valueSizes,batalla,2048);
 		hojaNivel.pantallaNivel(batalla);
 		imgTapete = hojaNivel.getImgTapete();
 		coordLogicasIso = hojaNivel.getCoordLogicas();
@@ -78,6 +78,10 @@ public class Niveles {
 
 	public Tanque[] getPlayers() {
 		return players;
+	}
+
+	public int[][] getImgTapete() {
+		return imgTapete;
 	}
 
 	public Tanque[] getEnemigos() {

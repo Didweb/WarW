@@ -4,11 +4,12 @@ public class TileData extends Tiles{
 
 	
     
-    public TileData(){
+    public TileData(int[] valueSizes,int ancho_mapa){
+    	super(valueSizes);
 	setAncho_tile(64);
 	setAlto_tile(32);
 	
-	inicaimosTiles();
+	inicaimosTiles(ancho_mapa);
     }
     
 	
@@ -51,6 +52,7 @@ public class TileData extends Tiles{
 		tileDataPeligro = new int[tilesPorlado][tilesPorlado];
 		tileDataDificultad = new int[tilesPorlado][tilesPorlado];
 		tileDataPenetracion = new int[tilesPorlado][tilesPorlado];
+		
 		
 	}
 	

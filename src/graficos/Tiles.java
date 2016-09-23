@@ -8,10 +8,6 @@ import javax.imageio.ImageIO;
 
 public  class Tiles {
 
-	private  int ancho_mapa = 2048;
-	private  int ancho_tile = 0; //64;
-	private  int alto_tile = 0; //32;
-	
 
 	protected int tilesPorlado = 0;
 	protected int tilesPoralto = 0;
@@ -35,11 +31,20 @@ public  class Tiles {
 	private int[][] coordLogicasPix;
 	private int[][] coordLogicasIso;
 	private int[] linkCoorIsoInit;
+	private int ancho_tile;
+	private int alto_tile;
 	
 	
+	public  Tiles(int[] valueSizes){
+		
+		ancho_tile = valueSizes[2];
+		alto_tile = valueSizes[3]; 
+		
+	}
 	
 
-	public void inicaimosTiles(){
+	public void inicaimosTiles(int ancho_mapa){
+		
 		
 		tilesPorlado = ancho_mapa/ancho_tile;
 		tilesPoralto = ancho_mapa/alto_tile;

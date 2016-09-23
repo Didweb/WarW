@@ -33,8 +33,8 @@ public class HojaSprites  extends JPanel{
 	private int altoTil;
 	private int[][] coordLogicasIso;
 	 
-	public HojaSprites(int anchoTil, int altoTil,int batalla){
-		nivel = new TileImg();
+	public HojaSprites(int[] valueSizes,int batalla,int ancho_mapa){
+		nivel = new TileImg(valueSizes,ancho_mapa);
 		nivel.MapaImg(batalla);
 		
 		imgTapete = nivel.getGuiaIso2D();
@@ -43,8 +43,8 @@ public class HojaSprites  extends JPanel{
 		coordLogicasIso = nivel.getCoordLogicasIso();
 		
 		imagenes =  new Image[listaData.length][32][32];
-		this.anchoTil = anchoTil;
-		this.altoTil = altoTil;
+		this.anchoTil = valueSizes[2];
+		this.altoTil = valueSizes[3];
 		
 	}
 	

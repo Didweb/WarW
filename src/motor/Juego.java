@@ -28,10 +28,10 @@ public class Juego  extends JFrame implements Runnable{
 	
 	
 	
-	private final static int CENTRO_ANCHO_VENTANA = ANCHO_VENTANA/8;
-	private final static int CENTRO_ALTO_VENTANA = (ALTO_VENTANA/2)*-1;
+	private final static int CENTRO_ANCHO_VENTANA =(ANCHO_VENTANA/2)*-1;
+	private final static int CENTRO_ALTO_VENTANA =(ALTO_VENTANA/2)*-1;
 	
-	private final static int ANCHO_TILE = 66;
+	private final static int ANCHO_TILE = 64;
 	private final static int ALTO_TILE= 32;
 	
 	private final static int[] VALORES_SIZES = {
@@ -81,18 +81,13 @@ public class Juego  extends JFrame implements Runnable{
 		
 
 		
-		pantalla.actores(juegoNivel.getPlayers(), 
-							juegoNivel.getEnemigos(),
-							controles,
-							developer,
-							juegoNivel.getPlanoData());
+		pantalla.actores(juegoNivel, controles, developer);
 		
 		controles.initActores(juegoNivel.getPlayers(), juegoNivel.getHojaNivel());
 		
 
 		
 		setSize(VALORES_SIZES[0],VALORES_SIZES[1]);
-		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -164,12 +159,7 @@ public class Juego  extends JFrame implements Runnable{
 
 		
 		
-		for(Tanque t: juegoNivel.getPlayers()){
 		
-			//t.actPosicion(pantalla.getScrollX(),pantalla.getScrollY());
-				
-		    t.actMovimiento();
-		    }
 	
 		
 		if(controles.salir){

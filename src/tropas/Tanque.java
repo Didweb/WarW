@@ -89,7 +89,6 @@ public class Tanque extends Ejercito {
 	
 	scrollX = ancalt[0]/2;
 	scrollY = ancalt[1]/2;
-	actPosicion();
 	
 	int areaSelxCal =  areaAncho*id;
 	
@@ -106,20 +105,7 @@ public class Tanque extends Ejercito {
     }
     
 
-    public void actPosicion(){
-    	//int[][] posicionesLogicasPix = tileData.getCoordLogicasPix();
-    	System.out.println(casilla);
-    	int puente = tileData.getLinkCoord()[casilla];
-    	int logicPixX = tileData.getCoordLogicasPix()[puente][0];
-    	int logicPixY = tileData.getCoordLogicasPix()[puente][1];
-    	
-    	
-	    posicionX = (logicPixX+altoTile/2)-scrollX;
-	    posicionY = (logicPixY+anchoTile/2)-scrollY;	
-    	
-	    //System.out.println("posicionX: "+logicPixX+" . posicionY: "+logicPixY);
-	    
-    }
+
 
     
     public int getPosicionX() {

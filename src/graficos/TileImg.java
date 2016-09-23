@@ -8,11 +8,11 @@ public class TileImg extends Tiles{
 	
 	
 	
-	public TileImg(){
-		
-		setAncho_tile(64);
-		setAlto_tile(32);
-		inicaimosTiles();
+	public TileImg(int[] valueSizes,int ancho_mapa){
+			super(valueSizes);
+		setAncho_tile(valueSizes[2]);
+		setAlto_tile(valueSizes[3]);
+		inicaimosTiles(ancho_mapa);
 		
 	}
 	
