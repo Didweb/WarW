@@ -64,6 +64,7 @@ public class Tanque extends Ejercito {
     protected int punteria;
     protected int movilidad;
     protected int capaCombustible;
+    protected int casilla;
 
     
 
@@ -72,18 +73,23 @@ public class Tanque extends Ejercito {
     private int inicioArea=100;
     private int areaAncho=120;
     private int[] areaSel = new int[4];
+	private int scrollX;
+	private int scrollY;
     
 
-    public Tanque(int posicionXLogica, int posicionYLogica, String bando, int altoV){
+    public Tanque(String bando,  int[] ancalt){
 	
 	setBando(bando);
-	this.posicionXLogica = posicionXLogica;
-	this.posicionYLogica= posicionYLogica;
 	actitud = actictudLista[0];
 	
 	id = controlId;
 	controlId++;
 	
+	
+	
+	scrollX = ancalt[0]/2;
+	scrollY = ancalt[1]/2;
+	actPosicion();
 	
 	int areaSelxCal =  areaAncho*id;
 	
@@ -94,26 +100,24 @@ public class Tanque extends Ejercito {
 	
 	
 	
-	int areaSely = altoV-150;
-	
-	areaSel[0]= areaSelxCal;
-	areaSel[1]= areaSely;
-	areaSel[2]= areaSelxCal+120;
-	areaSel[3]= altoV;
+
 	
 	
     }
     
 
-    public void actPosicion(int scrollX, int scrollY){
+    public void actPosicion(){
+    	//int[][] posicionesLogicasPix = tileData.getCoordLogicasPix();
+    	System.out.println(casilla);
+    	int puente = tileData.getLinkCoord()[casilla];
+    	int logicPixX = tileData.getCoordLogicasPix()[puente][0];
+    	int logicPixY = tileData.getCoordLogicasPix()[puente][1];
     	
     	
+	    posicionX = (logicPixX+altoTile/2)-scrollX;
+	    posicionY = (logicPixY+anchoTile/2)-scrollY;	
     	
-    	
-	    posicionX = (tileData.getCoordLogicasPix()[posicionXLogica][0]-tileData.getCoordLogicasPix()[posicionXLogica][1])-scrollX;
-	    posicionY = (tileData.getCoordLogicasPix()[posicionXLogica][0]+tileData.getCoordLogicasPix()[posicionXLogica][1])-scrollY;	
-    	
-	    //System.out.println("posicionX: "+posicionX+" . posicionY: "+posicionY);
+	    //System.out.println("posicionX: "+logicPixX+" . posicionY: "+logicPixY);
 	    
     }
 
@@ -280,19 +284,7 @@ public class Tanque extends Ejercito {
         return imgTanque;
     }
     
-    public void img(String ruta){
-	BufferedImage bufferImage = null;
-	try {
-	    bufferImage = ImageIO.read(new File("recursos/t34.gif"));
-	} catch (IOException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	}
-	
-	Image imgTanque = (Image)bufferImage;
-	       
-	
-    }
+
 
    
     

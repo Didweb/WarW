@@ -66,9 +66,9 @@ public class HojaSprites  extends JPanel{
 	
 	
 	
-	public void pantallaNivel() {
+	public void pantallaNivel(int batalla) {
 		// Imagen el mapeo del terreno
-		 File f = new File("recursos/HojaSpriteIso_Mapa1.gif");
+		 File f = new File("recursos/sprites/niveles/"+batalla+"/mapa_"+batalla+".gif");
 	    try {
 				imagen = ImageIO.read(f);
 			} catch (IOException e) {

@@ -34,6 +34,7 @@ public  class Tiles {
 	private int[][] coordLogicas;
 	private int[][] coordLogicasPix;
 	private int[][] coordLogicasIso;
+	private int[] linkCoorIsoInit;
 	
 	
 	
@@ -139,8 +140,8 @@ public  class Tiles {
 				}
 			coordLogicas[ntile][0]=x;
 			coordLogicas[ntile][1]=y;
-			//System.out.println("coorL ["+ntile+"][0] = "+x);
-			//System.out.println("coorL ["+ntile+"][1] = "+y);
+			System.out.println("coorL ["+ntile+"][0] = "+x);
+			System.out.println("coorL ["+ntile+"][1] = "+y);
 			x++;
 		}
 		
@@ -156,12 +157,14 @@ public  class Tiles {
 
 
 
+	
 
 
 
 	public int[][] coordLogicasPix(){
 		coordLogicasPix = new int[tilesTotal][2];
-	
+		linkCoorIsoInit = new int[tilesTotal];
+		
 		int laxPix = 0;
 		int layPix = 0;
 		int casilla = 0;
@@ -176,8 +179,10 @@ public  class Tiles {
 			coordLogicasPix[casilla][0]=laxPix;
 			coordLogicasPix[casilla][1]=layPix;
 			
-			//System.out.println("crLogPix ["+casilla+"][0] = "+coordLogicasPix[casilla][0]);
-			//System.out.println("crLogPix ["+casilla+"][1] = "+coordLogicasPix[casilla][1]);
+			linkCoorIsoInit[guiaIso2D[ntile][0]] = ntile;
+					
+			System.out.println("crLogPix ["+casilla+"][0] = "+coordLogicasPix[casilla][0]);
+			System.out.println("crLogPix ["+casilla+"][1] = "+coordLogicasPix[casilla][1]);
 					
 		}
 		
@@ -186,6 +191,15 @@ public  class Tiles {
 	
 	
 	
+	public int[] getLinkCoord() {
+		return linkCoorIsoInit;
+	}
+
+
+
+
+
+
 	public int[][][] montarBimapas(int[][] arrayPasado){
 	
 		

@@ -57,23 +57,20 @@ public class Pantalla extends JPanel {
 	private int[][] imgTapete;
 	private int [][] coordLogicasIso;
 
+	private int[] valueSizes;
 	
-	public Pantalla(int ANCHO_VENTANA,int ALTO_VENTANA, int anchoTile, int altoTile, HojaSprites hojaNivel) {
+	public Pantalla(int[] valueSizes, HojaSprites hojaNivel) {
 		
 		
-		this.hojaNivel = hojaNivel;
-		hojaNivel.pantallaNivel();
-		imgTapete = hojaNivel.getImgTapete();
-		coordLogicasIso = hojaNivel.getCoordLogicas();
 		
-		scrollX = ANCHO_VENTANA/2;
-		scrollY = ALTO_VENTANA/2;
+		scrollX = valueSizes[0]/2;
+		scrollY = valueSizes[1]/2;
 		
-		anchoV = ANCHO_VENTANA;
-		altoV = ALTO_VENTANA;
+		anchoV = valueSizes[0];
+		altoV = valueSizes[1];
 		
-		this.anchoTile = anchoTile;
-		this.altoTile = altoTile;
+		this.anchoTile = valueSizes[2];
+		this.altoTile = valueSizes[3];
 		
 	
 	}
@@ -194,8 +191,9 @@ public class Pantalla extends JPanel {
 		    }
 			
 			
-		  
-		  	g.drawImage(tan_amigo, playT.getPosicionX(), playT.getPosicionY()-25, this);
+		    
+		   
+		  	g.drawImage(tan_amigo, playT.getPosicionX(), playT.getPosicionY(), this);
 		   
 			if(developer.isDevActivo()){
 			    g.setColor(Color.RED);
