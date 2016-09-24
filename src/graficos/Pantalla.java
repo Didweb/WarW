@@ -62,6 +62,10 @@ public class Pantalla extends JPanel {
 	private int[] valueSizes;
 
 
+	private int xcel;
+	private int ycel;
+	private int xlogica;
+	private int ylogica;
 
 
 
@@ -111,10 +115,7 @@ public class Pantalla extends JPanel {
 	public void paint(Graphics g){
 		
 
-		int xcel;
-		int ycel;
-		int xlogica;
-		int ylogica;
+
 
 		
 		for(int xiT=0; xiT < imgTapete.length; xiT++){
@@ -128,7 +129,8 @@ public class Pantalla extends JPanel {
 	
 			
 			g.drawImage(hojaNivel.getImagenes()[xiT][xlogica][ylogica], xcel-scrollX, ycel-(scrollY-(altoTile*2)), this);
-
+			//g.drawString(xlogica+","+ylogica, xcel-scrollX, ycel-(scrollY-(altoTile*2)));
+			g.drawString(xcel-scrollX+","+(ycel-(scrollY-(altoTile*2))), xcel-scrollX+15, ycel-(scrollY-(altoTile*2))+15 );
 		}
 		
 		
@@ -151,6 +153,26 @@ public class Pantalla extends JPanel {
 
 	public int getScrollY() {
 	    return scrollY;
+	}
+
+	
+	
+	public void tanquesTapete(Graphics g){
+		
+		for(int xiT=0; xiT < imgTapete.length; xiT++){
+			
+			
+			xcel = imgTapete[xiT][1];
+			ycel = imgTapete[xiT][2];
+			
+			xlogica = hojaNivel.getCoordLogicas()[xiT][0];
+			ylogica = hojaNivel.getCoordLogicas()[xiT][1];
+	
+			g.fillRect(xcel-scrollX, ycel-(scrollY-(altoTile*2)), anchoTile, altoTile);
+			
+
+		}
+		
 	}
 	
 	
@@ -262,7 +284,7 @@ public class Pantalla extends JPanel {
 		int espa = 15;
 		for(int x=0; x<play.length-1; x++){
 			g.setColor(Color.GRAY);
-			g.drawString(" X - Y | xL - yL", 420, 15);
+			g.drawString("    X  -   Y   | xL - yL", 420, 15);
 			if(play[x].isSelccionado()){
 				g.setColor(Color.YELLOW);
 			} else { g.setColor(Color.GRAY); }
@@ -271,7 +293,7 @@ public class Pantalla extends JPanel {
 			
 			g.setColor(Color.WHITE);
 			g.drawString(" "+play[x].getPosicionX()+" - "+play[x].getPosicionY(), 420, 17+espa);
-			g.drawString("| "+play[x].getPosicionXLogica()+" - "+play[x].getPosicionYLogica(), 470, 17+espa);
+			g.drawString("| "+play[x].getPosicionXLogica()+" - "+play[x].getPosicionYLogica(), 510, 17+espa);
 			
 			espa+=17;
 		}

@@ -173,7 +173,13 @@ public final class Controles implements KeyListener,MouseListener{
 				 tanquesPlay[xt].setSelccionado(true);
 			 } else {
 				 
-				 tanquesPlay[xt].setSelccionado(false);
+				 if (tanquesPlay[xt].isSelccionado() == true 
+						 && e.getY() < tanquesPlay[xt].getDatsSel()[1]){
+					 tanquesPlay[xt].setPosEnTablero(e.getX(), e.getY());
+				 } else {
+					 tanquesPlay[xt].setSelccionado(false); 
+				 }
+				 
 			 }
 			
 			

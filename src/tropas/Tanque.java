@@ -2,7 +2,6 @@ package tropas;
 
 
 import java.awt.Image;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -318,6 +317,41 @@ public class Tanque extends Ejercito {
 	public BufferedImage getImagenIcono() {
 		
 		return imagenIcono;
+	}
+
+
+	
+	
+	
+	public void setPosEnTablero(int posicionX, int posicionY){
+		
+		
+		this.posicionX = posicionX;
+		this.posicionY = posicionY;
+		int casillax;
+		int casillay;
+		
+		for(int co=0; co<tileData.getCoordLogicasPix().length;co++){
+			
+			casillax=tileData.getCoordLogicasPix()[co][0]+scrollX;
+			casillay=tileData.getCoordLogicasPix()[co][1]+scrollY;
+			//System.out.println(casillax+" "+casillay+" -- "+posicionX+" "+posicionY);
+			if (casillax< posicionX
+					&& casillax+anchoTile>posicionX  
+					&& casillay< posicionY 
+					&& casillay+altoTile>posicionY ){
+				
+				System.out.println(id+" x:"+(posicionX)+" y:"+(posicionY)+"------------->>"+co);
+				System.out.println(casillax+" "+(casillax+anchoTile));
+				System.out.println(casillay+" "+(casillay+altoTile));
+				
+				posicionXLogica = tileData.getCoordLogicas()[co][0];
+				posicionYLogica = tileData.getCoordLogicas()[co][1];
+				System.out.println(co+"==> xL:"+(posicionXLogica)+" yL:"+(posicionYLogica));
+			}
+		}
+		
+				
 	}
 
 
