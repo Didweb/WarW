@@ -127,9 +127,59 @@ public final class Controles implements KeyListener,MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
+		// Posicion de selector del menu 0:x, 1:y, 2:ancho,3:alto, 4:espacio rotacion, 5:margen superior inicial
 		anteriorRatonX=e.getX();
 		anteriorRatonY=e.getY();
+		
+		int baseAlto = tanquesPlay[0].getDatsSel()[1];
+		
+		int newCol=0;
+		int ncol=1;
+		int rondas=0;
+		int baseRondas = (baseAlto+60);
+		int saltosy=0;
+		
+		for (int xt=0;xt<tanquesPlay.length-1;xt++){
+			
+			
+			if (rondas==3){
+				rondas=0;
+				
+				if(ncol==1){
+					newCol=100;
+					} else {
+					newCol=100*ncol;
+					}
+				ncol++;
+				
+				baseRondas=(baseAlto+60);
+			}
+			
+			
+			 int x=tanquesPlay[xt].getDatsSel()[0]+newCol;
+
+			 int y=baseRondas;
+			 int xanc=x+tanquesPlay[xt].getDatsSel()[2];
+			 int yalt=y+tanquesPlay[xt].getDatsSel()[3];
+			 rondas++;
+				saltosy=tanquesPlay[xt].getDatsSel()[4];
+				baseRondas+=saltosy;
+			 
+			 
+			  
+			 if(e.getX() > x && e.getX() < xanc
+				 && e.getY() > y && e.getY() < yalt){
+			   
+				 tanquesPlay[xt].setSelccionado(true);
+			 } else {
+				 
+				 tanquesPlay[xt].setSelccionado(false);
+			 }
+			
+			
+		}
+		
+		
 
 	}
 

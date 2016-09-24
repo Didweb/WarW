@@ -15,7 +15,7 @@ public class Niveles {
 	private int[][] coordLogicasIso;
 	
 	// N enemigos y tanques de cada partida.
-	private int[] nPlayers = {3,4,5};
+	private int[] nPlayers = {5,4,5};
 	private int[] nEnemigos = {3,4,5};
 	
 	private Tanque[] players;
@@ -61,7 +61,7 @@ public class Niveles {
 		
 		
 		// Creamos e iniciamos los tanques de la partida tipo Enemigos
-		enemigos = new Tanque[nPlayers[batalla-1]+1];
+		enemigos = new Tanque[nPlayers[batalla-1]];
 		for(int tx=0; tx<nPlayers[batalla-1]; tx++){
 			
 			enemigos[tx] = new T34("Aleman",planoData,valueSizes);

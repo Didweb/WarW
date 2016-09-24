@@ -2,6 +2,7 @@ package tropas;
 
 
 import java.awt.Image;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +34,8 @@ public class Tanque extends Ejercito {
     private boolean estaVivo =  true;
     private boolean selccionado = false;
     
-    private int[] datsSel = {15,0,35,14};
+    // Posicion de selector del menu x,y,ancho,alto,espacio Rotacion,margen
+    private int[] datsSel = new int[6];
     
     private String actitud;
     
@@ -93,7 +95,13 @@ public class Tanque extends Ejercito {
 	scrollX = ancalt[0]/2;
 	scrollY = ancalt[1]/2;
 	
-	datsSel[1] = (ancalt[1]-(ancalt[1]/6))+15;
+	// Posicion de selector del menu 0:x, 1:y, 2:ancho,3:alto, 4:espacio rotacion, 5:margen superior inicial
+	datsSel[0] = 15;
+	datsSel[1] = (ancalt[1]-(ancalt[1]/6));
+	datsSel[2] = 34;
+	datsSel[3] = 20;
+	datsSel[4] = 40;
+	datsSel[5] = 40;
 	
 
 	
@@ -104,12 +112,14 @@ public class Tanque extends Ejercito {
 	
     }
     
-    public void selecciona(){
-    	
-    	if(0 > datsSel[0] && 0 <datsSel[0]+datsSel[2]){
-    		System.out.println("xxxxxxxxxxxxxx");
-    	}
-    }
+    
+    
+   public void deteSeleccion(int actualRatonX, int actualRatonY){
+	   
+
+	   
+	   
+   }
 
 
     
@@ -308,5 +318,12 @@ public class Tanque extends Ejercito {
 	public BufferedImage getImagenIcono() {
 		
 		return imagenIcono;
-	} 
+	}
+
+
+
+
+
+
+
 }

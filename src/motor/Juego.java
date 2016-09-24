@@ -134,10 +134,8 @@ public class Juego  extends JFrame implements Runnable{
 		controles.actualizar(pantalla.getScrollX(),pantalla.getScrollY());
 		controles.posicionRaton(pantalla);
 		
-		for (int xt=0;xt<juegoNivel.getPlayers().length;xt++){
-			juegoNivel.getPlayers()[xt].selecciona();
-		}
 		
+
 		
 		
 		if(controles.centrar){
