@@ -323,7 +323,7 @@ public class Tanque extends Ejercito {
 	
 	
 	
-	public void setPosEnTablero(int posicionX, int posicionY){
+	public void setPosEnTablero(int posicionX, int posicionY,int scrollX , int scrollY){
 		
 		
 		this.posicionX = posicionX;
@@ -334,8 +334,9 @@ public class Tanque extends Ejercito {
 		
 		int posxLogica;
 		int posyLogica;
-		int casillaInter;
 		
+
+		System.out.println(" ");
 		for(int co=0; co<tileData.getCoordLogicasPix().length;co++){
 			
 			nCasilla = tileData.getGuiaIso2D()[co][0];
@@ -346,23 +347,17 @@ public class Tanque extends Ejercito {
 			
 			posxLogica = tileData.getCoordLogicas()[nCasilla][0];
 			posyLogica = tileData.getCoordLogicas()[nCasilla][1];
-			
-			//System.out.println(casillax+" "+casillay+" -- "+posicionX+" "+posicionY);
-			System.out.println("-------------------------------------------: "+posxLogica+","+posyLogica);
-			System.out.println("|-----|"+casillax+" "+(casillax+anchoTile));
-			System.out.println("   I   "+casillay+" "+(casillay+altoTile));
+	
 			if (casillax < posicionX 
-					&& casillax+anchoTile > posicionX  
-					&& casillay< posicionY 
-					&& casillay+altoTile > posicionY ){
-				
-				System.out.println(id+" x:"+(posicionX)+" y:"+(posicionY)+"------------->>"+co);
-				System.out.println(casillax+" "+(casillax+anchoTile));
-				System.out.println(casillay+" "+(casillay+altoTile));
+				&& casillax+anchoTile > posicionX  
+				&& casillay< posicionY 
+				&& casillay+altoTile > posicionY ){
+			
 				
 				posicionXLogica = tileData.getCoordLogicas()[nCasilla][0];
-				posicionYLogica = tileData.getCoordLogicas()[nCasilla][1];
-				System.out.println(co+"==> xL:"+(posicionXLogica)+" yL:"+(posicionYLogica));
+				posicionYLogica = tileData.getCoordLogicas()[nCasilla][1]-1;
+
+				break;
 			}
 		}
 		

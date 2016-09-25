@@ -141,12 +141,13 @@ public  class Tiles {
 			
 			if(x==tilesPorlado){
 				x=0;
-				y++;
+			y++;			
+				
 				}
 			coordLogicas[ntile][0]=x;
 			coordLogicas[ntile][1]=y;
-			System.out.println("coorL ["+ntile+"][0] = "+x);
-			System.out.println("coorL ["+ntile+"][1] = "+y);
+			//System.out.println("coorL ["+ntile+"][0] = "+x);
+			//System.out.println("coorL ["+ntile+"][1] = "+y);
 			x++;
 		}
 		
@@ -186,8 +187,8 @@ public  class Tiles {
 			
 			linkCoorIsoInit[guiaIso2D[ntile][0]] = ntile;
 					
-			System.out.println("crLogPix ["+casilla+"][0] = "+coordLogicasPix[casilla][0]);
-			System.out.println("crLogPix ["+casilla+"][1] = "+coordLogicasPix[casilla][1]);
+			//System.out.println("crLogPix ["+casilla+"][0] = "+coordLogicasPix[casilla][0]);
+			//System.out.println("crLogPix ["+casilla+"][1] = "+coordLogicasPix[casilla][1]);
 					
 		}
 		

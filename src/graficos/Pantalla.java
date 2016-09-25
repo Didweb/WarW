@@ -157,7 +157,7 @@ public class Pantalla extends JPanel {
 			}
 		
 		
-		
+		tanquesTapete(g);
 		
 		
 	}
@@ -179,11 +179,24 @@ public class Pantalla extends JPanel {
 			
 			xcel = imgTapete[xiT][1];
 			ycel = imgTapete[xiT][2];
-			
+		
 			xlogica = hojaNivel.getCoordLogicas()[xiT][0];
 			ylogica = hojaNivel.getCoordLogicas()[xiT][1];
 	
-			g.fillRect(xcel-scrollX, ycel-(scrollY-(altoTile*2)), anchoTile, altoTile);
+			for(int t=0;t<play.length-1;t++){
+				
+				if(play[t].getPosicionXLogica()>0 && play[t].getPosicionYLogica()>0){
+					if(play[t].getPosicionXLogica()==xlogica && play[t].getPosicionYLogica()==ylogica){
+						g.drawString(""+play[t].getId(), xcel-scrollX, ycel-(scrollY-(altoTile*2)));	
+						g.fillRect(xcel-scrollX, ycel-(scrollY-(altoTile*2)), anchoTile, altoTile);		
+					
+					}	
+				}
+				
+
+				
+			}
+			
 			
 
 		}
