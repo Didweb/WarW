@@ -16,8 +16,8 @@ public  class Tiles {
 	protected int[] planoInter;
 	protected int[] planoBruto;
 	protected int[][][] tileData;
+	
 	protected int[][] tileDataPeligro;
-
 	protected int[][] tileDataDificultad;
 	protected int[][] tileDataPenetracion;
 	
@@ -65,7 +65,14 @@ public  class Tiles {
 	}
 
 	
-	
+	public void setTileDataPeligro(int[][] tileDataPeligro) {
+		this.tileDataPeligro = tileDataPeligro;
+	}
+
+
+	public void setTileDataDificultad(int[][] tileDataDificultad) {
+		this.tileDataDificultad = tileDataDificultad;
+	}
 	
 	
 
@@ -267,7 +274,7 @@ public  class Tiles {
 		
 		try {
 			BufferedImage imagen = ImageIO.read(new FileInputStream(ruta));
-			
+			System.out.println("Ruta cargada:"+ruta);
 			int ancho = imagen.getWidth();
 			int alto = imagen.getHeight();
 			System.out.println(ancho +" "+alto+" "+ruta);
@@ -282,6 +289,11 @@ public  class Tiles {
 	
 	
 	
+	public void setTileDataPenetracion(int[][] tileDataPenetracion) {
+		this.tileDataPenetracion = tileDataPenetracion;
+	}
+
+
 	protected void generarMapa(){
 		for (int i = 0; i < planoInter.length; i++){
 			
@@ -431,6 +443,11 @@ public  class Tiles {
 		}
 		
 	}
+	}
+
+
+	public int[][] getTileDataPenetracion() {
+		return tileDataPenetracion;
 	}
 	
 }

@@ -4,22 +4,48 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
+import graficos.TileData;
 import tropas.Tanque;
 
 public class Developer {
 
 	
 	private int[] valueSizes;
+	private boolean devActivo=true;
+	
+	private boolean devMapaCoo=false;
+	private boolean devMapaPen=true;
 
+	
+	
 	public Developer(int[] valueSizes){
 		
 		this.valueSizes = valueSizes;
 		
 	}
 	
-    private boolean devActivo=true;
 
-    public boolean isDevActivo() {
+    public boolean isDevMapaCoo() {
+		return devMapaCoo;
+	}
+
+
+	public void setDevMapaCoo(boolean devMapaCoo) {
+		this.devMapaCoo = devMapaCoo;
+	}
+
+
+	public boolean isDevMapaPen() {
+		return devMapaPen;
+	}
+
+
+	public void setDevMapaPen(boolean devMapaPen) {
+		this.devMapaPen = devMapaPen;
+	}
+
+
+	public boolean isDevActivo() {
         return devActivo;
     }
 
@@ -42,22 +68,49 @@ public class Developer {
 			int scrollX,
 			int scrollY,
 			int anchoTile,
-			int altoTile){
+			int altoTile,
+			TileData tiles){
 
 
-			Font fuenteDev=new Font("Monospaced", Font.PLAIN, 9);
-			g.setFont(fuenteDev);
-			if(xiT >0 && xiT%2==0){
-			g.setColor(Color.blue);
-			} else {
-			g.setColor(Color.DARK_GRAY);
-			}
+    		Font fuenteDev=new Font("Monospaced", Font.PLAIN, 9);
+    		g.setFont(fuenteDev);
+    		
+    		if(devMapaCoo){
+				
+				if(xiT >0 && xiT%2==0){
+				g.setColor(Color.blue);
+				} else {
+				g.setColor(Color.DARK_GRAY);
+				}
+				
+				g.drawString(xlogica+","+ylogica, xcel-scrollX+10, ycel-(scrollY-(altoTile*2))+10);
+				g.drawString(xcel-scrollX+","+(ycel-(scrollY-(altoTile*2))), xcel-scrollX+20, ycel-(scrollY-(altoTile*2))+20 );
+				g.drawRect(xcel-scrollX, ycel-(scrollY-(altoTile*2)), anchoTile, altoTile);
+	    		}
 			
-			g.drawString(xlogica+","+ylogica, xcel-scrollX+10, ycel-(scrollY-(altoTile*2))+10);
-			g.drawString(xcel-scrollX+","+(ycel-(scrollY-(altoTile*2))), xcel-scrollX+20, ycel-(scrollY-(altoTile*2))+20 );
-			g.drawRect(xcel-scrollX, ycel-(scrollY-(altoTile*2)), anchoTile, altoTile);
-			
-			
+    		
+    		if(devMapaPen){
+    			
+    			int[][] tilPenetracion = tiles.getTileDataPenetracion();
+    			int alpha = 127; // 50% transparent
+    			Color myColour;
+				
+    			g.setColor(Color.black);
+				g.drawString(xlogica+","+ylogica, xcel-scrollX+10, ycel-(scrollY-(altoTile*2))+10);
+				
+				g.drawString(""+tilPenetracion[ylogica][xlogica], xcel-scrollX+50, ycel-(scrollY-(altoTile*2))+10);
+				
+				if(tilPenetracion[ylogica][xlogica]==0){
+					myColour = new Color(255, 0, 0, alpha);
+				} else {
+					myColour = new Color(255, 255, 255, alpha);
+				}
+				
+				g.setColor(myColour);
+				
+				g.fillRect(xcel-scrollX, ycel-(scrollY-(altoTile*2)), anchoTile, altoTile);
+	    		}
+    		
 			}
     
     

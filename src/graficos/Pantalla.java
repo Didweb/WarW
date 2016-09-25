@@ -132,7 +132,7 @@ public class Pantalla extends JPanel {
 			
 
 			if(developer.isDevActivo()){
-				developer.developerMapa(g, xiT, xlogica,   ylogica, xcel, ycel,  scrollX, scrollY, anchoTile, altoTile);
+				developer.developerMapa(g, xiT, xlogica,   ylogica, xcel, ycel,  scrollX, scrollY, anchoTile, altoTile,tiles);
 				}
 			
 		}

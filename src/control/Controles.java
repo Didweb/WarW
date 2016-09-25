@@ -53,6 +53,8 @@ public final class Controles implements KeyListener,MouseListener{
 	public boolean ataque;
 	public boolean avancePasivo;
 	public boolean avanceActivo;
+	public boolean devMaCo;
+	public boolean devMaPe;
 	
 
 
@@ -71,7 +73,10 @@ public final class Controles implements KeyListener,MouseListener{
 		izquierda = teclas[KeyEvent.VK_LEFT];
 		derecha = teclas[KeyEvent.VK_RIGHT];
 		centrar = teclas[KeyEvent.VK_C];
+		
 		dev = teclas[KeyEvent.VK_D];
+		devMaCo = teclas[KeyEvent.VK_M];
+		devMaPe = teclas[KeyEvent.VK_P];
 		
 		
 		reposo = teclas[KeyEvent.VK_0];

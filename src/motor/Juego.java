@@ -6,7 +6,7 @@ package motor;
 
 
 
-import java.awt.event.KeyEvent;
+
 
 import javax.swing.JFrame;
 
@@ -14,7 +14,6 @@ import javax.swing.JFrame;
 import control.Controles;
 import control.Developer;
 import graficos.Pantalla;
-import tropas.Tanque;
 
 
 
@@ -164,7 +163,24 @@ public class Juego  extends JFrame implements Runnable{
 
 		}
 		
-
+		if(controles.devMaCo){
+			
+			if(developer.isDevMapaCoo()){
+				developer.setDevMapaCoo(false);
+			} else {
+				developer.setDevMapaCoo(true);
+			}
+		}
+		
+		if(controles.devMaPe){
+			
+			if(developer.isDevMapaPen()){
+				developer.setDevMapaPen(false);
+			} else {
+				developer.setDevMapaPen(true);
+			}
+		}
+		
 		
 		for(int b=0; b<juegoNivel.getPlayers().length-1;b++){
 			int valor=juegoNivel.getPlayers()[b].getActitud();
@@ -192,17 +208,7 @@ public class Juego  extends JFrame implements Runnable{
 			juegoNivel.getPlayers()[b].setActitud(valor);
 		}
 		
-//	
-//		for(int t=0;t<tanquesPlay.length;t++) {
-//			
-//			
-//			tanquesPlay[t].setActitud(reposo, mantenerPosicion
-//					,cubrir 
-//					,defenderObjetivo 
-//					,ataque 
-//					,avancePasivo
-//					,avanceActivo);
-//		}
+
 	
 		
 		if(controles.salir){
