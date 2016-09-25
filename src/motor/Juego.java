@@ -8,6 +8,11 @@ package motor;
 
 
 
+import java.awt.Cursor;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
+
 import javax.swing.JFrame;
 
 
@@ -94,6 +99,8 @@ public class Juego  extends JFrame implements Runnable{
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+
+		
 		
 		setFocusable(true);
 		
@@ -134,7 +141,7 @@ public class Juego  extends JFrame implements Runnable{
 		controles.posicionRaton(pantalla);
 		
 		
-
+		
 		
 		
 		if(controles.centrar){
@@ -181,6 +188,7 @@ public class Juego  extends JFrame implements Runnable{
 			}
 		}
 		
+		Image im=Toolkit.getDefaultToolkit().createImage("recursos/puntero-raton.png");
 		
 		for(int b=0; b<juegoNivel.getPlayers().length-1;b++){
 			int valor=juegoNivel.getPlayers()[b].getActitud();
@@ -204,12 +212,22 @@ public class Juego  extends JFrame implements Runnable{
 			
 			if(controles.avanceActivo){
 				valor=6;}
+			if(controles.posicionar){
+				valor=7;}
 			
 			juegoNivel.getPlayers()[b].setActitud(valor);
+		
+			
+			if(juegoNivel.getPlayers()[b].getActitud()==4){
+			im = Toolkit.getDefaultToolkit().createImage("recursos/punto_mira.png"); 
+			
+			} 
 		}
 		
-
-	
+		
+		Cursor cur = Toolkit.getDefaultToolkit().createCustomCursor(im, new Point(10,10),"WILL"); 
+		setCursor(cur); 
+		
 		
 		if(controles.salir){
 			System.exit(0);

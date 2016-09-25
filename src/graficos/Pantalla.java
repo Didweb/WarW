@@ -174,12 +174,26 @@ public class Pantalla extends JPanel {
 	
 			for(int t=0;t<play.length-1;t++){
 				
-				if(play[t].getPosicionXLogica()>0 && play[t].getPosicionYLogica()>0){
+				
+				if(tiles.getTileDataPenetracion()[ylogica][xlogica]==0){
+					play[t].setColocado(false);
+					//g.setColor(Color.RED);
+					play[t].errorT(g);
+				} else {g.setColor(Color.BLACK);
+				play[t].setColocado(true);}
+				
+				
+				
+				if(play[t].getPosicionXLogica()>0 
+						&& play[t].getPosicionYLogica()>0){
 					
 					if(play[t].getPosicionXLogica()==xlogica && play[t].getPosicionYLogica()==ylogica){
 						
+						
+						g.drawString("Pen:"+tiles.getTileDataPenetracion()[ylogica][xlogica]+"("+xlogica+","+ylogica+")", xcel-scrollX+15, ycel-(scrollY-(altoTile*2)));
 						g.drawString(""+play[t].getId(), xcel-scrollX, ycel-(scrollY-(altoTile*2)));	
 						g.fillRect(xcel-scrollX, ycel-(scrollY-(altoTile*2)), anchoTile, altoTile);	
+						
 						
 						if(play[t].isMenuContextual()){
 							
@@ -189,7 +203,9 @@ public class Pantalla extends JPanel {
 							int sal = 0;
 							
 							for (int o=0;o<play[t].getActictudLista().length;o++){
+								
 								g.setColor(Color.GRAY);
+								
 								if(o == play[t].getActitud()){
 									g.setColor(Color.RED);
 									} else {g.setColor(Color.GRAY);}

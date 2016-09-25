@@ -58,10 +58,16 @@ public class AccionesGamer {
 				 tanquesPlay[xt].setSelccionado(true);
 			 } else {
 				 
+				 
 				 if (tanquesPlay[xt].isSelccionado() == true 
 					 && eventY < tanquesPlay[xt].getDatsSel()[1]){
 					 
+					 // Durante la preparación de  la partida.
+					 // Determinamos que tipo de acción debe hacer segun la actitud del tanque.
+					 
+					 if(tanquesPlay[xt].getActitud()==7){
 					 tanquesPlay[xt].setPosEnTablero(eventX, eventY,scrollX,scrollY);
+					 }
 					 
 				 } else {
 					 tanquesPlay[xt].setSelccionado(false); 

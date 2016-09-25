@@ -24,6 +24,7 @@ public class Niveles {
 	private HojaSprites hojaNivel;
 	
 	
+	
 	private TileData planoData;
 	
 	private int batalla;

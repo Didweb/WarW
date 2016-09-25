@@ -53,6 +53,9 @@ public final class Controles implements KeyListener,MouseListener{
 	public boolean ataque;
 	public boolean avancePasivo;
 	public boolean avanceActivo;
+	public boolean posicionar;
+	
+	// Teclas developer
 	public boolean devMaCo;
 	public boolean devMaPe;
 	
@@ -86,6 +89,7 @@ public final class Controles implements KeyListener,MouseListener{
 		ataque = teclas[KeyEvent.VK_4];
 		avancePasivo = teclas[KeyEvent.VK_5];
 		avanceActivo = teclas[KeyEvent.VK_6];
+		posicionar = teclas[KeyEvent.VK_7];
 		
 		this.scrollX = Rx;
 		this.scrollY = Ry;
@@ -161,13 +165,15 @@ public final class Controles implements KeyListener,MouseListener{
 		
 		
 		   if((e.getModifiers() & InputEvent.BUTTON1_MASK) == InputEvent.BUTTON1_MASK) {
-			   //System.out.println("Click con el botón izdo");
+			   // Boton IZQUIERDO
 			   accionesGamer.cierraContextoT();
 			   accionesGamer.seleccionarTanuqes(e.getX(),e.getY());
 			   
+			   
 		   } else {
+			   // Boton DERECHO
 			   accionesGamer.menuContextoT();
-			   //System.out.println("Click con el botón dcho");
+			   
 			   
 		   }
 			

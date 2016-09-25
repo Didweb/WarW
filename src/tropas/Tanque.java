@@ -1,6 +1,8 @@
 package tropas;
 
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -28,7 +30,10 @@ public class Tanque extends Ejercito {
 	
 	protected TileData tileData;
 	
-    private int destinoXLogica;
+	private boolean colocado = false;
+	
+
+	private int destinoXLogica;
     private int destinoYLogica;
     
     private boolean estaVivo =  true;
@@ -45,7 +50,7 @@ public class Tanque extends Ejercito {
 
 
 
-    private int actitud = 0;
+    private int actitud = 7;
     
 	private String[] actictudLista = {"Reposo", 
                 	    "Mantener Posición", 
@@ -53,7 +58,8 @@ public class Tanque extends Ejercito {
                 	    "Defender Objetivo", 
                 	    "Ataque", 
                 	    "Avance Pasivo", 
-                	    "Avance Activo"};
+                	    "Avance Activo",
+                	    "Posicionar"};
     protected String modelo;
     private Image imgTanque;
     
@@ -119,7 +125,19 @@ public class Tanque extends Ejercito {
 	
     }
     
- 
+    public void errorT(Graphics g){
+    	g.setColor(Color.RED); 
+    }
+    
+    public boolean isColocado() {
+		return colocado;
+	}
+
+
+
+	public void setColocado(boolean colocado) {
+		this.colocado = colocado;
+	}
     
     public String[] getActictudLista() {
 		return actictudLista;
