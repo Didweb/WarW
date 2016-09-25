@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import control.Controles;
 import graficos.TileData;
 
 
@@ -36,9 +37,17 @@ public class Tanque extends Ejercito {
     // Posicion de selector del menu x,y,ancho,alto,espacio Rotacion,margen
     private int[] datsSel = new int[6];
     
-    private String actitud;
     
-    private String[] actictudLista = {"Reposo", 
+    
+    private boolean menuContextual = false;
+
+
+
+
+
+    private int actitud = 0;
+    
+	private String[] actictudLista = {"Reposo", 
                 	    "Mantener Posición", 
                 	    "Cubrir", 
                 	    "Defender Objetivo", 
@@ -84,7 +93,6 @@ public class Tanque extends Ejercito {
     public Tanque(String bando,  int[] ancalt){
 	
 	setBando(bando);
-	actitud = actictudLista[0];
 	
 	id = controlId;
 	controlId++;
@@ -111,14 +119,23 @@ public class Tanque extends Ejercito {
 	
     }
     
+ 
     
-    
-   public void deteSeleccion(int actualRatonX, int actualRatonY){
-	   
+    public String[] getActictudLista() {
+		return actictudLista;
+	}
 
-	   
-	   
-   }
+	public boolean isMenuContextual() {
+		return menuContextual;
+	}
+
+
+
+	public void setMenuContextual(boolean menuContextual) {
+		this.menuContextual = menuContextual;
+	}
+    
+
 
 
     
@@ -233,15 +250,20 @@ public class Tanque extends Ejercito {
         this.estaVivo = estaVivo;
     }
     
-    public String getActitud() {
+    public int getActitud() {
         return actitud;
     }
 
 
 
-    public void setActitud(String actitud) {
-        this.actitud = actitud;
+    public void setActitud(int valor) {
+        
+    	if(isMenuContextual()){
+			
+    		this.actitud = valor; 
+		}
     }
+
 
 
 

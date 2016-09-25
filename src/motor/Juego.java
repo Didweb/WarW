@@ -4,9 +4,9 @@ package motor;
 
 
 
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+
+
+import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 
@@ -166,8 +166,43 @@ public class Juego  extends JFrame implements Runnable{
 		
 
 		
+		for(int b=0; b<juegoNivel.getPlayers().length-1;b++){
+			int valor=juegoNivel.getPlayers()[b].getActitud();
+			if(controles.reposo){
+				valor=0;}
+			
+			if(controles.mantenerPosicion){
+				valor=1;}
+			
+			if(controles.cubrir){
+				valor=2;}
+			
+			if(controles.defenderObjetivo){
+				valor=3;}
+			
+			if(controles.ataque){
+				valor=4;}
+			
+			if(controles.avancePasivo){
+				valor=5;}
+			
+			if(controles.avanceActivo){
+				valor=6;}
+			
+			juegoNivel.getPlayers()[b].setActitud(valor);
+		}
 		
-		
+//	
+//		for(int t=0;t<tanquesPlay.length;t++) {
+//			
+//			
+//			tanquesPlay[t].setActitud(reposo, mantenerPosicion
+//					,cubrir 
+//					,defenderObjetivo 
+//					,ataque 
+//					,avancePasivo
+//					,avanceActivo);
+//		}
 	
 		
 		if(controles.salir){

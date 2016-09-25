@@ -2,6 +2,7 @@ package control;
 
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -42,7 +43,19 @@ public final class Controles implements KeyListener,MouseListener{
 	private HojaSprites mapa;
 	private int anteriorRatonX;
 	private int anteriorRatonY;
+	private AccionesGamer accionesGamer;
 	
+	// Teclas actitud
+	public boolean reposo;
+	public boolean mantenerPosicion;
+	public boolean cubrir;
+	public boolean defenderObjetivo;
+	public boolean ataque;
+	public boolean avancePasivo;
+	public boolean avanceActivo;
+	
+
+
 	public void initActores(Tanque[] play,HojaSprites mapa){
 	    
 	    tanquesPlay = play;
@@ -59,10 +72,22 @@ public final class Controles implements KeyListener,MouseListener{
 		derecha = teclas[KeyEvent.VK_RIGHT];
 		centrar = teclas[KeyEvent.VK_C];
 		dev = teclas[KeyEvent.VK_D];
+		
+		
+		reposo = teclas[KeyEvent.VK_0];
+		mantenerPosicion = teclas[KeyEvent.VK_1];
+		cubrir = teclas[KeyEvent.VK_2];
+		defenderObjetivo = teclas[KeyEvent.VK_3];
+		ataque = teclas[KeyEvent.VK_4];
+		avancePasivo = teclas[KeyEvent.VK_5];
+		avanceActivo = teclas[KeyEvent.VK_6];
+		
 		this.scrollX = Rx;
 		this.scrollY = Ry;
+		accionesGamer = new AccionesGamer(tanquesPlay ,scrollX ,scrollY);
 		
 		
+
 	
 		
 	}
@@ -128,64 +153,23 @@ public final class Controles implements KeyListener,MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// Posicion de selector del menu 0:x, 1:y, 2:ancho,3:alto, 4:espacio rotacion, 5:margen superior inicial
+		
+		
+		   if((e.getModifiers() & InputEvent.BUTTON1_MASK) == InputEvent.BUTTON1_MASK) {
+			   //System.out.println("Click con el botón izdo");
+			   accionesGamer.cierraContextoT();
+			   accionesGamer.seleccionarTanuqes(e.getX(),e.getY());
+			   
+		   } else {
+			   accionesGamer.menuContextoT();
+			   //System.out.println("Click con el botón dcho");
+			   
+		   }
+			
 		anteriorRatonX=e.getX();
 		anteriorRatonY=e.getY();
 		
-		int baseAlto = tanquesPlay[0].getDatsSel()[1];
 		
-		int newCol=0;
-		int ncol=1;
-		int rondas=0;
-		int baseRondas = (baseAlto+60);
-		int saltosy=0;
-		
-		for (int xt=0;xt<tanquesPlay.length-1;xt++){
-			
-			
-			if (rondas==3){
-				rondas=0;
-				
-				if(ncol==1){
-					newCol=100;
-					} else {
-					newCol=100*ncol;
-					}
-				ncol++;
-				
-				baseRondas=(baseAlto+60);
-			}
-			
-			
-			 int x=tanquesPlay[xt].getDatsSel()[0]+newCol;
-
-			 int y=baseRondas;
-			 int xanc=x+tanquesPlay[xt].getDatsSel()[2];
-			 int yalt=y+tanquesPlay[xt].getDatsSel()[3];
-			 rondas++;
-				saltosy=tanquesPlay[xt].getDatsSel()[4];
-				baseRondas+=saltosy;
-			 
-			 
-			  
-			 if(e.getX() > x && e.getX() < xanc
-				 && e.getY() > y && e.getY() < yalt){
-			   
-				 tanquesPlay[xt].setSelccionado(true);
-			 } else {
-				 
-				 if (tanquesPlay[xt].isSelccionado() == true 
-					 && e.getY() < tanquesPlay[xt].getDatsSel()[1]){
-					 
-					 tanquesPlay[xt].setPosEnTablero(e.getX(), e.getY(),scrollX,scrollY);
-					 
-				 } else {
-					 tanquesPlay[xt].setSelccionado(false); 
-				 }
-				 
-			 }
-			
-			
-		}
 		
 		
 

@@ -2,23 +2,12 @@ package graficos;
 
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.MouseInfo;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import control.Controles;
 import control.Developer;
-import control.MenuGamer;
+import menus.MenuGamer;
 import motor.Niveles;
 import tropas.Tanque;
 
@@ -186,9 +175,29 @@ public class Pantalla extends JPanel {
 			for(int t=0;t<play.length-1;t++){
 				
 				if(play[t].getPosicionXLogica()>0 && play[t].getPosicionYLogica()>0){
+					
 					if(play[t].getPosicionXLogica()==xlogica && play[t].getPosicionYLogica()==ylogica){
+						
 						g.drawString(""+play[t].getId(), xcel-scrollX, ycel-(scrollY-(altoTile*2)));	
-						g.fillRect(xcel-scrollX, ycel-(scrollY-(altoTile*2)), anchoTile, altoTile);		
+						g.fillRect(xcel-scrollX, ycel-(scrollY-(altoTile*2)), anchoTile, altoTile);	
+						
+						if(play[t].isMenuContextual()){
+							
+							g.setColor(Color.BLACK);
+							g.fillRoundRect(xcel-scrollX+80,ycel-(scrollY-(altoTile*2)) , 180, 200, 10, 10);
+							
+							int sal = 0;
+							
+							for (int o=0;o<play[t].getActictudLista().length;o++){
+								g.setColor(Color.GRAY);
+								if(o == play[t].getActitud()){
+									g.setColor(Color.RED);
+									} else {g.setColor(Color.GRAY);}
+								
+								g.drawString(o+". "+play[t].getActictudLista()[o], (xcel-scrollX+80)+5, (ycel-(scrollY-(altoTile*2)))+10+sal);
+								sal+=15;
+							}
+						}
 					
 					}	
 				}

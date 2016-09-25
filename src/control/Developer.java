@@ -109,9 +109,10 @@ public void developerSet(Graphics g, Controles controles, int scrollX, int scrol
 		
 		// controles tanques
 		int espa = 15;
+		int actitud;
 		for(int x=0; x<play.length-1; x++){
 			g.setColor(Color.GRAY);
-			g.drawString("    X  -   Y   | xL - yL", 420, 15);
+			g.drawString("  X  -   Y   | xL - yL", 420, 15);
 			if(play[x].isSelccionado()){
 				g.setColor(Color.YELLOW);
 			} else { g.setColor(Color.GRAY); }
@@ -122,6 +123,9 @@ public void developerSet(Graphics g, Controles controles, int scrollX, int scrol
 			g.drawString(" "+play[x].getPosicionX()+" - "+play[x].getPosicionY(), 420, 17+espa);
 			g.drawString("| "+play[x].getPosicionXLogica()+" - "+play[x].getPosicionYLogica(), 510, 17+espa);
 			
+			
+			actitud = play[x].getActitud();
+			g.drawString("| "+play[x].getActictudLista()[actitud], 610, 17+espa);
 			espa+=17;
 		}
 		
