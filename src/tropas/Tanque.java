@@ -330,23 +330,38 @@ public class Tanque extends Ejercito {
 		this.posicionY = posicionY;
 		int casillax;
 		int casillay;
+		int nCasilla;
+		
+		int posxLogica;
+		int posyLogica;
+		int casillaInter;
 		
 		for(int co=0; co<tileData.getCoordLogicasPix().length;co++){
 			
-			casillax=tileData.getCoordLogicasPix()[co][0]+scrollX;
-			casillay=tileData.getCoordLogicasPix()[co][1]+scrollY;
+			nCasilla = tileData.getGuiaIso2D()[co][0];
+			casillax = tileData.getGuiaIso2D()[co][1]-scrollX;
+			casillay = tileData.getGuiaIso2D()[co][2]-(scrollY-(altoTile*2));
+			
+			
+			
+			posxLogica = tileData.getCoordLogicas()[nCasilla][0];
+			posyLogica = tileData.getCoordLogicas()[nCasilla][1];
+			
 			//System.out.println(casillax+" "+casillay+" -- "+posicionX+" "+posicionY);
-			if (casillax< posicionX
-					&& casillax+anchoTile>posicionX  
+			System.out.println("-------------------------------------------: "+posxLogica+","+posyLogica);
+			System.out.println("|-----|"+casillax+" "+(casillax+anchoTile));
+			System.out.println("   I   "+casillay+" "+(casillay+altoTile));
+			if (casillax < posicionX 
+					&& casillax+anchoTile > posicionX  
 					&& casillay< posicionY 
-					&& casillay+altoTile>posicionY ){
+					&& casillay+altoTile > posicionY ){
 				
 				System.out.println(id+" x:"+(posicionX)+" y:"+(posicionY)+"------------->>"+co);
 				System.out.println(casillax+" "+(casillax+anchoTile));
 				System.out.println(casillay+" "+(casillay+altoTile));
 				
-				posicionXLogica = tileData.getCoordLogicas()[co][0];
-				posicionYLogica = tileData.getCoordLogicas()[co][1];
+				posicionXLogica = tileData.getCoordLogicas()[nCasilla][0];
+				posicionYLogica = tileData.getCoordLogicas()[nCasilla][1];
 				System.out.println(co+"==> xL:"+(posicionXLogica)+" yL:"+(posicionYLogica));
 			}
 		}

@@ -9,7 +9,7 @@ public class TileImg extends Tiles{
 	
 	
 	public TileImg(int[] valueSizes,int ancho_mapa){
-			super(valueSizes);
+		super(valueSizes);
 		setAncho_tile(valueSizes[2]);
 		setAlto_tile(valueSizes[3]);
 		inicaimosTiles(ancho_mapa);

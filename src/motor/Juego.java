@@ -72,7 +72,7 @@ public class Juego  extends JFrame implements Runnable{
 	
 	
 	private Juego() {
-	    developer = new Developer();
+	    developer = new Developer(VALORES_SIZES);
 		controles = new Controles();
 		
 		juegoNivel = new Niveles(VALORES_SIZES);
