@@ -14,7 +14,11 @@ public class Developer {
 	private boolean devActivo=true;
 	
 	private boolean devMapaCoo=false;
-	private boolean devMapaPen=true;
+	private boolean devMapaPen=false;
+
+
+
+	private boolean devMapaDestino=true;
 
 	
 	
@@ -24,6 +28,15 @@ public class Developer {
 		
 	}
 	
+	
+	public boolean isDevMapaDestino() {
+		return devMapaDestino;
+	}
+
+
+	public void setDevMapaDestino(boolean devMapaDestino) {
+		this.devMapaDestino = devMapaDestino;
+	}
 
     public boolean isDevMapaCoo() {
 		return devMapaCoo;
@@ -69,7 +82,8 @@ public class Developer {
 			int scrollY,
 			int anchoTile,
 			int altoTile,
-			TileData tiles){
+			TileData tiles,
+			Tanque[] play){
 
 
     		Font fuenteDev=new Font("Monospaced", Font.PLAIN, 9);
@@ -111,7 +125,45 @@ public class Developer {
 				g.fillRect(xcel-scrollX, ycel-(scrollY-(altoTile*2)), anchoTile, altoTile);
 	    		}
     		
+			if(devMapaDestino){
+				int idTsel=1000;
+				
+
+				
+				for(int x=0;x<play.length-1;x++){
+					
+					if(play[x].isSelccionado()){
+						idTsel = x;
+					}
+				}
+				if(idTsel!=1000 && play[idTsel].getPlanoDestino().length>0){
+					
+					int alpha = 127; // 50% transparent
+	    			Color myColour;	
+					
+				int[][] planoDestion = play[idTsel].getPlanoDestino();
+				
+				g.setColor(Color.black);
+				g.drawString(xlogica+","+ylogica, xcel-scrollX+10, ycel-(scrollY-(altoTile*2))+10);
+				
+				g.drawString(""+planoDestion[xlogica][ylogica], xcel-scrollX+50, ycel-(scrollY-(altoTile*2))+10);
+				
+				
+				if(planoDestion[xlogica][ylogica]==0){
+					myColour = new Color(255, 0, 0, alpha);
+				} else {
+					myColour = new Color(255, 255, 255, alpha);
+				}
+				//myColour = new Color(255, 150+(planoDestion[ylogica][xlogica]*20), 0, alpha);
+				g.setColor(myColour);
+				g.fillRect(xcel-scrollX, ycel-(scrollY-(altoTile*2)), anchoTile, altoTile);
+				
+				}
+				
 			}
+    
+    
+    	}
     
     
 public void developerSet(Graphics g, Controles controles, int scrollX, int scrollY, Tanque[] play){

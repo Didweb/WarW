@@ -36,7 +36,15 @@ public class Tanque extends Ejercito {
 	private int destinoXLogica;
     private int destinoYLogica;
     
-    private boolean estaVivo =  true;
+    private int[][] planoDestino;
+    
+
+
+
+
+
+
+	private boolean estaVivo =  true;
     private boolean selccionado = false;
     
     // Posicion de selector del menu x,y,ancho,alto,espacio Rotacion,margen
@@ -45,8 +53,6 @@ public class Tanque extends Ejercito {
     
     
     private boolean menuContextual = false;
-
-
 
 
 
@@ -63,9 +69,17 @@ public class Tanque extends Ejercito {
     protected String modelo;
     private Image imgTanque;
     
+    private boolean sinDestion = true;
 
 
-    private static int controlId=0;
+
+
+
+
+
+
+
+	private static int controlId=0;
     private int id;
 
 
@@ -118,14 +132,31 @@ public class Tanque extends Ejercito {
 	
 
 	
-	
-	
+	planoDestino = new int[2048/ancalt[2]][2048/ancalt[3]];
+	System.out.println("total "+planoDestino.length);
 
 	
 	
     }
+	public boolean isSinDestion() {
+		return sinDestion;
+	}
+
+
+	public void setSinDestion(boolean sinDestion) {
+		this.sinDestion = sinDestion;
+	}
     
-    public void errorT(Graphics g){
+    public void setPlanoDestino(int[][] planoDestino) {
+		this.planoDestino = planoDestino;
+	}
+    
+    public int[][] getPlanoDestino() {
+		return planoDestino;
+	}
+
+
+	public void errorT(Graphics g){
     	g.setColor(Color.RED); 
     }
     
@@ -133,7 +164,13 @@ public class Tanque extends Ejercito {
 		return colocado;
 	}
 
+    public boolean isSinDestino() {
+		return sinDestion;
+	}
 
+	public void setSinDestino(boolean creadoDestino) {
+		this.sinDestion = creadoDestino;
+	}
 
 	public void setColocado(boolean colocado) {
 		this.colocado = colocado;
@@ -368,38 +405,12 @@ public class Tanque extends Ejercito {
 		
 		this.posicionX = posicionX;
 		this.posicionY = posicionY;
-		int casillax;
-		int casillay;
-		int nCasilla;
 		
-		int posxLogica;
-		int posyLogica;
+		tileData.buscaLogicas(posicionX ,posicionY ,scrollX  ,scrollY);
 		
-
-		System.out.println(" ");
-		for(int co=0; co<tileData.getCoordLogicasPix().length;co++){
-			
-			nCasilla = tileData.getGuiaIso2D()[co][0];
-			casillax = tileData.getGuiaIso2D()[co][1]-scrollX;
-			casillay = tileData.getGuiaIso2D()[co][2]-(scrollY-(altoTile*2));
-			
-			
-			
-			posxLogica = tileData.getCoordLogicas()[nCasilla][0];
-			posyLogica = tileData.getCoordLogicas()[nCasilla][1];
-	
-			if (casillax < posicionX 
-				&& casillax+anchoTile > posicionX  
-				&& casillay< posicionY 
-				&& casillay+altoTile > posicionY ){
-			
-				
-				posicionXLogica = tileData.getCoordLogicas()[nCasilla][0];
-				posicionYLogica = tileData.getCoordLogicas()[nCasilla][1]-1;
-
-				break;
-			}
-		}
+		posicionXLogica = tileData.getBuscaLoX();
+		posicionYLogica = tileData.getBuscaLoY();
+		
 		
 				
 	}

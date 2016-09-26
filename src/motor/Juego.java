@@ -91,7 +91,7 @@ public class Juego  extends JFrame implements Runnable{
 		
 		pantalla.actores(juegoNivel, controles, developer);
 		
-		controles.initActores(juegoNivel.getPlayers(), juegoNivel.getHojaNivel());
+		controles.initActores(juegoNivel.getPlayers(), juegoNivel.getHojaNivel(),  juegoNivel.getPlanoData());
 		
 		addMouseListener(controles);
 		
@@ -185,6 +185,15 @@ public class Juego  extends JFrame implements Runnable{
 				developer.setDevMapaPen(false);
 			} else {
 				developer.setDevMapaPen(true);
+			}
+		}
+		
+		if(controles.devMaPe){
+			
+			if(developer.isDevMapaDestino()){
+				developer.setDevMapaDestino(false);
+			} else {
+				developer.setDevMapaDestino(true);
 			}
 		}
 		

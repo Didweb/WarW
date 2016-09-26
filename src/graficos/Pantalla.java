@@ -132,7 +132,8 @@ public class Pantalla extends JPanel {
 			
 
 			if(developer.isDevActivo()){
-				developer.developerMapa(g, xiT, xlogica,   ylogica, xcel, ycel,  scrollX, scrollY, anchoTile, altoTile,tiles);
+				
+				developer.developerMapa(g, xiT, xlogica,   ylogica, xcel, ycel,  scrollX, scrollY, anchoTile, altoTile,tiles,play);
 				}
 			
 		}
@@ -180,7 +181,7 @@ public class Pantalla extends JPanel {
 					//g.setColor(Color.RED);
 					play[t].errorT(g);
 				} else {g.setColor(Color.BLACK);
-				play[t].setColocado(true);}
+					play[t].setColocado(true);}
 				
 				
 				

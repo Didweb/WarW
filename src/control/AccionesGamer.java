@@ -1,5 +1,7 @@
 package control;
 
+import graficos.HojaSprites;
+import graficos.TileData;
 import tropas.Tanque;
 
 public class AccionesGamer {
@@ -7,6 +9,10 @@ public class AccionesGamer {
 	private Tanque[] tanquesPlay;
 	private int scrollX;
 	private int scrollY;
+	
+	private int ratonX;
+	private int ratonY;
+	private TileData tileData;
 
 	public AccionesGamer(Tanque[] tanquesPlay, int scrollX, int scrollY){
 		this.tanquesPlay = tanquesPlay;
@@ -113,5 +119,63 @@ public class AccionesGamer {
 	}
 	
 	
+	
+	public void cazaCoordenada(int ratonX, int ratonY, int scrollX, int scrollY, TileData tileData){
+		
+		this.ratonX = ratonX;
+		this.ratonY = ratonY;
+		this.tileData = tileData;
+		
+		int idT = -1;
+		int actitudT = 1000;
+		
+		for(int x=0; x<tanquesPlay.length-1;x++){
+			
+			if(tanquesPlay[x].isSelccionado()){
+				idT = tanquesPlay[x].getId();
+				actitudT = tanquesPlay[idT].getActitud();
+			}
+		}
+		
+		if(idT>-1){
+			switch (actitudT){
+			
+				case 5:
+					if(tanquesPlay[idT].isSinDestino()){
+						tanquesPlay[idT].setPlanoDestino(coorDestino(scrollX, scrollY, tileData));
+						
+						
+					}
+					break;
+				case 6:
+					if(tanquesPlay[idT].isSinDestino()){
+						tanquesPlay[idT].setPlanoDestino(coorDestino(scrollX, scrollY, tileData));
+					}
+					break;
+				default:
+					break;
+			
+			}
+		}
+		
+		
+	}
+	
+	
+	public int[][] coorDestino(int scrollX, int scrollY,TileData tileData ){
+		
+		
+		
+		
+		tileData.buscaLogicas(ratonX ,ratonY ,scrollX ,scrollY);
+		int destLoX = tileData.getBuscaLoX();
+		int destLoY = tileData.getBuscaLoY();
+		
+		int[][] planoDistancia = tileData.planoDistancia(destLoX, destLoY);
+		
+		System.out.println("Estoy en coorDestino: Logicas: x,y : "+destLoX+" , "+destLoY);
+		
+		return planoDistancia;
+	}
 	
 }

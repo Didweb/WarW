@@ -33,6 +33,8 @@ public  class Tiles {
 	private int[] linkCoorIsoInit;
 	private int ancho_tile;
 	private int alto_tile;
+	private int buscaLoX;
+	private int buscaLoY;
 	
 	
 	public  Tiles(int[] valueSizes){
@@ -65,6 +67,16 @@ public  class Tiles {
 	}
 
 	
+	public int getTilesPorlado() {
+		return tilesPorlado;
+	}
+
+
+	public int getTilesPoralto() {
+		return tilesPoralto;
+	}
+
+
 	public void setTileDataPeligro(int[][] tileDataPeligro) {
 		this.tileDataPeligro = tileDataPeligro;
 	}
@@ -448,6 +460,84 @@ public  class Tiles {
 
 	public int[][] getTileDataPenetracion() {
 		return tileDataPenetracion;
+	}
+	
+	
+	// Busca coordenadas Logicas apartir de una posicion X e Y en pixeles.
+	public void buscaLogicas(int posicionX, int posicionY,int scrollX , int scrollY){
+		
+
+		int casillax;
+		int casillay;
+		int nCasilla;
+		
+		int posxLogica;
+		int posyLogica;
+		
+
+		
+		for(int co=0; co<getCoordLogicasPix().length;co++){
+			
+			nCasilla = getGuiaIso2D()[co][0];
+			casillax = getGuiaIso2D()[co][1]-scrollX;
+			casillay = getGuiaIso2D()[co][2]-(scrollY-(getALTO_TILE()*2));
+			
+			
+			
+			posxLogica = getCoordLogicas()[nCasilla][0];
+			posyLogica = getCoordLogicas()[nCasilla][1];
+	
+			if (casillax < posicionX 
+				&& casillax+getANCHO_TILE() > posicionX  
+				&& casillay< posicionY 
+				&& casillay+getALTO_TILE() > posicionY ){
+			
+				
+				buscaLoX = getCoordLogicas()[nCasilla][0];
+				buscaLoY = getCoordLogicas()[nCasilla][1]-1;
+
+				break;
+			}
+		}
+	}
+
+	
+	
+	public int[][] planoDistancia(int logicaX, int logicaY){
+		
+		int[][] resDestino = new int[tilesPorlado][tilesPoralto];
+		
+		int xx=0;
+		int yy=0;
+		int value =0;
+		for (int x=0; x<tilesTotal; x++){
+			
+			if(xx==tilesPorlado-1){
+				xx=0;
+				yy++;
+			}
+			if (xx==logicaX && yy==logicaY){
+				value=0;} 
+			else {
+				value=1;}
+			
+			resDestino[xx][yy]=value;
+		
+		System.out.println("("+logicaX+"-"+logicaY+")  "+xx+","+yy+" : "+resDestino[xx][yy]);	
+		xx++;	
+		}
+		
+		
+		return resDestino;
+	}
+
+	public int getBuscaLoX() {
+		return buscaLoX;
+	}
+
+
+	public int getBuscaLoY() {
+		return buscaLoY;
 	}
 	
 }

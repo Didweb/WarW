@@ -1,16 +1,15 @@
 package control;
 
-import java.awt.MouseInfo;
-import java.awt.Point;
+
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionAdapter;
 
 import graficos.HojaSprites;
 import graficos.Pantalla;
+import graficos.TileData;
 import tropas.Tanque;
 
 public final class Controles implements KeyListener,MouseListener{
@@ -40,7 +39,7 @@ public final class Controles implements KeyListener,MouseListener{
 	private int scrollY=0;
 	
 	private Tanque[] tanquesPlay;
-	private HojaSprites mapa;
+	private HojaSprites tiles;
 	private int anteriorRatonX;
 	private int anteriorRatonY;
 	private AccionesGamer accionesGamer;
@@ -58,13 +57,16 @@ public final class Controles implements KeyListener,MouseListener{
 	// Teclas developer
 	public boolean devMaCo;
 	public boolean devMaPe;
+	private TileData tileData;
+	private boolean devMaDe;
 	
 
 
-	public void initActores(Tanque[] play,HojaSprites mapa){
+	public void initActores(Tanque[] play,HojaSprites mapa, TileData tileData){
 	    
 	    tanquesPlay = play;
-	    this.mapa = mapa;
+	    this.tileData = tileData;
+	    this.tiles = mapa;
 	}
 
 	public void actualizar(int Rx, int Ry){
@@ -80,6 +82,7 @@ public final class Controles implements KeyListener,MouseListener{
 		dev = teclas[KeyEvent.VK_D];
 		devMaCo = teclas[KeyEvent.VK_M];
 		devMaPe = teclas[KeyEvent.VK_P];
+		devMaDe = teclas[KeyEvent.VK_D];
 		
 		
 		reposo = teclas[KeyEvent.VK_0];
@@ -100,6 +103,8 @@ public final class Controles implements KeyListener,MouseListener{
 	
 		
 	}
+
+
 
 	public void posicionRaton(Pantalla pantalla){
 		
@@ -169,10 +174,14 @@ public final class Controles implements KeyListener,MouseListener{
 			   accionesGamer.cierraContextoT();
 			   accionesGamer.seleccionarTanuqes(e.getX(),e.getY());
 			   
+			   accionesGamer.cazaCoordenada(e.getX(),e.getY(),scrollX ,scrollY,tileData);
 			   
 		   } else {
 			   // Boton DERECHO
 			   accionesGamer.menuContextoT();
+			   
+			  
+			   
 			   
 			   
 		   }
