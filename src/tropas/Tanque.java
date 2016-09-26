@@ -24,8 +24,20 @@ public class Tanque extends Ejercito {
     private int posicionY;
     
 	protected int anchoTile;
+
+
+
+
+
+
 	protected int altoTile;
     
+
+
+
+
+
+
 	BufferedImage imagenIcono;
 	
 	protected TileData tileData;
@@ -108,6 +120,7 @@ public class Tanque extends Ejercito {
     private int[] areaSel = new int[4];
 	private int scrollX;
 	private int scrollY;
+	private BufferedImage imagenTanque;
     
 
     public Tanque(String bando,  int[] ancalt){
@@ -138,6 +151,18 @@ public class Tanque extends Ejercito {
 	
 	
     }
+    
+	public int getAnchoTile() {
+		return anchoTile;
+	}
+	
+	
+	public int getAltoTile() {
+		return altoTile;
+	}
+
+    
+    
 	public boolean isSinDestion() {
 		return sinDestion;
 	}
@@ -263,8 +288,23 @@ public class Tanque extends Ejercito {
    	
    }
 
+    
+    public void imagenT(String imgT){
+    	
+      	 File f = new File("recursos/"+imgT);
+   	    try {
+   	    	imagenTanque = ImageIO.read(f);
+   			} catch (IOException e) {
+   			    e.printStackTrace();
+   			}
+      	
+      }
+    
 
-    public boolean isSelccionado() {
+    public BufferedImage getImagenTanque() {
+		return imagenTanque;
+	}
+	public boolean isSelccionado() {
         return selccionado;
     }
 

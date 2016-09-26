@@ -2,6 +2,7 @@ package tropas;
 
 
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +20,14 @@ public class T34 extends Tanque {
 
 
 
+	private BufferedImage imagen = null;
+
+
+	public BufferedImage getImagen() {
+		return imagen;
+	}
+
+
 	public T34(String bando,  TileData tileData, int[] ancalt){
 	super(bando,  ancalt);
 	
@@ -31,15 +40,15 @@ public class T34 extends Tanque {
 	blindaje = 67;
 	municion = 47;
 	velocidadDisparo = 15;
-	anchoTile = 64;
-	altoTile = 32;
+	anchoTile = 60;
+	altoTile = 60;
 	this.tileData = tileData;
 	icono("Tank-T-34_mini.gif");
-	
+	imagenT("t34.gif");
     }
 
-
-
+	
+	
     
 
 

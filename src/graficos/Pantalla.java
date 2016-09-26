@@ -193,7 +193,12 @@ public class Pantalla extends JPanel {
 						
 						g.drawString("Pen:"+tiles.getTileDataPenetracion()[ylogica][xlogica]+"("+xlogica+","+ylogica+")", xcel-scrollX+15, ycel-(scrollY-(altoTile*2)));
 						g.drawString(""+play[t].getId(), xcel-scrollX, ycel-(scrollY-(altoTile*2)));	
-						g.fillRect(xcel-scrollX, ycel-(scrollY-(altoTile*2)), anchoTile, altoTile);	
+						//g.fillRect(xcel-scrollX, ycel-(scrollY-(altoTile*2)), anchoTile, altoTile);	
+						if(play[t].isSelccionado() || tiles.getTileDataPenetracion()[ylogica][xlogica]==0){
+							g.drawOval((xcel-scrollX)-35, ycel-(scrollY-(60)), play[t].getAnchoTile()+18, 25);
+						}
+						
+						g.drawImage(play[t].getImagenTanque(), (xcel-scrollX)-play[t].getAnchoTile()/2, ycel-(scrollY-(play[t].getAltoTile()/2)), play[t].getAnchoTile(), play[t].getAltoTile(), this);
 						
 						
 						if(play[t].isMenuContextual()){
@@ -210,6 +215,8 @@ public class Pantalla extends JPanel {
 								if(o == play[t].getActitud()){
 									g.setColor(Color.RED);
 									} else {g.setColor(Color.GRAY);}
+								
+								
 								
 								g.drawString(o+". "+play[t].getActictudLista()[o], (xcel-scrollX+80)+5, (ycel-(scrollY-(altoTile*2)))+10+sal);
 								sal+=15;
