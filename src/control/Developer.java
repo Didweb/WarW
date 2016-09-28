@@ -128,6 +128,8 @@ public class Developer {
     		
     		Font fuenteDev2=new Font("Monospaced", Font.PLAIN, 12);
     		g.setFont(fuenteDev2);
+    		
+    		
 			if(devMapaDestino){
 				int idTsel=1000;
 				
@@ -221,7 +223,7 @@ public void developerSet(Graphics g, Controles controles, int scrollX, int scrol
 		int actitud;
 		for(int x=0; x<play.length-1; x++){
 			g.setColor(Color.GRAY);
-			g.drawString("  X  -   Y   | xL - yL", 420, 15);
+			g.drawString("  X  -   Y   | xL - yL     | Actitud          | DesLogX - Y", 420, 15);
 			if(play[x].isSelccionado()){
 				g.setColor(Color.YELLOW);
 			} else { g.setColor(Color.GRAY); }
@@ -235,6 +237,9 @@ public void developerSet(Graphics g, Controles controles, int scrollX, int scrol
 			
 			actitud = play[x].getActitud();
 			g.drawString("| "+play[x].getActictudLista()[actitud], 610, 17+espa);
+			
+			
+			g.drawString("Logicaaa ", 750, 17+espa);
 			espa+=17;
 		}
 		

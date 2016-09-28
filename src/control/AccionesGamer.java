@@ -1,6 +1,7 @@
 package control;
 
 
+import graficos.Dijkstra;
 import graficos.TileData;
 import tropas.Tanque;
 
@@ -143,15 +144,22 @@ public class AccionesGamer {
 				case 5:
 					if(tanquesPlay[idT].isSinDestino()){
 						coorDestino(scrollX,scrollY);
-						tanquesPlay[idT].setPlanoDestino(tileData.getTileDataPenetracion(),tileData.getBuscaLoX(),tileData.getBuscaLoY());
+						
+						Dijkstra Dij = new Dijkstra(tileData.getTilesPorlado(), tileData.getBuscaLoY(),tileData.getBuscaLoX());
+						Dij.iniTodo();
+						Dij.crear(tileData.getTileDataPenetracion());
+						
+						
+						System.out.println("CoorDesLogicas:"+tileData.getBuscaLoX()+" , "+tileData.getBuscaLoY());
+						tanquesPlay[idT].setPlanoDestino(Dij.getMapaDi());
 						
 						
 					}
 					break;
 				case 6:
 					if(tanquesPlay[idT].isSinDestino()){
-						tanquesPlay[idT].setPlanoDestino(tileData.getTileDataPenetracion(),tileData.getBuscaLoX(),tileData.getBuscaLoY());
-					}
+					// -------------- <<<>>>>> crear plano destino
+						}
 					break;
 				default:
 					break;

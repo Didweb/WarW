@@ -306,6 +306,12 @@ public  class Tiles {
 	}
 
 
+	
+	
+	
+	
+	
+	
 	protected void generarMapa(){
 		for (int i = 0; i < planoInter.length; i++){
 			
