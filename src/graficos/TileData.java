@@ -32,7 +32,7 @@ public class TileData extends Tiles{
 		cargarMapa("recursos/niveles/1/planos/penetracion.png");
 		generarMapa();
 		setTileDataPenetracion(montarMapsData(tileDataPenetracion));
-		//dameData(tileDataPenetracion);
+		dameData(tileDataPenetracion);
 		
 		
 

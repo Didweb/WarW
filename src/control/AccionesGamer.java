@@ -1,6 +1,6 @@
 package control;
 
-import graficos.HojaSprites;
+
 import graficos.TileData;
 import tropas.Tanque;
 
@@ -142,14 +142,15 @@ public class AccionesGamer {
 			
 				case 5:
 					if(tanquesPlay[idT].isSinDestino()){
-						tanquesPlay[idT].setPlanoDestino(coorDestino(scrollX, scrollY, tileData));
+						coorDestino(scrollX,scrollY);
+						tanquesPlay[idT].setPlanoDestino(tileData.getTileDataPenetracion(),tileData.getBuscaLoX(),tileData.getBuscaLoY());
 						
 						
 					}
 					break;
 				case 6:
 					if(tanquesPlay[idT].isSinDestino()){
-						tanquesPlay[idT].setPlanoDestino(coorDestino(scrollX, scrollY, tileData));
+						tanquesPlay[idT].setPlanoDestino(tileData.getTileDataPenetracion(),tileData.getBuscaLoX(),tileData.getBuscaLoY());
 					}
 					break;
 				default:
@@ -162,20 +163,13 @@ public class AccionesGamer {
 	}
 	
 	
-	public int[][] coorDestino(int scrollX, int scrollY,TileData tileData ){
-		
-		
+	public void coorDestino(int scrollX, int scrollY){
 		
 		
 		tileData.buscaLogicas(ratonX ,ratonY ,scrollX ,scrollY);
 		int destLoX = tileData.getBuscaLoX();
 		int destLoY = tileData.getBuscaLoY();
 		
-		int[][] planoDistancia = tileData.planoDistancia(destLoX, destLoY);
-		
-		System.out.println("Estoy en coorDestino: Logicas: x,y : "+destLoX+" , "+destLoY);
-		
-		return planoDistancia;
 	}
 	
 }

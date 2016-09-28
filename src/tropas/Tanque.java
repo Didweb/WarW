@@ -11,6 +11,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import control.Controles;
+import graficos.Dijkstra;
 import graficos.TileData;
 
 
@@ -172,8 +173,11 @@ public class Tanque extends Ejercito {
 		this.sinDestion = sinDestion;
 	}
     
-    public void setPlanoDestino(int[][] planoDestino) {
-		this.planoDestino = planoDestino;
+    public void setPlanoDestino(int[][] planoPenetracion, int LogicaX, int LogicaY) {
+		Dijkstra Dij =  new Dijkstra(tileData.getTilesPorlado(),LogicaX, LogicaY);
+		Dij.crear(planoPenetracion);
+    	
+    	this.planoDestino = Dij.getMapaDi();
 	}
     
     public int[][] getPlanoDestino() {

@@ -188,7 +188,7 @@ public class Juego  extends JFrame implements Runnable{
 			}
 		}
 		
-		if(controles.devMaPe){
+		if(controles.devMaDe){
 			
 			if(developer.isDevMapaDestino()){
 				developer.setDevMapaDestino(false);

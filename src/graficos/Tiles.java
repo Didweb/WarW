@@ -451,7 +451,7 @@ public  class Tiles {
 		
 		for(int g=0;g<arrayContenido.length;g++){
 		for(int gg=0;gg<arrayContenido[g].length;gg++){
-		System.out.println(arrayContenido.length + " | elementos :[ "+g+" "+gg+"] "+arrayContenido[g][gg]);
+		System.out.println(arrayContenido.length + " | elementos :[ "+g+" ] [ "+gg+" ] "+arrayContenido[g][gg]);
 		}
 		
 	}

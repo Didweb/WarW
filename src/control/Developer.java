@@ -125,6 +125,9 @@ public class Developer {
 				g.fillRect(xcel-scrollX, ycel-(scrollY-(altoTile*2)), anchoTile, altoTile);
 	    		}
     		
+    		
+    		Font fuenteDev2=new Font("Monospaced", Font.PLAIN, 12);
+    		g.setFont(fuenteDev2);
 			if(devMapaDestino){
 				int idTsel=1000;
 				
@@ -144,20 +147,21 @@ public class Developer {
 				int[][] planoDestion = play[idTsel].getPlanoDestino();
 				
 				g.setColor(Color.black);
-				g.drawString(xlogica+","+ylogica, xcel-scrollX+10, ycel-(scrollY-(altoTile*2))+10);
+				//g.drawString(xlogica+","+ylogica, xcel-scrollX+10, ycel-(scrollY-(altoTile*2))+10);
 				
-				g.drawString(""+planoDestion[xlogica][ylogica], xcel-scrollX+50, ycel-(scrollY-(altoTile*2))+10);
+				g.drawString(""+planoDestion[ylogica][xlogica], xcel-scrollX+50, ycel-(scrollY-(altoTile*2))+10);
 				
 				
-				if(planoDestion[xlogica][ylogica]==0){
+				if(planoDestion[ylogica][xlogica]==0){
 					myColour = new Color(255, 0, 0, alpha);
 				} else {
-					myColour = new Color(255, 255, 255, alpha);
+					myColour = new Color(255, 200+(planoDestion[ylogica][xlogica]), 255, alpha);
 				}
 				//myColour = new Color(255, 150+(planoDestion[ylogica][xlogica]*20), 0, alpha);
 				g.setColor(myColour);
 				g.fillRect(xcel-scrollX, ycel-(scrollY-(altoTile*2)), anchoTile, altoTile);
-				
+				g.setColor(Color.black);
+				g.drawRect(xcel-scrollX, ycel-(scrollY-(altoTile*2)), anchoTile, altoTile);
 				}
 				
 			}

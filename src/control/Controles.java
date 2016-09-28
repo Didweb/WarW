@@ -57,9 +57,9 @@ public final class Controles implements KeyListener,MouseListener{
 	// Teclas developer
 	public boolean devMaCo;
 	public boolean devMaPe;
-	private TileData tileData;
-	private boolean devMaDe;
+	public boolean devMaDe;
 	
+	private TileData tileData;
 
 
 	public void initActores(Tanque[] play,HojaSprites mapa, TileData tileData){
@@ -82,7 +82,7 @@ public final class Controles implements KeyListener,MouseListener{
 		dev = teclas[KeyEvent.VK_D];
 		devMaCo = teclas[KeyEvent.VK_M];
 		devMaPe = teclas[KeyEvent.VK_P];
-		devMaDe = teclas[KeyEvent.VK_D];
+		devMaDe = teclas[KeyEvent.VK_N];
 		
 		
 		reposo = teclas[KeyEvent.VK_0];
