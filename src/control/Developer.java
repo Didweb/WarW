@@ -239,7 +239,7 @@ public void developerSet(Graphics g, Controles controles, int scrollX, int scrol
 			g.drawString("| "+play[x].getActictudLista()[actitud], 610, 17+espa);
 			
 			
-			g.drawString("Logicaaa ", 750, 17+espa);
+			g.drawString(play[x].getDestinoXLogica()+" , "+play[x].getDestinoYLogica(), 750, 17+espa);
 			espa+=17;
 		}
 		

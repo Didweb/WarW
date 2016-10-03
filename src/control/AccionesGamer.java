@@ -151,6 +151,8 @@ public class AccionesGamer {
 						
 						
 						System.out.println("CoorDesLogicas:"+tileData.getBuscaLoX()+" , "+tileData.getBuscaLoY());
+						tanquesPlay[idT].setDestinoXLogica(tileData.getBuscaLoX());
+						tanquesPlay[idT].setDestinoYLogica(tileData.getBuscaLoY());
 						tanquesPlay[idT].setPlanoDestino(Dij.getMapaDi());
 						
 						
